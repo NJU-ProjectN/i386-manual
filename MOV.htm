@@ -24,19 +24,19 @@ Opcode   Instruction       Clocks        Description
 8B  /r   MOV r16,r/m16     2/4           Move r/m word to word register
 8B  /r   MOV r32,r/m32     2/4           Move r/m dword to dword register
 8C  /r   MOV r/m16,Sreg    2/2           Move segment register to r/m word
-8D  /r   MOV Sreg,r/m16    2/5,pm=18/19  Move r/m word to segment register
+8E  /r   MOV Sreg,r/m16    2/5,pm=18/19  Move r/m word to segment register
 A0       MOV AL,moffs8     4             Move byte at (seg:offset) to AL
 A1       MOV AX,moffs16    4             Move word at (seg:offset) to AX
 A1       MOV EAX,moffs32   4             Move dword at (seg:offset) to EAX
 A2       MOV moffs8,AL     2             Move AL to (seg:offset)
 A3       MOV moffs16,AX    2             Move AX to (seg:offset)
 A3       MOV moffs32,EAX   2             Move EAX to (seg:offset)
-B0 + rb  MOV reg8,imm8     2             Move immediate byte to register
-B8 + rw  MOV reg16,imm16   2             Move immediate word to register
-B8 + rd  MOV reg32,imm32   2             Move immediate dword to register
-C6       MOV r/m8,imm8     2/2           Move immediate byte to r/m byte
-C7       MOV r/m16,imm16   2/2           Move immediate word to r/m word
-C7       MOV r/m32,imm32   2/2           Move immediate dword to r/m dword
+B0 + rb ib  MOV reg8,imm8     2          Move immediate byte to register
+B8 + rw iw  MOV reg16,imm16   2          Move immediate word to register
+B8 + rd id  MOV reg32,imm32   2          Move immediate dword to register
+C6 ib    MOV r/m8,imm8     2/2           Move immediate byte to r/m byte
+C7 iw    MOV r/m16,imm16   2/2           Move immediate word to r/m word
+C7 id    MOV r/m32,imm32   2/2           Move immediate dword to r/m dword
 </PRE>
 
 <EM>

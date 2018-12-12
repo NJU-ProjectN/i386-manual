@@ -20,15 +20,15 @@ Opcode   Instruction  Clocks  Description
 0F  97   SETA r/m8    4/5     Set byte if above (CF=0 and ZF=0)
 0F  93   SETAE r/m8   4/5     Set byte if above or equal (CF=0)
 0F  92   SETB r/m8    4/5     Set byte if below (CF=1)
-0F  96   SETBE r/m8   4/5     Set byte if below or equal (CF=1 or (ZF=1)
+0F  96   SETBE r/m8   4/5     Set byte if below or equal (CF=1 or ZF=1)
 0F  92   SETC r/m8    4/5     Set if carry (CF=1)
 0F  94   SETE r/m8    4/5     Set byte if equal (ZF=1)
-0F  9F   SETG r/m8    4/5     Set byte if greater (ZF=0 or SF=OF)
+0F  9F   SETG r/m8    4/5     Set byte if greater (ZF=0 and SF=OF)
 0F  9D   SETGE r/m8   4/5     Set byte if greater or equal (SF=OF)
 0F  9C   SETL r/m8    4/5     Set byte if less (SF<>OF)
-0F  9E   SETLE r/m8   4/5     Set byte if less or equal (ZF=1 and
+0F  9E   SETLE r/m8   4/5     Set byte if less or equal (ZF=1 or
                               SF<>OF)
-0F  96   SETNA r/m8   4/5     Set byte if not above (CF=1)
+0F  96   SETNA r/m8   4/5     Set byte if not above (CF=1 or ZF=1)
 0F  92   SETNAE r/m8  4/5     Set byte if not above or equal (CF=1)
 0F  93   SETNB r/m8   4/5     Set byte if not below (CF=0)
 0F  97   SETNBE r/m8  4/5     Set byte if not below or equal (CF=0 and
@@ -38,8 +38,8 @@ Opcode   Instruction  Clocks  Description
 0F  9E   SETNG r/m8   4/5     Set byte if not greater (ZF=1 or SF<>OF)
 0F  9C   SETNGE r/m8  4/5     Set if not greater or equal (SF<>OF)
 0F  9D   SETNL r/m8   4/5     Set byte if not less (SF=OF)
-0F  9F   SETNLE r/m8  4/5     Set byte if not less or equal (ZF=1 and
-                              SF<>OF)
+0F  9F   SETNLE r/m8  4/5     Set byte if not less or equal (ZF=0 and
+                              SF=OF)
 0F  91   SETNO r/m8   4/5     Set byte if not overflow (OF=0)
 0F  9B   SETNP r/m8   4/5     Set byte if not parity (PF=0)
 0F  99   SETNS r/m8   4/5     Set byte if not sign (SF=0)

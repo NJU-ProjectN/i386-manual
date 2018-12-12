@@ -18,8 +18,8 @@ Opcode     Instruction   Clocks   Description
 
 FF   /6    PUSH m16      5        Push memory word
 FF   /6    PUSH m32      5        Push memory dword
-50 + /r    PUSH r16      2        Push register word
-50 + /r    PUSH r32      2        Push register dword
+50 + rw    PUSH r16      2        Push register word
+50 + rd    PUSH r32      2        Push register dword
 6A         PUSH imm8     2        Push immediate byte
 68         PUSH imm16    2        Push immediate word
 68         PUSH imm32    2        Push immediate dword

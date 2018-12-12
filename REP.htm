@@ -105,10 +105,10 @@ DO
    CountReg := CountReg - 1;
    IF primitive operation is CMPB, CMPW, SCAB, or SCAW
    THEN
-      IF (instruction is REP/REPE/REPZ) AND (ZF=1)
+      IF (instruction is REP/REPE/REPZ) AND (ZF=0)
       THEN exit WHILE loop
       ELSE
-         IF (instruction is REPNZ or REPNE) AND (ZF=0)
+         IF (instruction is REPNZ or REPNE) AND (ZF=1)
          THEN exit WHILE loop;
          FI;
       FI;

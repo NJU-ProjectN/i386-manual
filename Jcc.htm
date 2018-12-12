@@ -35,7 +35,7 @@ E3  cb         JECXZ rel8        9+m,5    Jump short if ECX register is 0
                                           (SF=OF)
 7C  cb         JL rel8           7+m,3    Jump short if less (SF<>OF)
 7E  cb         JLE rel8          7+m,3    Jump short if less or equal
-                                          (ZF=1 and SF<>OF)
+                                          (ZF=1 or SF<>OF)
 76  cb         JNA rel8          7+m,3    Jump short if not above (CF=1 or
                                           ZF=1)
 72  cb         JNAE rel8         7+m,3    Jump short if not above or equal
@@ -79,7 +79,7 @@ E3  cb         JECXZ rel8        9+m,5    Jump short if ECX register is 0
                                           (SF=OF)
 0F  8C cw/cd   JL rel16/32       7+m,3    Jump near if less (SF<>OF)
 0F  8E cw/cd   JLE rel16/32      7+m,3    Jump near if less or equal (ZF=1
-                                          and SF<>OF)
+                                          or SF<>OF)
 0F  86 cw/cd   JNA rel16/32      7+m,3    Jump near if not above (CF=1 or
                                           ZF=1)
 0F  82 cw/cd   JNAE rel16/32     7+m,3    Jump near if not above or equal
