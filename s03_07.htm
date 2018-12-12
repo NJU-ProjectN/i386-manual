@@ -172,7 +172,7 @@ were pushed on the stack by the calling program for use by the called
 procedure.
 <P>
 <A NAME="fig3-16">
-<H3>Figure 3-16.  Formal Definition of the ENTER Instruction</H3>
+<PRE>Figure 3-16.  Formal Definition of the ENTER Instruction</PRE>
 <P>
 The formal definition of the ENTER instruction for all cases is given by the
 following listing. LEVEL denotes the value of the second operand.
@@ -194,7 +194,7 @@ ESP := ESP - first operand.
 <HR>
 <P>
 <A NAME="fig3-17">
-<H3>Figure 3-17.  Variable Access in Nested Procedures</H3>
+<PRE>Figure 3-17.  Variable Access in Nested Procedures</PRE>
 <P>
 <PRE>
       +----------------------------------------------------------------+
@@ -221,7 +221,7 @@ ESP := ESP - first operand.
 <HR>
 <P>
 <A NAME="fig3-18">
-<H3>Figure 3-18.  Stack Frame for MAIN at Level 1</H3>
+<PRE>Figure 3-18.  Stack Frame for MAIN at Level 1</PRE>
 <P>
 <PRE>
                                      * 31          0 *
@@ -229,8 +229,7 @@ ESP := ESP - first operand.
                 I  F              +- |-------+-------|
                 R                 |  |    OLD ESP    |
                 E  E     DISPLAY -|  |-------+-------|<--EBP FOR
-                C  X              |  |      EBPM
-EBPM = EBP VALUE FOR MAIN    |    MAIN
+                C  X              |  |      EBPM     |
                 T  P              |- |-------+-------|
                 I  A              |  |               |
                 O  N              |  |-------+-------|
@@ -245,7 +244,7 @@ EBPM = EBP VALUE FOR MAIN    |    MAIN
 <HR>
 <P>
 <A NAME="fig3-19">
-<H3>Figure 3-19.  Stack Frame for Procedure A</H3>
+<PRE>Figure 3-19.  Stack Frame for Procedure A</PRE>
 <P>
 <PRE>
                                      * 31          0 *
@@ -253,8 +252,7 @@ EBPM = EBP VALUE FOR MAIN    |    MAIN
                 I  F                 |-------+-------|
                 R                    |    OLD ESP    |
                 E  E                 |-------+-------|
-                C  X                 |      EBPM
-EBPM = EBP VALUE FOR MAIN    |
+                C  X                 |      EBPM     |
                 T  P                 |-------+-------|
                 I  A                 |               |
                 O  N                 |-------+-------|
@@ -266,8 +264,7 @@ EBPM = EBP VALUE FOR MAIN    |
                  !                |  |-------+-------|<--EBP FOR A
                          DISPLAY -|  |      EBPM     |
                                   |  |-------+-------|
-                                  |  |      EBPA
-EBPA = EBP VALUE FOR PROCEDURE A    |
+                                  |  |      EBPA     |
                                   |- |-------+-------|
                                   |  |               |
                                   |  |-------+-------|
@@ -282,7 +279,7 @@ EBPA = EBP VALUE FOR PROCEDURE A    |
 <HR>
 <P>
 <A NAME="fig3-20">
-<H3>Figure 3-20.  Stack Frame for Procedure B at Level 3 Called from A</H3>
+<PRE>Figure 3-20.  Stack Frame for Procedure B at Level 3 Called from A</PRE>
 <P>
 <PRE>
                                      * 31          0 *
@@ -290,8 +287,7 @@ EBPA = EBP VALUE FOR PROCEDURE A    |
                 I  F                 |-------+-------|
                 R                    |    OLD ESP    |
                 E  E                 |-------+-------|
-                C  X                 |      EBPM
-EBPM = EBP VALUE FOR MAIN    |
+                C  X                 |      EBPM     |
                 T  P                 |-------+-------|
                 I  A                 |               |
                 O  N                 |-------+-------|
@@ -317,8 +313,7 @@ EBPM = EBP VALUE FOR MAIN    |
                          DISPLAY -|  |-------+-------|
                                   |  |      EBPA     |
                                   |  |-------+-------|
-                                  |  |      EBPB
-EBPB = EBP VALUE FOR PROCEDURE B    |
+                                  |  |      EBPB     |
                                   |- |-------+-------|
                                   |  |               |
                                   |  |-------+-------|
@@ -333,7 +328,7 @@ EBPB = EBP VALUE FOR PROCEDURE B    |
 <HR>
 <P>
 <A NAME="fig3-21">
-<H3>Figure 3-21.  Stack Frame for Procedure C at Level 3 Called from B</H3>
+<PRE>Figure 3-21.  Stack Frame for Procedure C at Level 3 Called from B</PRE>
 <P>
 <PRE>
                                      * 31          0 *
@@ -341,8 +336,7 @@ EBPB = EBP VALUE FOR PROCEDURE B    |
                 I  F                 |-------+-------|
                 R                    |    OLD ESP    |
                 E  E                 |-------+-------|
-                C  X                 |      EBPM
-EBPM = EBP VALUE FOR MAIN    |
+                C  X                 |      EBPM     |
                 T  P                 |-------+-------|
                 I  A                 |               |
                 O  N                 |-------+-------|
@@ -354,8 +348,7 @@ EBPM = EBP VALUE FOR MAIN    |
                  !                   |-------+-------|
                                      |      EBPM     |
                                      |-------+-------|
-                                     |      EBPA
-EBPA = EBP VALUE FOR PROCEDURE A    |
+                                     |      EBPA     |
                                      |-------+-------|
                                      |               |
                                      |-------+-------|
@@ -369,8 +362,7 @@ EBPA = EBP VALUE FOR PROCEDURE A    |
                          DISPLAY -|  |-------+-------|
                                   |  |      EBPA     |
                                   |  |-------+-------|
-                                  |  |      EBPB
-EBPB = EBP VALUE FOR PROCEDURE B    |
+                                  |  |      EBPB     |
                                   |- |-------+-------|
                                   |  |               |
                                   |  |-------+-------|

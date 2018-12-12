@@ -37,7 +37,7 @@ same manner as it
 following sections.
 <P>
 <A NAME="fig9-4">
-<H3>Figure 9-4.  Interrupt Vectoring for Procedures</H3>
+<PRE>Figure 9-4.  Interrupt Vectoring for Procedures</PRE>
 <P>
 <PRE>
                   IDT                                    EXECUTABLE SEGMENT
@@ -90,7 +90,7 @@ saved flags into the EFLAGS register. The IOPL field of EFLAGS is changed
 only if the CPL is zero. The IF flag is changed only if CPL <= IOPL.
 <P>
 <A NAME="fig9-5">
-<H3>Figure 9-5.  Stack Layout after Exception of Interrupt </H3>
+<PRE>Figure 9-5.  Stack Layout after Exception of Interrupt </PRE>
 <P>
 <PRE>
                            WITHOUT PRIVILEGE TRANSITION
@@ -203,7 +203,7 @@ that the hardware scheduler may dispatch an interrupt task whenever
 interrupts are enabled.
 <P>
 <A NAME="fig9-6">
-<H3>Figure 9-6.  Interrupt Vectoring for Tasks</H3>
+<PRE>Figure 9-6.  Interrupt Vectoring for Tasks</PRE>
 <P>
 <PRE>
             IDT                       GDT
