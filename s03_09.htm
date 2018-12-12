@@ -48,7 +48,27 @@ indicates that the coprocessor has completed its processing task and that
 the CPU may obtain the results.
 <P>
 <A NAME="fig3-23">
-<IMG align=center SRC="fig3-23.gif" border=0>
+<H3>Figure 3-23.  Flag Format for PUSHF and POPF</H3>
+<P>
+<PRE>
+                                PUSHFD/POPFD
+     +-------------------------------+--------------------------------+
+                                                  PUSHF/POPF
+                                     +----------------+---------------+
+      31              23               15                7           0
+     +---------------+-----------+-+-+-+-+----+-+-+-+-+-+-+-+-+-+-+-+-+
+     |                           |V|R| |N|ID  |O|D|I|T|S|Z| |A| |P| |C|
+     |0 0 0 0 0 0 0 0 0 0 0 0 0 0| | |0| |    | | | | | | |0| |0| |1| |
+     |                           |M|F| |T|  PL|F|F|F|F|F|F| |F| |F| |F|
+     +---------------+-----------+-+-+-+-+----+-+-+-+-+-+-+-+-+-+-+-+-+
+
+     BITS MARKED 0 AND 1 ARE RESERVED BY INTEL. DO NOT DEFINE.
+
+   SYSTEMS FLAGS (INCLUDING THE IOPL FIELD, AND THE VM, RF, AND IF FLAGS)
+   ARE PUSHED AND ARE VISIBLE TO APPLICATIONS PROGRAMS. HOWEVER, WHEN AN
+   APPLICATIONS PROGRAM POPS THE FLAGS, THESE ITEMS ARE NOT CHANGED,
+   REGARDLESS OF THE VALUES POPPED INTO THEM.
+</PRE>
 <P>
 <HR>
 <P>

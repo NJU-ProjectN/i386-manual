@@ -330,7 +330,23 @@ This combination provides efficient indexing of a two-dimensional array
 when the elements of the array are 2, 4, or 8 bytes wide.
 <P>
 <A NAME="fig2-10">
-<IMG align=center SRC="fig2-10.gif" border=0>
+<H3>Figure 2-10.  Effective Address Computation</H3>
+<PRE>
+
+      SEGMENT +    BASE   +    (INDEX * SCALE)  +     DISPLACEMENT
+
+                 +     +
+                 | --- |     +     +     +   +
+      +    +     | EAX |     | EAX |     | 1 |
+      | CS |     | ECX |     | ECX |     |   |     +                     +
+      | SS |     | EDX |     | EDX |     | 2 |     |     NO DISPLACEMENT |
+     -| DS |- + -| EBX |- + -| EBX |- * -|   |- + -|  8-BIT DISPLACEMENT |-
+      | ES |     | ESP |     | --- |     | 4 |     | 32-BIT DISPLACEMENT |
+      | FS |     | EBP |     | EBP |     |   |     +                     +
+      | GS |     | ESI |     | ESI |     | 6 |
+      +    +     | EDI |     | EDI |     +   +
+                 +     +     +     +
+</PRE>
 <P>
 <HR>
 <P>

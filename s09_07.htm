@@ -31,7 +31,16 @@ upper 14 bits of the segment selector involved. In some cases the error code
 on the stack is null, i.e., all bits in the low-order word are zero.
 <P>
 <A NAME="fig9-7">
-<IMG align=center SRC="fig9-7.gif" border=0>
+<H3>Figure 9-7.  Error Code Format</H3>
+<P>
+<PRE>
+       31              15                                         2 1 0
+      +---------------+----------------+-----------------+-------+-+-+-+
+      |################################|                         |T| |E|
+      |###########UNDEFINED############|     SELECTOR INDEX      | |I| |
+      |################################|                         |I| |X|
+      +---------------+----------------+-----------------+-------+-+-+-+
+</PRE>
 <P>
 <HR>
 <P>
