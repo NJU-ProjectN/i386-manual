@@ -175,22 +175,75 @@ depending on whether the jump is taken; if ECX contains M, the corresponding
 <A HREF="IDIV.htm">IDIV</A> ECX instruction will take about 43 clocks.
 <P>
 <A NAME="fig3-6">
-<IMG align=center SRC="fig3-6.gif" border=0>
+<H3>Figure 3-6.  SAL and SHL</H3>
+<P>
+<PRE>
+                     OF   CF                OPERAND
+
+       BEFORE SHL    X    X     10001000100010001000100010001111
+       OR SAL
+
+       AFTER SHL     1    1 <-- 00010001000100010001000100011110 <-- 0
+       OR SAL BY 1
+
+       AFTER SHL     X    0 <-- 00100010001000100011110000000000 <-- 0
+       OR SAL BY 10
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-7">
-<IMG align=center SRC="fig3-7.gif" border=0>
+<H3>Figure 3-7.  SHR</H3>
+<P>
+<PRE>
+                                      OPERAND                  CF
+
+       BEFORE SHR         10001000100010001000100010001111     X
+
+       AFTER SHR    0---->01000100010001000100010001000111---->1
+       BY 1
+
+       AFTER SHR    0---->00000000001000100010001000100010---->O
+       BY 10
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-8">
-<IMG align=center SRC="fig3-8.gif" border=0>
+<H3>Figure 3-8.  SAR</H3>
+<P>
+<PRE>
+                                  POSITIVE OPERAND             CF
+
+       BEFORE SAR         01000100010001000100010001000111     X
+
+       AFTER SAR    0---->00100010001000100010001000100011---->1
+       BY 1
+
+                                  NEGATIVE OPERAND             CF
+
+       BEFORE SAR         11000100010001000100010001000111     X
+
+       AFTER SAR    0---->11100010001000100010001000100011---->1
+       BY 1
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-9">
-<IMG align=center SRC="fig3-9.gif" border=0>
+<H3>Figure 3-9.  Using SAR to Simulate IDIV</H3>
+<P>
+<PRE>
+    ; assuming N is in ECX, and the dividend is in EAX
+    ;                                               CLOCKS
+    CMP     EAX, 0      ; to set sign flag          2
+    JGE     NoAdjust    ; jump if sign is zero      3 or 9
+    ADD     EAX, ECX    ;                           2
+    DEC     EAX         ; EAX := EAX + (N-1)        2
+NoAdjust:
+    SAR     EAX, CL     ;                           3
+    ;                       TOTAL CLOCKS           12 or 18]
+</PRE>
 <P>
 <H3>3.4.4.2  Double-Shift Instructions</H3>
 These instructions provide the basic operations needed to implement
@@ -290,32 +343,88 @@ operand as the high-order bit on the next rotation cycle. See
   .
 <P>
 <A NAME="fig3-10">
-<IMG align=center SRC="fig3-10.gif" border=0>
+<H3>Figure 3-10.  Shift Left Double</H3>
+<P>
+<PRE>
+                  31                   DESTINATION                 0
+    +----+       +--------------------------------------------------+
+    | CF |<------|                 MEMORY OF REGISTER               |<---+
+    +----+       +--------------------------------------------------+    |
+             +-----------------------------------------------------------+
+             |    31                     SOURCE                    0
+             |   +--------------------------------------------------+
+             +---|                      REGISTER                    |
+                 +--------------------------------------------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-11">
-<IMG align=center SRC="fig3-11.gif" border=0>
+<H3>Figure 3-11.  Shift Right Double</H3>
+<P>
+<PRE>
+        31                     SOURCE                    0
+       +--------------------------------------------------+
+       |                      REGISTER                    |---+
+       +--------------------------------------------------+   |
+   +----------------------------------------------------------+
+   |    31                   DESTINATION                 0
+   |   +--------------------------------------------------+        +----+
+   +-->|                 MEMORY OF REGISTER               |------->| CF |
+       +--------------------------------------------------+        +----+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-12">
-<IMG align=center SRC="fig3-12.gif" border=0>
+<H3>Figure 3-12.  ROL</H3>
+<P>
+<PRE>
+                  31                   DESTINATION                 0
+    +----+       +--------------------------------------------------+
+    | CF |<---+--|                 MEMORY OF REGISTER               |<--+
+    +----+    |  +--------------------------------------------------+   |
+              +---------------------------------------------------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-13">
-<IMG align=center SRC="fig3-13.gif" border=0>
+<H3>Figure 3-13.  ROR</H3>
+<P>
+<PRE>
+     +----------------------------------------------------------+
+     |    31                   DESTINATION                 0    |
+     |   +--------------------------------------------------+   |    +----+
+     +-->|                 MEMORY OF REGISTER               |---+--->| CF |
+         +--------------------------------------------------+        +----+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-14">
-<IMG align=center SRC="fig3-14.gif" border=0>
+<H3>Figure 3-14.  RCL</H3>
+<P>
+<PRE>
+                  31                   DESTINATION                 0
+    +----+       +--------------------------------------------------+
+  +-| CF |<------|                 MEMORY OF REGISTER               |<--+
+  | +----+       +--------------------------------------------------+   |
+  +---------------------------------------------------------------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-15">
-<IMG align=center SRC="fig3-15.gif" border=0>
+<H3>Figure 3-15.  RCR</H3>
+<P>
+<PRE>
+   +----------------------------------------------------------------------+
+   |    31                   DESTINATION                 0                |
+   |   +--------------------------------------------------+        +----+ |
+   +-->|                 MEMORY OF REGISTER               |------->| CF |-+
+       +--------------------------------------------------+        +----+
+</PRE>
 <P>
 <H3>3.4.4.4  Fast "BIT BLT" Using Double Shift Instructions</H3>
 One purpose of the double shifts is to implement a bit string move, with

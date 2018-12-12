@@ -43,12 +43,45 @@ table determined by the page directory, and uses the OFFSET field to address
 a byte within the page determined by the page table.
 <P>
 <A NAME="fig5-8">
-<IMG align=center SRC="fig5-8.gif" border=0>
+<H3>Figure 5-8.  Format of a Linear Address</H3>
+<P>
+<PRE>
+      31                 22 21                 12 11                 0
+     +---------------------+---------------------+--------------------+
+     |                     |                     |                    |
+     |         DIR         |        PAGE         |       OFFSET       |
+     |                     |                     |                    |
+     +---------------------+---------------------+--------------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig5-9">
-<IMG align=center SRC="fig5-9.gif" border=0>
+<H3>Figure 5-9.  Page Translation</H3>
+<P>
+<PRE>
+                                                              PAGE FRAME
+              +-----------+-----------+----------+         +---------------+
+              |    DIR    |   PAGE    |  OFFSET  |         |               |
+              +-----+-----+-----+-----+-----+----+         |               |
+                    |           |           |              |               |
+      +-------------+           |           +------------->|    PHYSICAL   |
+      |                         |                          |    ADDRESS    |
+      |   PAGE DIRECTORY        |      PAGE TABLE          |               |
+      |  +---------------+      |   +---------------+      |               |
+      |  |               |      |   |               |      +---------------+
+      |  |               |      |   |---------------|              ^
+      |  |               |      +-->| PG TBL ENTRY  |--------------+
+      |  |---------------|          |---------------|
+      +->|   DIR ENTRY   |--+       |               |
+         |---------------|  |       |               |
+         |               |  |       |               |
+         +---------------+  |       +---------------+
+                 ^          |               ^
++-------+        |          +---------------+
+|  CR3  |--------+
++-------+
+</PRE>
 <P>
 <H2>5.2.3  Page Tables</H2>
 A page table is simply an array of 32-bit page specifiers. A page table is
@@ -117,12 +150,38 @@ dispatched . Refer to
 dispatching.
 <P>
 <A NAME="fig5-10">
-<IMG align=center SRC="fig5-10.gif" border=0>
+<H3>Figure 5-10.  Format of a Page Table Entry</H3>
+<P>
+<PRE>
+       31                                  12 11                      0
+      +--------------------------------------+-------+---+-+-+---+-+-+-+
+      |                                      |       |   | | |   |U|R| |
+      |      PAGE FRAME ADDRESS 31..12       | AVAIL |0 0|D|A|0 0|/|/|P|
+      |                                      |       |   | | |   |S|W| |
+      +--------------------------------------+-------+---+-+-+---+-+-+-+
+
+                P      - PRESENT
+                R/W    - READ/WRITE
+                U/S    - USER/SUPERVISOR
+                D      - DIRTY
+                AVAIL  - AVAILABLE FOR SYSTEMS PROGRAMMER USE
+
+                NOTE: 0 INDICATES INTEL RESERVED. DO NOT DEFINE.
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig5-11">
-<IMG align=center SRC="fig5-11.gif" border=0>
+<H3>Figure 5-11.  Invalid Page Table Entry</H3>
+<P>
+<PRE>
+       31                                                           1 0
+      +--------------------------------------------------------------+-+
+      |                                                              | |
+      |                            AVAILABLE                         |0|
+      |                                                              | |
+      +--------------------------------------------------------------+-+
+</PRE>
 <P>
 <H3>5.2.4.3  Accessed and Dirty Bits</H3>
 These bits provide data about page usage in both levels of the page tables.

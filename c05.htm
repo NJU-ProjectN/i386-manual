@@ -39,7 +39,32 @@ the subject of protection is taken up in another chapter,
 <A HREF="c06.htm">Chapter 6</A>.
 <P>
 <A NAME="fig5-1">
-<IMG align=center SRC="fig5-1.gif" border=0>
+<H3>Figure 5-1.  Address Translation Overview</H3>
+<PRE>             15           0      31                           0
+    LOGICAL +---------------+   +------------------------------+
+    ADDRESS |    SELECTOR   |   |            OFFSET            |
+            +---------------+   +---+--------------------------+
+                                    !
+                     +------------------------------+
+                     |     SEGMENT TRANSLATION      |
+                     +--------------+---------------+
+                                 +--+-+       PAGING ENABLED
+                                 |PG ?|--------------------+
+                                 +--+-+                    |
+                   31        PAGING ! DISABLED       0     |
+          LINEAR  +-----------+-----------+-----------+    |
+          ADDRESS |    DIR    |   PAGE    |  OFFSET   |    |
+                  +-----------+-----+-----+-----------+    |
+                                    !                      |
+                     +------------------------------+      |
+                     |       PAGE TRANSLATION       |      |
+                     +--------------+---------------+      |
+                                    |&lt;---------------------+
+                      31            !              0
+            PHYSICAL +------------------------------+
+            ADDRESS  |                              |
+                     +------------------------------+
+</PRE>
 <P>
 <A HREF="s05_01.htm">5.1  Segment Translation</A><BR>
 <A HREF="s05_02.htm">5.2  Page Translation</A><BR>

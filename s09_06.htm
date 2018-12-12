@@ -37,7 +37,33 @@ same manner as it
 following sections.
 <P>
 <A NAME="fig9-4">
-<IMG align=center SRC="fig9-4.gif" border=0>
+<H3>Figure 9-4.  Interrupt Vectoring for Procedures</H3>
+<P>
+<PRE>
+                  IDT                                    EXECUTABLE SEGMENT
+           +---------------+                             +---------------+
+           |               |                       OFFSET|               |
+           |---------------|  +------------------------->| ENTRY POINT   |
+           |               |  |      LDT OR GDT          |               |
+           |---------------|  |   +---------------+      |               |
+           |               |  |   |               |      |               |
+INTERRUPT  |---------------|  |   |---------------|      |               |
+   ID----->| TRAP GATE OR  |--+   |               |      |               |
+           |INTERRUPT GATE |--+   |---------------|      |               |
+           |---------------|  |   |               |      |               |
+           |               |  |   |---------------|      |               |
+           |---------------|  +-->|   SEGMENT     |-+    |               |
+           |               |      |  DESCRIPTOR   | |    |               |
+           |---------------|      |---------------| |    |               |
+           |               |      |               | |    |               |
+           |---------------|      |---------------| |    |               |
+           |               |      |               | |BASE|               |
+           +---------------+      |---------------| +--->+---------------+
+                                  |               |
+                                  |               |
+                                  |               |
+                                  +---------------+
+</PRE>
 
 <H3>9.6.1.1  Stack of Interrupt Procedure</H3>
 Just as with a control transfer due to a <A HREF="CALL.htm">CALL</A> instruction, a control
@@ -64,7 +90,49 @@ saved flags into the EFLAGS register. The IOPL field of EFLAGS is changed
 only if the CPL is zero. The IF flag is changed only if CPL <= IOPL.
 <P>
 <A NAME="fig9-5">
-<IMG align=center SRC="fig9-5.gif" border=0>
+<H3>Figure 9-5.  Stack Layout after Exception of Interrupt </H3>
+<P>
+<PRE>
+                           WITHOUT PRIVILEGE TRANSITION
+
+      D  O      31          0                     31          0
+      I  F    |-------+-------|                 |-------+-------|
+      R       |#######|#######|    OLD          |#######|#######|    OLD
+      E  E    |-------+-------|   SS:ESP        |-------+-------|   SS:ESP
+      C  X    |#######|#######|     |           |#######|#######|     |
+      T  P    |-------+-------|<----+           |-------+-------|<----+
+      I  A    |  OLD EFLAGS   |                 |  OLD EFLAGS   |
+      O  N    |-------+-------|                 |-------+-------|
+      N  S    |#######|OLD CS |    NEW          |#######|OLD CS |
+         I    |-------+-------|   SS:ESP        |-------+-------|
+       | O    |    OLD EIP    |     |           |    OLD EIP    |    NEW
+       | N    |---------------|<----+           |---------------|   SS:ESP
+       |      |               |                 |  ERROR CODE   |     |
+       !      *               *                 |---------------|<----+
+              *               *                 |               |
+              *               *
+              WITHOUT ERROR CODE                 WITH ERROR CODE
+
+                             WITH PRIVILEGE TRANSITION
+
+      D  O     31            0                     31          0
+      I  F    +-------+-------+<----+           +-------+-------+<----+
+      R       |#######|OLD SS |     |           |#######|OLD SS |     |
+      E  E    |-------+-------|   SS:ESP        |-------+-------|   SS:ESP
+      C  X    |    OLD ESP    |  FROM TSS       |    OLD ESP    |  FROM TSS
+      T  P    |---------------|                 |---------------|
+      I  A    |  OLD EFLAGS   |                 |  OLD EFLAGS   |
+      O  N    |-------+-------|                 |-------+-------|
+      N  S    |#######|OLD CS |    NEW          |#######|OLD CS |
+         I    |-------+-------|   SS:EIP        |-------+-------|
+       | O    |    OLD EIP    |     |           |    OLD EIP    |    NEW
+       | N    |---------------|<----+           |---------------|   SS:ESP
+       |      |               |                 |  ERROR CODE   |     |
+       !      *               *                 |---------------|<----+
+              *               *                 |               |
+              *               *
+              WITHOUT ERROR CODE                 WITH ERROR CODE
+</PRE>
 
 <H3>9.6.1.3  Flags Usage by Interrupt Procedure</H3>
 Interrupts that vector through either interrupt gates or trap gates cause
@@ -135,7 +203,30 @@ that the hardware scheduler may dispatch an interrupt task whenever
 interrupts are enabled.
 <P>
 <A NAME="fig9-6">
-<IMG align=center SRC="fig9-6.gif" border=0>
+<H3>Figure 9-6.  Interrupt Vectoring for Tasks</H3>
+<P>
+<PRE>
+            IDT                       GDT
+     +----------------+        +----------------+
+     |                |        |                |              TSS
+     |----------------|        |----------------|       +----------------+
+     |                |        |                |       |                |
+     |----------------|        |----------------|       |                |
+     |                |        |                |       |                |
+     |----------------|        |----------------|       |                |
+ +-->|   TASK GATE    |---+    |                |       |                |
+ |   |----------------|   |    |----------------|       |                |
+ |   |                |   +--->| TSS DESCRIPTOR |---+   |                |
+ |   |----------------|        |----------------|   |   |                |
+ |   |                |        |                |   |   |                |
+ |   |----------------|        |----------------|   +-->+----------------+
+ |   |                |        |                |
+ |   |----------------|        |----------------|
+ |   |                |        |                |
+ |   +----------------+        +----------------+
+ |
+ +-INTERRUPT ID
+</PRE>
 <P>
 <HR>
 <P>

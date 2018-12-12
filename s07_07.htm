@@ -93,7 +93,44 @@ prior two; other descriptors in the LDTs may point to distinct linear
 addresses or to linear addresses that are not shared.
 </OL>
 <A NAME="fig7-6">
-<IMG align=center SRC="fig7-6.gif" border=0>
+<H3>Figure 7-6. Partially-Overlapping Linear Spaces</H3>
+<P>
+<PRE>
+         TSSs                                              PAGE FRAMES
+                                                          +----------+
+      TASK A TSS    PAGE DIRECTORIES     PAGE TABLES      |  TASK A  |
+     +----------+     +-----------+     +-----------+  +->|   PAGE   |
+     |          |     |           |     |           |  |  +----------+
+     |          |     |-----------|     |-----------|  |  +----------+
+     |          |     |           |     |    PTE    |--+  |  TASK A  |
+     |          |     |-----------|     |-----------|  +->|   PAGE   |
+     |          |     |           |     |    PTE    |--+  +----------+
+     |----------|     |-----------|     |-----------|     +----------+
+     |   PDBR   |---->|    PDE    |---->|    PTE    |--+  |  TASK A  |
+     |----------|     |-----------|     +-----------+  +->|   PAGE   |
+     |          |     |    PDE    |--+    SHARED PT       +----------+
+     +----------+     +-----------+  |  +-----------+     +----------+
+                                     |  |           |     |  SHARED  |
+                                     |  |-----------|  +->|   PAGE   |
+                                     |  |           |  |  +----------+
+                                     |  |-----------|  |  +----------+
+                                     |  |    PTE    |--+  |  SHARED  |
+                                     |  |-----------|  +->|   PAGE   |
+                                     |->|    PTE    |--+  +----------+
+      TASK B TSS                     |  +-----------+     +----------+
+     +----------+     +-----------+  |                    |  TASK B  |
+     |          |     |           |  |                +-->|   PAGE   |
+     |          |     |-----------|  |  +-----------+ |   +----------+
+     |          |     |           |  |  |           | |   +----------+
+     |          |     |-----------|  |  |-----------| |   |  TASK B  |
+     |          |     |           |  |  |           | | +>|   PAGE   |
+     |----------|     |-----------|  |  |-----------| | | +----------+
+     |   PDBR   |---->|    PDE    |--+  |    PTE    |-+ |  PAGE FRAMES
+     |----------|     |-----------|     |-----------|   |
+     |          |     |    PDE    |---->|    PTE    |---+
+     +----------+     +-----------+     +-----------+
+         TSSs       PAGE DIRECTORIES     PAGE TABLES
+</PRE>
 <P>
 <HR>
 <P>
