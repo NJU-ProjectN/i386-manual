@@ -50,7 +50,29 @@ port from AL, AX, or EAX. The program can specify the number of the port
 using the same methods as the <A HREF="IN.htm">IN</A> instruction.
 <P>   
 <A NAME="fig8-1">
-<IMG align=center SRC="fig8-1.gif" border=0>
+<PRE>Figure 8-1.  Memory-Mapped I/O</PRE>
+<P>
+<PRE>
+                MEMORY
+             ADDRESS SPACE                        I/O DEVICE 1
+           +---------------+                  +-------------------+
+           |               |                  | INTERNAL REGISTER |
+           |---------------| - - - - - - - - -|-+---------------+ |
+           |               |                  | |               | |
+           |---------------| - - - - - - - - -|-+---------------+ |
+           |               |                  +-------------------+
+           |               |
+           |               |
+           |               |
+           |               |                      I/O DEVICE 2
+           |               |                  +-------------------+
+           |               |                  | INTERNAL REGISTER |
+           |---------------| - - - - - - - - -|-+---------------+ |
+           |               |                  | |               | |
+           |---------------| - - - - - - - - -|-+---------------+ |
+           |               |                  +-------------------+
+           +---------------+
+</PRE>
 
 <H2>8.2.2  Block I/O Instructions</H2>
 The block (or string) I/O instructions 

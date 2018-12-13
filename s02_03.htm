@@ -126,12 +126,83 @@ segment register is used to form an address when only an offset is
 specified.
 <P>
 <A NAME="fig2-5">
-<IMG align=center SRC="fig2-5.gif" border=0>
+<PRE>Figure 2-5.  80386 Applications Register Set</PRE>
+<PRE>
+                              GENERAL REGISTERS
+
+  31                23                15                7               0
+ +-----------------+-----------------+-----------------+-----------------+
+ |                                  EAX       AH       AX      AL        |
+ |-----------------+-----------------+-----------------+-----------------|
+ |                                  EDX       DH       DX      DL        |
+ |-----------------+-----------------+-----------------+-----------------|
+ |                                  ECX       CH       CX      CL        |
+ |-----------------+-----------------+-----------------+-----------------|
+ |                                  EBX       BH       BX      BL        |
+ |-----------------+-----------------+-----------------+-----------------|
+ |                                  EBP                BP                |
+ |-----------------+-----------------+-----------------+-----------------|
+ |                                  ESI                SI                |
+ |-----------------+-----------------+-----------------+-----------------|
+ |                                  EDI                DI                |
+ |-----------------+-----------------+-----------------+-----------------|
+ |                                  ESP                SP                |
+ +-----------------+-----------------+-----------------+-----------------+
+
+
+                      15                7               0
+                     +-----------------+-----------------+
+                     |         CS (CODE SEGMENT)         |
+                     |-----------------+-----------------|
+                     |         SS (STACK SEGMENT)        |
+    SEGMENT          |-----------------+-----------------|
+    REGISTERS        |         DS (DATA SEGMENT)         |
+                     |-----------------+-----------------|
+                     |         ES (DATA SEGMENT)         |
+                     |-----------------+-----------------|
+                     |         FS (DATA SEGMENT)         |
+                     |-----------------+-----------------|
+                     |         GS (DATA SEGMENT)         |
+                     +-----------------+-----------------+
+
+
+                       STATUS AND INSTRUCTION REGISTERS
+
+     31               23                15                7              0
+   +-----------------+-----------------+-----------------+-----------------+
+   |                                EFLAGS                                 |
+   |-----------------------------------------------------------------------|
+   |                        EIP (INSTRUCTION POINTER)                      |
+   +-----------------+-----------------+-----------------+-----------------+
+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig2-6">
-<IMG align=center SRC="fig2-6.gif" border=0>
+<PRE>Figure 2-6.  Use of Memory Segmentation</PRE>
+<PRE>
+     +----------------+                                +----------------+
+     |     MODULE     |                                |     MODULE     |
+     |       A        |<--+                       +--->|       A        |
+     |      CODE      |   |                       |    |      DATA      |
+     +----------------+   |  +------------------+ |    +----------------+
+                          +--|    CS (CODE)     | |
+                             |------------------| |
+     +----------------+   +--|    SS (STACK)    | |    +----------------+
+     |                |   |  |------------------| |    |      DATA      |
+     |     STACK      |<--+  |    DS (DATA)     |-+ +->|   STRUCTURE    |
+     |                |      |------------------|   |  |       1        |
+     +----------------+      |    ES (DATA)     |---+  +----------------+
+                             |------------------|
+                          +--|    FS (DATA)     |
+     +----------------+   |  |------------------|      +----------------+
+     |      DATA      |   |  |    GS (DATA)     |--+   |      DATA      |
+     |   STRUCTURE    |<--+  +------------------+  +-->|   STRUCTURE    |
+     |       2        |                                |       3        |
+     +----------------+                                +----------------+
+
+</PRE>
 <P>
 <H2>2.3.3  Stack Implementation</H2>
 Stack operations are facilitated by three registers:
@@ -170,7 +241,26 @@ segments addressable via other segment registers.
 </OL> 
 <P>
 <A NAME="fig2-7">
-<IMG align=center SRC="fig2-7.gif" border=0>
+<PRE>Figure 2-7.  80386 Stack</PRE>
+<PRE>
+     31                         0
+     +------+------+------+------+ <-------BOTTOM OF STACK
+     |                           |       (INITIAL ESP VALUE)
+     |------+------+------+------|
+     |                           |
+     |------+------+------+------|        ^
+     |                           |        |POP
+     |------+------+------+------|        |
+     |                           |        |
+     |------+------+------+------|        |      TOP OF     +-------------+
+     |                           | <------+-----------------|     ESP     |
+     |------+------+------+------|        |      STACK      +-------------+
+     |                           |        |
+     |                           |        |
+     |                           |        |PUSH
+     |                           |        !
+
+</PRE>
 <P>
 <H2>2.3.4  Flags Register</H2>
 The flags register is a 32-bit register named EFLAGS. 
@@ -189,7 +279,37 @@ flags, and the systems flags. Discussion of the systems flags is delayed
 until Part II.
 <P>
 <A NAME="fig2-8">
-<IMG align=center SRC="fig2-8.gif" border=0>
+<PRE>Figure 2-8.  EFLAGS Register  </PRE>
+<PRE>
+                                              16-BIT FLAGS REGISTER
+                                                         A
+                                     +-------------------+---------------+
+  31                  23                  15               7            0
+ +-------------------+---------------+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |                                   |V|R| |N| IO|O|D|I|T|S|Z| |A| |P| |C|
+ | 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 | | |0| |   | | | | | | |0| |0| |1| |
+ |                                   |M|F| |T| PL|F|F|F|F|F|F| |F| |F| |F|
+ +-------------------+---------------+++++-+++-+-+++++++++++++-+++-+++-+++
+                                      | |   |  |  | | | | | |   |   |   |
+       VIRTUAL 8086 MODE---X----------+ |   |  |  | | | | | |   |   |   |
+             RESUME FLAG---X------------+   |  |  | | | | | |   |   |   |
+        NESTED TASK FLAG---X----------------+  |  | | | | | |   |   |   |
+     I/O PRIVILEGE LEVEL---X-------------------+  | | | | | |   |   |   |
+                OVERFLOW---S----------------------+ | | | | |   |   |   |
+          DIRECTION FLAG---C------------------------+ | | | |   |   |   |
+        INTERRUPT ENABLE---X--------------------------+ | | |   |   |   |
+               TRAP FLAG---S----------------------------+ | |   |   |   |
+               SIGN FLAG---S------------------------------+ |   |   |   |
+               ZERO FLAG---S--------------------------------+   |   |   |
+         AUXILIARY CARRY---S------------------------------------+   |   |
+             PARITY FLAG---S----------------------------------------+   |
+              CARRY FLAG---S--------------------------------------------+
+
+          S = STATUS FLAG, C = CONTROL FLAG, X = SYSTEM FLAG
+
+          NOTE: 0 OR 1 INDICATES INTEL RESERVED. DO NOT DEFINE
+
+</PRE>
 <P>
 <H3>2.3.4.1  Status Flags</H3>
 The status flags of the EFLAGS register allow the results of one
@@ -224,7 +344,16 @@ used by the processor as a unit. This feature is useful when executing
 instructions designed for the 8086 and 80286 processors.
 <P>
 <A NAME="fig2-9">
-<IMG align=center SRC="fig2-9.gif" border=0>
+<PRE>Figure 2-9.  Instruction Pointer Register</PRE>
+<PRE>
+                                                 16-BIT IP REGISTER
+                                       +------------------+----------------+
+    31                23                15                7               0
+   +-----------------+-----------------+-----------------+-----------------+
+   |                       EIP (INSTRUCTION POINTER)                       |
+   +-----------------+-----------------+-----------------+-----------------+
+
+</PRE>
 <P>
 <HR>
 <P>

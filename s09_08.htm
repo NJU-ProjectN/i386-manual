@@ -423,7 +423,34 @@ onto the stack.
 </UL>
 <P>
 <A NAME="fig9-8">
-<IMG align=center SRC="fig9-8.gif" border=0>
+<PRE>Figure 9-8.  Page-Fault Error Code Format</PRE>
+<P>
+<PRE>
+ +-----+-----+------------------------------------------------------------+
+ |Field|Value|                         Description                        |
+ |-----+-----+------------------------------------------------------------|
+ | U/S |  0  | The access causing the fault originated when the processor |
+ |     |     | was executing in supervisor mode.                          |
+ |     |     |                                                            |
+ |     |  1  | The access causing the fault originated when the processor |
+ |     |     | was executing in user mode.                                |
+ |     |     |                                                            |
+ | W/R |  0  | The access causing the fault was a read.                   |
+ |     |     |                                                            |
+ |     |  1  | The access causing the fault was a write.                  |
+ |     |     |                                                            |
+ | P   |  0  | The fault was caused by a not-present page.                |
+ |     |     |                                                            |
+ |     |  1  | The fault was caused by a page-level protection violation. |
+ +-----+-----+------------------------------------------------------------+
+
+       31                               15             7        3 2 1 0
+      +--------------------------------+-------------------------+-+-+-+
+      |##########################################################|U|W| |
+      |##########################UNDEFINED#######################|/|/|P|
+      |##########################################################|S|R| |
+      +--------------------------------+-------------------------+-+-+-+
+</PRE>
 <P>
 
 <H3>9.8.14.1  Page Fault During Task Switch</H3>
@@ -444,7 +471,16 @@ system permits page faults to occur during task-switches, the page-fault
 handler should be invoked via a task gate.
 <P>
 <A NAME="fig9-9">
-<IMG align=center SRC="fig9-9.gif" border=0>
+<PRE>Figure 9-9.  CR2 Format</PRE>
+<P>
+<PRE>
+      31               23               15               7              0
+     +----------------+----------------+----------------+----------------+
+     |                                                                   |
+     |                      PAGE FAULT LINEAR ADDRESS                    |
+     |                                                                   |
+     +----------------+----------------+----------------+----------------+
+</PRE>
 
 <H3>9.8.14.2  Page Fault with Inconsistent Stack Pointer</H3>
 Special care should be taken to ensure that a page fault does not cause the

@@ -88,7 +88,19 @@ doubleword at the top of the stack into the extended flags register (the RF
 and VM flags are not changed, however), then increments ESP by four.
 <P>
 <A NAME="fig3-22">
-<IMG align=center SRC="fig3-22.gif" border=0>
+<PRE>Figure 3-22.  LAHF and SAHF</PRE>
+<P>
+<PRE>
+                     7    6    5    4    3    2    1    0
+                   +----+----+----+----+----+----+----+----+
+                   | SF | ZF | UU | AF | UU | PF | UU | CF |
+                   +----+----+----+----+----+----+----+----+
+
+     LAHF LOADS FIVE FLAGS FROM THE FLAG REGISTER INTO REGISTER AH. SAHF
+     STORES THESE SAME FIVE FLAGS FROM AH INTO THE FLAG REGISTER. THE BIT
+     POSITION OF EACH FLAG IS THE SAME IN AH AS IT IS IN THE FLAG REGISTER.
+     THE REMAINING BITS (MARKED UU) ARE RESERVED; DO NOT DEFINE.
+</PRE>
 <P>
 <HR>
 <P>

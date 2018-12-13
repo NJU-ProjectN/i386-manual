@@ -57,7 +57,30 @@ handlers can examine the VM flag on the stack. If the interrupted procedure
 was executing in V86 mode, the handler may need to invoke the V86 monitor.
 <P>
 <A NAME="fig15-2">
-<IMG align=center SRC="fig15-2.gif" border=0>
+<PRE>Figure 15-2.  Entering and Leaving the 8086 Program</PRE>
+<P>
+<PRE>
+                            MODE TRANSITION DIAGRAM
+
+                                 +-----------+
+                  TASK SWITCH    |  INITIAL  |
+                +----------------|   ENTRY   |
+                |   OR IRET      +-----------+
+                |
+                !
+        +--------------+    INTERRUPT, EXCEPTION      +-------------+
+        | 8086 PROGRAM |----------------------------->| V86 MONITOR |
+        |  (V86 MODE)  |<-----------------------------| (PROTECTED  |
+        +-------+------+            IRET              |    MODE)    |
+              ^ |                                     +-----+-------+
+              | |                                           |  ^
+              | |                                           |  |
+              | |                                           |  |
+              | |TASK SWITCH +-------------------+ TASK SWITCH |
+              | +----------->| OTHER 80386 TASKS |<---------+  |
+              +--------------| (PROTECTED MODE)  |-------------+
+                 TASK SWITCH +-------------------+ TASK SWITCH
+</PRE>
 
 <H2>15.3.1  Transitions Through Task Switches</H2>
 A task switch to or from a V86 task may be due to any of three causes:
@@ -141,7 +164,35 @@ procedure.
 </OL>
 
 <A NAME="fig15-3">
-<IMG align=center SRC="fig15-3.gif" border=0>
+<PRE>Figure 15-3. PL 0 Stack after Interrupt in V86 Task</PRE>
+<P>
+<PRE>
+                WITHOUT ERROR CODE            WITH ERROR CODE
+                 31            0               31            0
+                +------+-------+<----+        +------+-------+<----+
+                |######|OLD GS |     |        |######|OLD GS |     |
+                |------+-------|   SS:ESP     |------+-------|   SS:ESP
+      D  O      |######|OLD FS |  FROM TSS    |######|OLD FS |  FROM TSS
+      I  F      |------+-------|              |------+-------|
+      R         |######|OLD DS |              |######|OLD DS |
+      E  E      |------+-------|              |------+-------|
+      C  X      |######|OLD ES |              |######|OLD ES |
+      T  P      |------+-------|              |------+-------|
+      I  A      |######|OLD SS |              |######|OLD SS |
+      O  N      |------+-------|              |------+-------|
+      N  S      |    OLD ESP   |              |    OLD ESP   |
+         I      |--------------|              |--------------|
+       | O      |  OLD EFLAGS  |              |  OLD EFLAGS  |
+       | N      |------+-------|              |------+-------|
+       |        |######|OLD CS |   NEW        |######|OLD CS |
+       !        |------+-------|  SS:EIP      |------+-------|
+                |    OLD EIP   |    |         |    OLD EIP   |   NEW
+                |--------------|<---+         |--------------|  SS:EIP
+                |              |              |  ERROR CODE  |    |
+                *              *              |--------------|<---+
+                *              *              |              |
+                *              *              *              *
+</PRE>
 
 <P>
 <HR>

@@ -34,7 +34,26 @@ error code) occur if an effective address is generated outside the range 0
 through 65535.
 <P>
 <A NAME="fig14-1">
-<IMG align=center SRC="fig14-1.gif" border=0>
+<PRE>Figure 14-1.  Real-Address Mode Address Formation</PRE>
+<P>
+<PRE>
+                      19                                3       0
+                     +---------------------------------+---------+
+         BASE        |     16-BIT SEGMENT SELECTOR     | 0 0 0 0 |
+                     +---------------------------------+---------+
+
+         +
+                      19        15                              0
+                     +---------+---------------------------------+
+         OFFSET      | 0 0 0 0 |    16-BIT EFFECTIVE ADDRESS     |
+                     +---------+---------------------------------+
+
+         =
+                    20                                          0
+         LINEAR    +---------------------------------------------+
+         ADDRESS   | X X X X X X X X X X X X X X X X X X X X X X |
+                   +---------------------------------------------+
+</PRE>
 <P>
 <HR>
 <P>

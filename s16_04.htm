@@ -93,7 +93,50 @@ USE16 segment match the corresponding <A HREF="RET.htm">RET</A> in a USE32 segme
 <A HREF="CALL.htm">CALL</A> in a USE32 segment match the corresponding <A HREF="RET.htm">RET</A> in a USE16 segment.
 <P>
 <A NAME="fig16-1">
-<IMG align=center SRC="fig16-1.gif" border=0>
+<PRE>Figure 16-1.  Stack after Far 16-Bit and 32-Bit Calls</PRE>
+<P>
+<PRE>
+                           WITHOUT PRIVILEGE TRANSITION
+
+               AFTER 16-BIT CALL                AFTER 32-BIT CALL
+
+               *31             *0               *31             *0
+       D  O    |               |                |               |
+       I  F    |-------+-------|                |-------+-------|
+       R       |###############|                |###############|
+       E  E    |-------+-------|                |-------+-------|
+       C  X    | PARM2 | PARM1 |                |     PARM2     |
+       T  P    |-------+-------|                |-------+-------|
+       I  A    |  CS   |  IP   |<--SP           |     PARM1     |
+       O  N    |-------+-------|                |-------+-------|
+       N  S    |               |                |#######|  CS   |
+          I    |-------+-------|                |-------+-------|
+        | O    |               |                |      EIP      |<--ESP
+        | N    |-------+-------|                |-------+-------|
+        |      |               |                |               |
+        !      *               *                *               *
+
+                           WITH PRIVILEGE TRANSITION
+
+               AFTER 16-BIT CALL                AFTER 32-BIT CALL
+
+       D  O     31            0                  31            0
+       I  F    +-------+-------+                +-------+-------+
+       R       |   SS  |  SP   |                |#######|  SS   |
+       E  E    |-------+-------|                |-------+-------|
+       C  X    | PARM2 | PARM1 |                |      ESP      |
+       T  P    |-------+-------|                |-------+-------|
+       I  A    |  CS   |  IP   |<--SP           |     PARM2     |
+       O  N    |-------+-------|                |-------+-------|
+       N  S    |               |                |     PARM1     |
+          I    |-------+-------|                |-------+-------|
+        | O    |               |                |#######|  CS   |
+        | N    |-------+-------|                |-------+-------|
+        |      |               |                |      EIP      |<--ESP
+        !      |-------+-------|                |-------+-------|
+               |               |                |               |
+               *               *                *               *
+</PRE>
 
 <H3>16.4.2.1  Controlling the Operand-Size for a Call</H3>
 When the selector of the pointer referenced by a <A HREF="CALL.htm">CALL</A> instruction selects a

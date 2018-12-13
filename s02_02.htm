@@ -136,22 +136,180 @@ half-byte. The range of a packed decimal byte is 0-99.
   graphically summarizes the data types supported by the 80386.
 <P>
 <A NAME="fig2-1">
-<IMG align=center SRC="fig2-1.gif" border=0>
+<PRE>Figure 2-1.  Two-Component Pointer</PRE>
+<PRE>
+                                   *               *
+                                   |               |
+                                   |---------------|-+
+       32            0             |               | |
+      +-------+-------+   +---+    |---------------| |
+      |    OFFSET     |---| + |--->|    OPERAND    | |
+      +-------+-------+   +---+    |---------------| |- SELECTED SEGMENT
+                            ^      |               | |
+           16    0          |      |               | |
+          +-------+         |      |               | |
+          |SEGMENT|---------.----->|---------------|-+
+          +-------+                |               |
+                                   |               |
+                                   |               |
+                                   *               *
+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig2-2">
-<IMG align=center SRC="fig2-2.gif" border=0>
+<PRE>Figure 2-2.  Fundamental Data Types</PRE>
+<PRE>
+  7              0
+ +---------------+
+ |     BYTE      |  BYTE
+ +---------------+
+
+  15              7              0
+ +---------------+---------------+
+ |   HIGH BYTE   |   LOW BYTE    |  WORD
+ +---------------+---------------+
+    address n+1      address n
+
+  31              23              15              7             0
+ +---------------+---------------+---------------+--------------+
+ |           HIGH WORD           |            LOW WORD          | DOUBLEWORD
+ +---------------+---------------+---------------+--------------+
+    address n+3     address n+2     address n+1      address n
+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig2-3">
-<IMG align=center SRC="fig2-3.gif" border=0>
+<PRE>Figure 2-3.  Bytes, Words, and Doublewords in Memory</PRE>
+<PRE>
+                  MEMORY
+       BYTE       VALUES
+All values in hexadecimal
+     ADDRESS   +----------+
+              E|          |
+               |----------|--+
+              D|    7A    |  |- DOUBLE WORD AT ADDRESS A
+               |----------|-+|  CONTAINS 7AFE0636
+              C|    FE    | ||
+               |----------| |- WORD AT ADDRESS B
+              B|    06    | || CONTAINS FE06
+               |----------|-+|
+              A|    36    |  |
+               |----------|--|
+              9|    1F    |  |- WORD AT ADDRESS 9
+               |----------|--+  CONTAINS IF
+              8|          |
+               |----------|--+
+              7|    23    |  |
+               |----------|  |- WORD AT ADDRESS 6
+              6|    OB    |  |  CONTAINS 23OB
+               |----------|--+
+              5|          |
+               |----------|
+              4|          |
+               |----------|--+
+              3|    74    |  |
+               |----------|-+|- WORD AT ADDRESS 2
+              2|    CB    | ||  CONTAINS 74CB
+               |----------|--+
+              1|    31    | |-- WORD AT ADDRESS 1
+               |----------|-+   CONTAINS CB31
+              0|          |
+               +----------+
+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig2-4">
-<IMG align=center SRC="fig2-4.gif" border=0>
+<PRE>Figure 2-4.  80386 Data Types</PRE>
+<PRE>
+                                                           +1       0
+          7       0              7       0            15 14    8 7      0
+     BYTE +++++++++         BYTE +++++++++         WORD +++++++++++++++++
+  INTEGER ||  |   |      ORDINAL |   |   |      INTEGER ||  |   |   |   |
+          ++------+              +-------+              ++------+-------+
+  SIGN BIT++------+              +-------+      SIGN BIT++MSB           |
+           MAGNITUDE             MAGNITUDE              +---------------+
+                                                            MAGNITUDE
+
+
+            +1       0                       +3     +2      +1       0
+         15              0               31            16 15             0
+    WORD +++++++++++++++++    DOUBLEWORD +++++++++++++++++++++++++++++++++
+ ORDINAL ||  |   |   |   |       INTEGER ||  |   |   |   |   |   |   |   |
+         ++------+-------+               ++------+-------+-------+-------+
+         |               |       SIGN BIT++MSB                           |
+         +---------------+               +-------------------------------+
+             MAGNITUDE                              MAGNITUDE
+
+
+                           +3      +2      +1       0
+                        31                              0
+             DOUBLEWORD +++++++++++++++++++++++++++++++++
+                ORDINAL |   |   |   |   |   |   |   |   |
+                        +-------+-------+-------+-------+
+                        +-------------------------------+
+                                    MAGNITUDE
+
+                           +N              +1       0
+                        7       0       7      0 7      0
+           BINARY CODED +++++++++       +++++++++++++++++
+          DECIMAL (BCD) |   |   |  ***  |   |   |   |   |
+                        +-------+       +-------+-------+
+                           BCD             BCD     BCD
+                         DIGIT N         DIGIT 1  DIGIT 0
+
+                           +N              +1       0
+                        7       0       7      0 7      0
+                 PACKED +++++++++       +++++++++++++++++
+                    BCD |   |   |  ***  |   |   |   |   |
+                        +-------+       +-------+-------+
+                        +---+                       +---+
+                        MOST                        LEAST
+                        SIGNIFICANT           SIGNIFICANT
+                        DIGIT                       DIGIT
+
+                           +N              +1       0
+                        7       0       7      0 7      0
+                   BYTE +++++++++       +++++++++++++++++
+                 STRING |   |   |  ***  |   |   |   |   |
+                        +-------+       +-------+-------+
+
+                                              -2 GIGABYTES
+                +2 GIGABYTES                           210
+     BIT +++++------------++-------  ----------------+++++
+  STRING |||||            ||                         |||||
+         +++++------------++--------  ---------------+++++
+                         BIT 0
+
+               +3      +2      +1       0
+            31                              0
+NEAR 32-BIT +++++++++++++++++++++++++++++++++
+    POINTER |   |   |   |   |   |   |   |   |
+            +-------+-------+-------+-------+
+            +-------------------------------+
+                             OFFSET
+
+              +5      +4      +3      +2      +1       0
+           48                                              0
+FAR 48-BIT +++++++++++++++++++++++++++++++++++++++++++++++++
+   POINTER |   |   |   |   |   |   |   |   |   |   |   |   |
+           +-------+-------+-------+-------+-------+-------+
+           +---------------+-------------------------------+
+                SELECTOR                 OFFSET
+
+                  +5      +4      +3      +2      +1       0
+    32-BIT +++++++++++++++++++++++++++++++++++++++++++++++++
+ BIT FIELD |   |   |   |   |   |   |   |   |   |   |   |   |
+           +-------+-------+-------+-------+-------+-------+
+                   |<--------- BIT FIELD --------->|
+                             1 TO 32 BITS
+
+</PRE>
 <P>
 <HR>
 <P>

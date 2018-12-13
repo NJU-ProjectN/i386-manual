@@ -43,7 +43,57 @@ protection checks on the same segment do not consume additional clock
 cycles.
 <P>
 <A NAME="fig6-1">
-<IMG align=center SRC="fig6-1.gif" border=0>
+<PRE>Figure 6-1.  Protection Fields of Segment Descriptors</PRE>
+<P>
+<PRE>
+                           DATA SEGMENT DESCRIPTOR
+
+  31                23                15                7               0
+ +-----------------+-+-+-+-+---------+-+-----+---------+-----------------+
+ |#################|#|#|#|A| LIMIT   |#|     |  TYPE   |#################|
+ |###BASE 31..24###|G|B|0|V| 19..16  |P| DPL |         |###BASE 23..16###| 4
+ |#################|#|#|#|L|         |#|     |1|0|E|W|A|#################|
+ |-----------------+-+-+-+-+---------+-+-----+-+-+-+-+-+-----------------|
+ |###################################|                                   |
+ |########SEGMENT BASE 15..0#########|        SEGMENT LIMIT 15..0        | 0
+ |###################################|                                   |
+ +-----------------+-----------------+-----------------+-----------------+
+
+                        EXECUTABLE SEGMENT DESCRIPTOR
+
+  31                23                15                7               0
+ +-----------------+-+-+-+-+---------+-+-----+---------+-----------------+
+ |#################|#|#|#|A| LIMIT   |#|     |  TYPE   |#################|
+ |###BASE 31..24###|G|D|0|V| 19..16  |P| DPL |         |###BASE 23..16###| 4
+ |#################|#|#|#|L|         |#|     |1|0|C|R|A|#################|
+ |-----------------+-+-+-+-+---------+-+-----+-+-+-+-+-+-----------------|
+ |###################################|                                   |
+ |########SEGMENT BASE 15..0#########|        SEGMENT LIMIT 15..0        | 0
+ |###################################|                                   |
+ +-----------------+-----------------+-----------------+-----------------+
+
+                         SYSTEM SEGMENT DESCRIPTOR
+
+  31                23                15                7               0
+ +-----------------+-+-+-+-+---------+-+-----+-+-------+-----------------+
+ |#################|#|#|#|A| LIMIT   |#|     | |       |#################|
+ |###BASE 31..24###|G|X|0|V| 19..16  |P| DPL |0| TYPE  |###BASE 23..16###| 4
+ |#################|#|#|#|L|         |#|     | |       |#################|
+ |-----------------+-+-+-+-+---------+-+-----+-+-------+-----------------|
+ |###################################|                                   |
+ |########SEGMENT BASE 15..0#########|       SEGMENT LIMIT 15..0         | 0
+ |###################################|                                   |
+ +-----------------+-----------------+-----------------+-----------------+
+</PRE>
+<P>
+<PRE>
+        A   - ACCESSED                              E   - EXPAND-DOWN
+        AVL - AVAILABLE FOR PROGRAMMERS USE         G   - GRANULARITY
+        B   - BIG                                   P   - SEGMENT PRESENT
+        C   - CONFORMING                            R   - READABLE
+        D   - DEFAULT                               W   - WRITABLE
+        DPL - DESCRIPTOR PRIVILEGE LEVEL
+</PRE>
 <P>
 <H3>6.3.1.1  Type Checking</H3>
 The TYPE field of a descriptor has two functions:
@@ -235,7 +285,31 @@ privilege level zero; a two-level system should use privilege levels zero
 and three.
 <P>
 <A NAME="fig6-2">
-<IMG align=center SRC="fig6-2.gif" border=0>
+<PRE>Figure 6-2.  Levels of Privilege</PRE>
+<P>
+<PRE>
+                                     TASK C
+              +---------------------------------------------------+
+              | +-----------------------------------------------+ |
+              | |                 APPLICATIONS                  | |
+              | |     +-----------------------------------+     | |
+              | |     |        CUSTOM EXTENSIONS          |     | |
+              | |     |     +-----------------------+     |     | |
+              | |     |     |    SYSTEM SERVICES    |     |     | |
+              | |     |     |     +-----------+     |     |     | |
+              | |     |     |     |  KERNAL   |     |     |     | |
+              |-|-----+-----+-----+-----+-----+-----+-----+-----|-|
+              | |     |     |     |     |LEVEL|LEVEL|LEVEL|LEVEL| |
+              | |     |     |     |     |  0  |  1  |  2  |  3  | |
+              | |     |     |     +-----+-----+     |     |     | |
+              | |     |     |           |           |     |     | |
+              | |     |     +-----------+-----------+     |     | |
+              | |     |                 |                 |     | |
+              | |     +-----------------+-----------------+     | |
+              | |                       |                       | |
+        TASK B| +-----------------------+-----------------------+ |TASK A
+              +------------------------+ +------------------------+
+</PRE>
 <P>
 <H2>6.3.2  Restricting Access to Data</H2>
 To address operands in memory, an 80386 program must load the selector of a
@@ -267,7 +341,39 @@ property of the 80386 can be used, for example, to prevent applications
 procedures from reading or changing tables of the operating system.
 <P>
 <A NAME="fig6-3">
-<IMG align=center SRC="fig6-3.gif" border=0>
+<PRE>Figure 6-3.  Privilege Check for Data Access</PRE>
+<P>
+<PRE>
+          16-BIT VISIBLE
+             SELECTOR            INVISIBLE DESCRIPTOR
+        +---------------+-------------------+---+-----------+
+     CS |               |                   |CPL|           |
+        +---------------+-------------------+-+-+-----------+
+                                              |
+    TARGET SEGMENT SELECTOR                   |        +-----------+
+ +-----------------------+-+---+              +------->| PRIVILEGE |
+ |         INDEX         | |RPL|---------------------->| CHECK     |
+ +-----------------------+-+---+              +------->| BY CPU    |
+                                              |        +-----------+
+     DATA SEGMENT DESCRIPTOR              +---+
+                                          |
+  31                23                15  |             7               0
+ +-----------------+-+-+-+-+---------+-+--+--+---------+-----------------+
+ |                 | | | |A| LIMIT   | |     |  TYPE   |                 |
+ |   BASE 31..24   |G|B|0|V|         |P| DPL |         |   BASE 23..16   | 4
+ |                 | | | |L|  19..16 | |     |1|0|E|W|A|                 |
+ |-----------------+-+-+-+-+---------+-+-----+-+-+-+-+-+-----------------|
+ |                                   |                                   |
+ |        SEGMENT BASE 15..0         |        SEGMENT LIMIT 15..0        | 0
+ |                                   |                                   |
+ +-----------------+-----------------+-----------------+-----------------+
+</PRE>
+<P>
+<PRE>
+    CPL - CURRENT PRIVILEGE LEVEL
+    RPL - REQUESTOR'S PRIVILEGE LEVEL
+    DPL - DESCRIPTOR PRIVILEGE LEVEL
+</PRE>
 <P>
 <H3>6.3.2.1  Accessing Data in Code Segments</H3>
 Less common than the use of data segments is the use of code segments to
@@ -366,7 +472,36 @@ may never transfer control to a nonconforming segment whose DPL does not
 equal CPL.
 <P>
 <A NAME="fig6-4">
-<IMG align=center SRC="fig6-4.gif" border=0>
+<PRE>Figure 6-4.  Privilege Check for Control Transfer without Gate</PRE>
+<P>
+<PRE>
+          16-BIT VISIBLE
+             SELECTOR               INVISIBLE PART
+        +---------------+-------------------+---+-----------+
+        |               |                   |CPL|           | CS
+        +---------------+-------------------+-+-+-----------+
+                                              |
+                                              |        +-----------+
+                                              +------->| PRIVILEGE |
+                                          +----------->| CHECK     |
+                                          |       +--->| BY CPU    |
+     CODE-SEGMENT DESCRIPTOR              |       |    +-----------+
+                                          |       |
+  31                23                15  |       |     7               0
+ +-----------------+-+-+-+-+---------+-+--+--+----+----+-----------------+
+ |                 | | | |A| LIMIT   | |     |    |    |                 |
+ |   BASE 31..24   |G|D|0|V|         |P| DPL |    |    |   BASE 23..16   | 4
+ |                 | | | |L|  19..16 | |     |1|1|C|R|A|                 |
+ |-----------------+-+-+-+-+---------+-+-----+-+-+-+-+-+-----------------|
+ |                                   |                                   |
+ |        SEGMENT BASE 15..0         |        SEGMENT LIMIT 15..0        | 0
+ |                                   |                                   |
+ +-----------------+-----------------+-----------------+-----------------+
+
+    CPL - CURRENT PRIVILEGE LEVEL
+    DPL - DESCRIPTOR PRIVILEGE LEVEL
+    C   - CONFORMING BIT
+</PRE>
 <P>
 <H2>6.3.4  Gate Descriptors Guard Procedure Entry Points</H2>
 To provide protection for control transfers among executable segments
@@ -453,17 +588,105 @@ target segment DPL <= CPL
 </PRE>
 <P>
 <A NAME="fig6-5">
-<IMG align=center SRC="fig6-5.gif" border=0>
+<PRE>Figure 6-5.  Format of 80386 Call Gate</PRE>
+<P>
+<PRE>
+   31                23                15               7              0
+  +-----------------+-----------------+-+-----+---------+-----+---------+
+  |                                   | |     |  TYPE   |     |  DWORD  |
+  |           OFFSET 31..16           |P| DPL |         |0 0 0|         | 4
+  |                                   | |     |0 1 1 0 0|     |  COUNT  |
+  |-----------------------------------+-+-----+---------+-----+---------|
+  |                                   |                                 |
+  |              SELECTOR             |           OFFSET 15..0          | 0
+  |                                   |                                 |
+  +-----------------+-----------------+-----------------+---------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig6-6">
-<IMG align=center SRC="fig6-6.gif" border=0>
+<PRE>Figure 6-6.  Indirect Transfer via Call Gate</PRE>
+<P>
+<PRE>
+         OPCODE                 OFFSET                   SELECTOR
+       +---------+------------------------------------+-------+-+---+
+       |  CALL   |            (NOT USED)              | INDEX | |RPL|
+       +---------+------------------------------------+---+---+-+---+
+                                                          |
+                      DESCRIPTOR TABLE                    |
+                 +------+-----+-----+------+              |
+                 |      |     |     |      |              |
+                 |------+-----+-----+------|              |
+                 |            |            |              |
+                 +------------+------------+              |
+                 *                         *              |
+                 *                         *              |
+                 *                         *              |
+                 +------------+-----+------+              |
+         GATE    |   OFFSET   | DPL |COUNT |<-------------+    EXECUTABLE
+      DESCRIPTOR |------------+-----+------|                     SEGMENT
+          +------|  SELECTOR  |   OFFSET   |-----+          +--------------+
+          |      |------+-----+-----+------|     |          |              |
+          |      |      |     |     |      |     |          |              |
+          |      |------+-----+-----+------|     |          |              |
+          |      |            |            |     |          |              |
+          |      |------+-----+-----+------|     |          |              |
+          |      |      |     |     |      |     +--------->|  PROCEDURE   |
+          |      |------+-----+-----+------|                |              |
+          |      |            |            |                |              |
+          !      |------+-----+-----+------|                |              |
+      EXECUTABLE | BASE |     | DPL | BASE |                |              |
+       SEGMENT   |------+-----+-----+------|     +--------->+--------------+
+      DESCRIPTOR |    BASE    |            |-----+
+                 +------------+------------+
+                 *                         *
+                 *                         *
+                 *                         *
+                 +------+-----+-----+------+
+                 |      |     |     |      |
+                 |------+-----+-----+------|
+                 |            |            |
+                 +------------+------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig6-7">
-<IMG align=center SRC="fig6-7.gif" border=0>
+<PRE>Figure 6-7.  Privilege Check via Call Gate</PRE>
+<P>
+<PRE>
+               16-BIT VISIBLE
+                  SELECTOR            INVISIBLE DESCRIPTOR
+             +---------------+-------------------+---+-----------+
+          CS |               |                   |CPL|           |
+             +---------------+-------------------+-+-+-----------+
+                                                   |
+              TARGET SELECTOR                      |        +-----------+
+      +-----------------------+-+---+              +------->| PRIVILEGE |
+      |         INDEX         | |RPL|---------------------->| CHECK     |
+      +-----------------------+-+---+   +------------------>| BY        |
+                                        |               +-->| CPU       |
+                                 +------+               |   +-----------+
+                                 |                      |
+         GATE DESCRIPTOR         !                      |
+    +-----------------------+----------+-----------+    |
+    |        OFFSET         |   DPL    |   COUNT   |    |
+    |-----------------------+----------+-----------|    |
+    |       SELECTOR        |        OFFSET        |    |
+    +-----------------------+----------------------+    |
+                                                        |
+                                                        |
+                          +-----------+-----------+-----+----+-----------+
+               EXECUTABLE |   BASE    |   LIMIT   |    DPL   |   BASE    |
+                SEGMENT   |-----------+-----------+----------+-----------|
+               DESCRIPTOR |          BASE         |        LIMIT         |
+                          +-----------------------+----------------------+
+
+            CPL     - CURRENT PRIVILEGE LEVEL
+            RPL     - REQUESTOR'S PRIVILEGE LEVEL
+            DPL     - DESCRIPTOR PRIVILEGE LEVEL
+</PRE>
 <P>
 <H3>6.3.4.1  Stack Switching</H3>
 If the destination code segment of the call gate is at a different
@@ -539,12 +762,65 @@ validity. A later section discusses how the <A HREF="ARPL.htm">ARPL</A>,
 instructions can be used to check pointer values.
 <P>
 <A NAME="fig6-8">
-<IMG align=center SRC="fig6-8.gif" border=0>
+<PRE>Figure 6-8.  Initial Stack Pointers of TSS</PRE>
+<P>
+<PRE>
+                 31       23       15       7      0
+                +--------+--------+--------+--------+64
+                *                                   *
+                *                                   *
+                *                                   *
+                |                                   |
+                |--------+--------+--------+--------|
+                |              EFLAGS               |24
+                |--------+--------+--------+--------|
+                |     INSTRUCTION POINTER (EIP)     |20
+                |--------+--------+--------+--------|
+                |            CR3 (PDBR)             |1C
+                |--------+--------+--------+-----+--|  -+
+                |00000000 00000000|       SS2    |10|18 |
+                |--------+--------+--------+-----+--|   |
+                |               ESP2                |14 |
+                |--------+--------+--------+-----+--|   |
+                |00000000 00000000|       SS1    |01|10 |  INITIAL
+                |--------+--------+--------+-----+--|   |- STACK
+                |               ESP1                |0C |  POINTERS
+                |--------+--------+--------+-----+--|   |
+                |00000000 00000000|       SS0    |00|8  |
+                |--------+--------+--------+-----+--|   |
+                |               ESP0                |4  |
+                |--------+--------+--------+--------|  -+
+                |00000000 00000000|  TSS BACK LINK  |0
+                +--------+--------+--------+--------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig6-9">
-<IMG align=center SRC="fig6-9.gif" border=0>
+<PRE>Figure 6-9.  Stack Contents after an Interlevel Call</PRE>
+<P>
+<PRE>
+                                            31            0     SS:ESP
+                                           +-------+-------+<--FROM TSS
+                 31            0           |#######|OLD SS |
+                +-------+-------+          |-------+-------|
+       D  O     |               |          |    OLD ESP    |
+       I  F     |               |          |-------+-------|
+       R        |               |          |    PARM 3     |
+       E  E     |               |          |-------+-------|
+       C  X     |               |          |    PARM 2     |
+       T  P     |-------+-------|          |-------+-------|
+       I  A     |    PARM 3     |          |    PARM 1     |
+       O  N     |-------+-------|          |-------+-------|
+       N  S     |    PARM 2     |          |#######|OLD CS |     NEW
+          I     |-------+-------|  OLD     |-------+-------|    SS:ESP
+        | O     |    PARM 1     |  SS:ESP  |    OLD EIP    |      |
+        | N     |-------+-------|<---+     |-------+-------|<-----+
+        |       |               |          |               |
+        !       |               |          |               |
+                +-------+-------+          +-------+-------+
+                    OLD STACK                  NEW STACK
+</PRE>
 <P>
 <H3>6.3.4.2  Returning from a Procedure</H3>
 The "near" forms of the 

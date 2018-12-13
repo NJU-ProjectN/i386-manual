@@ -86,13 +86,71 @@ Creation and maintenance of descriptors is the responsibility of systems
 software, usually requiring the cooperation of compilers, program loaders or
 system builders, and therating system.
 <P>
-<A NAME="fig5-2">
-<IMG align=center SRC="fig5-2.gif" border=0>
+<A name="fig5-2"></A>
+<PRE>Figure 5-2.  Segment Translation</PRE>
+<P>
+<PRE>
+           15              0    31                                   0
+  LOGICAL +----------------+   +-------------------------------------+
+  ADDRESS |    SELECTOR    |   |                OFFSET               |
+          +---+---------+--+   +-------------------+-----------------+
+       +------+         !                          |
+       | DESCRIPTOR TABLE                          |
+       |  +------------+                           |
+       |  |            |                           |
+       |  |            |                           |
+       |  |            |                           |
+       |  |            |                           |
+       |  |------------|                           |
+       |  |  SEGMENT   | BASE          +---+       |
+       +->| DESCRIPTOR |-------------->| + |<------+
+          |------------| ADDRESS       +-+-+
+          |            |                 |
+          +------------+                 |
+                                         !
+              LINEAR  +------------+-----------+--------------+
+              ADDRESS |    DIR     |   PAGE    |    OFFSET    |
+                      +------------+-----------+--------------+
+</PRE>
 <P>
 <HR>
 <P>
-<A NAME="fig5-3">
-<IMG align=center SRC="fig5-3.gif" border=0>
+<A name="fig5-3"></A>
+<PRE>Figure 5-3.  General Segment-Descriptor Format</PRE>
+<P>
+<PRE>
+         DESCRIPTORS USED FOR APPLICATIONS CODE AND DATA SEGMENTS
+
+  31                23                15                7               0
+ +-----------------+-+-+-+-+---------+-+-----+-+-----+-+-----------------+
+ |                 | | | |A|         | |     | |     | |                 |
+ |   BASE 31..24   |G|X|O|V| LIMIT   |P| DPL |1| TYPE|A|  BASE 23..16    | 4
+ |                 | | | |L| 19..16  | |     | |     | |                 |
+ |-----------------+-+-+-+-+---------+-+-----+-+-----+-+-----------------|
+ |                                   |                                   |
+ |        SEGMENT BASE 15..0         |       SEGMENT LIMIT 15..0         | 0
+ |                                   |                                   |
+ +-----------------+-----------------+-----------------+-----------------+
+
+                DESCRIPTORS USED FOR SPECIAL SYSTEM SEGMENTS
+
+  31                23                15                7               0
+ +-----------------+-+-+-+-+---------+-+-----+-+-------+-----------------+
+ |                 | | | |A|         | |     | |       |                 |
+ |   BASE 31..24   |G|X|O|V| LIMIT   |P| DPL |0|  TYPE |  BASE 23..16    | 4
+ |                 | | | |L| 19..16  | |     | |       |                 |
+ |-----------------+-+-+-+-+---------+-+-----+-+-------+-----------------|
+ |                                   |                                   |
+ |        SEGMENT BASE 15..0         |       SEGMENT LIMIT 15..0         | 0
+ |                                   |                                   |
+ +-----------------+-----------------+-----------------+-----------------+
+
+           A      - ACCESSED
+           AVL    - AVAILABLE FOR USE BY SYSTEMS PROGRAMMERS
+           DPL    - DESCRIPTOR PRIVILEGE LEVEL
+           G      - GRANULARITY
+           P      - SEGMENT PRESENT
+</PRE>
 <P>
 <H2>5.1.2  Descriptor Tables</H2>
 Segment descriptors are stored in either of two kinds of descriptor table:
@@ -116,12 +174,64 @@ instructions <A HREF="LGDT.htm">LGDT</A> and
 and <A HREF="SLDT.htm">SLDT</A> give access to the LDTR.
 <P>
 <A NAME="fig5-4">
-<IMG align=center SRC="fig5-4.gif" border=0>
+<PRE>Figure 5-4.  Format of Not-Present Descriptor</PRE>
+<P>
+<PRE>
+  31                23                15                7               0
+ +-----------------+-----------------+-+-----+-+-------+-----------------+
+ |                                   | |     | |       |                 |
+ |            AVAILABLE              |O| DPL |S| TYPE  |   AVAILABLE     | 4
+ |                                   | |     | |       |                 |
+ |-----------------------------------+-+-----+-+-------+-----------------|
+ |                                                                       |
+ |                               AVAILABLE                               | 0
+ |                                                                       |
+ +-----------------+-----------------+-----------------+-----------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig5-5">
-<IMG align=center SRC="fig5-5.gif" border=0>
+<PRE>Figure 5-5.  Descriptor Tables</PRE>
+<P>
+<PRE>
+      GLOBAL DESCRIPTOR TABLE                 LOCAL DESCRIPTOR TABLE
+    +------+-----+-----+------+            +------+-----+-----+------+
+    |      |     |     |      |            |      |     |     |      |
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |            |            | M          |            |            | M
+    +------------+------------+            +------------+------------+
+    |                         |            |                         |
+    |                         |            |                         |
+    +------+-----+-----+------+            +------+-----+-----+------+
+    |      |     |     |      |            |      |     |     |      |
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |            |            | N + 3      |            |            | N + 3
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |      |     |     |      |            |      |     |     |      |
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |            |            | N + 2      |            |            | N + 2
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |      |     |     |      |            |      |     |     |      |
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |            |            | N + 1      |            |            | N + 1
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |      |     |     |      |            |      |     |     |      |
+    |------+-----+-----+------|            |------+-----+-----+------|
+    |            |            | N          |            |            | N
+    +------------+------------+            +------------+------------+
+    |                         |            |                         |
+    |                         |            |                         |
+    +------+-----+-----+------+            +------+-----+-----+------+
+    |      |     |     |      |            |      |     |     |      |
+    |------+--(UNUSED)-+------|            |------+-----+-----+------|
+    |            |            |            |            |            |
+    +------------+------------+            +------------+------------+
+                              ^                                      ^
+     +---------------------+  |             +---------------------+  |
+     |         GDTR        |--+             |         LDTR        |--+
+     +---------------------+                +---------------------+
+</PRE>
 <P>
 <H2>5.1.3  Selectors</H2>
 The selector portion of a logical address identifies a descriptor by
@@ -155,12 +265,42 @@ is useful for initializing unused segment registers so as to trap accidental
 references.
 <P>
 <A NAME="fig5-6">
-<IMG align=center SRC="fig5-6.gif" border=0>
+<PRE>Figure 5-6.  Format of a Selector</PRE>
+<P>
+<PRE>
+                         15                      4 3   0
+                        +-------------------------+-+---+
+                        |                         |T|   |
+                        |           INDEX         | |RPL|
+                        |                         |I|   |
+                        +-------------------------+-+---+
+
+                         TI  - TABLE INDICATOR
+                         RPL - REQUESTOR'S PRIVILEGE LEVEL
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig5-7">
-<IMG align=center SRC="fig5-7.gif" border=0>
+<PRE>Figure 5-7.  Segment Registers</PRE>
+<P>
+<PRE>
+             16-BIT VISIBLE
+                SELECTOR                 HIDDEN DESCRIPTOR
+           +----------------+----------------------------------------+
+        CS |                |                                        |
+           |----------------+----------------------------------------|
+        SS |                |                                        |
+           |----------------+----------------------------------------|
+        DS |                |                                        |
+           |----------------+----------------------------------------|
+        ES |                |                                        |
+           |----------------+----------------------------------------|
+        FS |                |                                        |
+           |----------------+----------------------------------------|
+        GS |                |                                        |
+           +----------------+----------------------------------------+
+</PRE>
 <P>
 <H2>5.1.4  Segment Registers</H2>
 The 80386 stores information from descriptors in segment registers, thereby

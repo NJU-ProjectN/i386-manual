@@ -25,7 +25,18 @@ Two kinds of protection are related to pages:
 pages.
 <P>
 <A NAME="fig6-10">
-<IMG align=center SRC="fig6-10.gif" border=0>
+<PRE>Figure 6-10.  Protection Fields of Page Table Entries</PRE>
+<P>
+<PRE>
+      31                                  12 11          7           0
+     +--------------------------------------+-------+---+-+-+---+-+-+-+
+     |######################################|#######|###|#|#|###|U|R|#|
+     |######PAGE FRAME ADDRESS 31..12#######|#AVAIL#|0#0|D|A|0#0|/|/|P|
+     |######################################|#######|###|#|#|###|S|W|#|
+     +--------------------------------------+-------+---+-+-+---+-+-+-+
+      R/W     - READ/WRITE
+      U/S     - USER/SUPERVISOR
+</PRE>
 
 <H3>6.4.1.1  Restricting Addressable Domain</H3>
 The concept of privilege for pages is implemented by assigning each page to

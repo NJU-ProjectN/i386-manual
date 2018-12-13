@@ -172,32 +172,207 @@ were pushed on the stack by the calling program for use by the called
 procedure.
 <P>
 <A NAME="fig3-16">
-<IMG align=center SRC="fig3-16.gif" border=0>
+<PRE>Figure 3-16.  Formal Definition of the ENTER Instruction</PRE>
+<P>
+The formal definition of the ENTER instruction for all cases is given by the
+following listing. LEVEL denotes the value of the second operand.
+<P>
+Push EBP
+Set a temporary value FRAME_PTR := ESP
+If LEVEL > 0 then
+<PRE>
+      Repeat (LEVEL-1) times:
+          EBP :=EBP - 4
+          Push the doubleword pointed to by EBP
+      End repeat
+      Push FRAME_PTR
+End if
+EBP := FRAME_PTR
+ESP := ESP - first operand.
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-17">
-<IMG align=center SRC="fig3-17.gif" border=0>
+<PRE>Figure 3-17.  Variable Access in Nested Procedures</PRE>
+<P>
+<PRE>
+      +----------------------------------------------------------------+
+      |                MAIN PROCEDURE (LEXICAL LEVEL 1)                |
+      |   +--------------------------------------------------------+   |
+      |   |              PROCEDURE A (LEXICAL LEVEL 2)             |   |
+      |   |  +--------------------------------------------------+  |   |
+      |   |  |           PROCEDURE B (LEXICAL LEVEL 3)          |  |   |
+      |   |  +--------------------------------------------------+  |   |
+      |   |                                                        |   |
+      |   |  +--------------------------------------------------+  |   |
+      |   |  |           PROCEDURE C (LEXICAL LEVEL 3)          |  |   |
+      |   |  |  +--------------------------------------------+  |  |   |
+      |   |  |  |        PROCEDURE D (LEXICAL LEVEL 4)       |  |  |   |
+      |   |  |  +--------------------------------------------+  |  |   |
+      |   |  |                                                  |  |   |
+      |   |  +--------------------------------------------------+  |   |
+      |   |                                                        |   |
+      |   +--------------------------------------------------------+   |
+      |                                                                |
+      +----------------------------------------------------------------+
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-18">
-<IMG align=center SRC="fig3-18.gif" border=0>
+<PRE>Figure 3-18.  Stack Frame for MAIN at Level 1</PRE>
+<P>
+<PRE>
+                                     * 31          0 *
+                D  O                 |               |
+                I  F              +- |-------+-------|
+                R                 |  |    OLD ESP    |
+                E  E     DISPLAY -|  |-------+-------|<--EBP FOR
+                C  X              |  |      EBPM     |
+                T  P              |- |-------+-------|
+                I  A              |  |               |
+                O  N              |  |-------+-------|
+                N  S     DYNAMIC -|  |               |
+                   I     STORAGE  |  |-------+-------|
+                 | O              |  |               |
+                 | N              +- |-------+-------|<--ESP
+                 |                   |               |
+                 !                   *               *
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-19">
-<IMG align=center SRC="fig3-19.gif" border=0>
+<PRE>Figure 3-19.  Stack Frame for Procedure A</PRE>
+<P>
+<PRE>
+                                     * 31          0 *
+                D  O                 |               |
+                I  F                 |-------+-------|
+                R                    |    OLD ESP    |
+                E  E                 |-------+-------|
+                C  X                 |      EBPM     |
+                T  P                 |-------+-------|
+                I  A                 |               |
+                O  N                 |-------+-------|
+                N  S                 |               |
+                   I                 |-------+-------|
+                 | O                 |               |
+                 | N              +- |-------+-------|
+                 |                |  |      EBPM     |
+                 !                |  |-------+-------|<--EBP FOR A
+                         DISPLAY -|  |      EBPM     |
+                                  |  |-------+-------|
+                                  |  |      EBPA     |
+                                  |- |-------+-------|
+                                  |  |               |
+                                  |  |-------+-------|
+                         DYNAMIC -|  |               |
+                         STORAGE  |  |-------+-------|
+                                  |  |               |
+                                  +- |-------+-------|<--ESP
+                                     |               |
+                                     *               *
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-20">
-<IMG align=center SRC="fig3-20.gif" border=0>
+<PRE>Figure 3-20.  Stack Frame for Procedure B at Level 3 Called from A</PRE>
+<P>
+<PRE>
+                                     * 31          0 *
+                D  O                 |               |
+                I  F                 |-------+-------|
+                R                    |    OLD ESP    |
+                E  E                 |-------+-------|
+                C  X                 |      EBPM     |
+                T  P                 |-------+-------|
+                I  A                 |               |
+                O  N                 |-------+-------|
+                N  S                 |               |
+                   I                 |-------+-------|
+                 | O                 |               |
+                 | N                 |-------+-------|
+                 |                   |      EBPM     |
+                 !                   |-------+-------|
+                                     |      EBPM     |
+                                     |-------+-------|
+                                     |      EBPA     |
+                                     |-------+-------|
+                                     |               |
+                                     |-------+-------|
+                                     |               |
+                                     |-------+-------|
+                                     |               |
+                                  +- |-------+-------|
+                                  |  |      EBPA     |
+                                  |  |-------+-------|<--EBP
+                                  |  |      EBPM     |
+                         DISPLAY -|  |-------+-------|
+                                  |  |      EBPA     |
+                                  |  |-------+-------|
+                                  |  |      EBPB     |
+                                  |- |-------+-------|
+                                  |  |               |
+                                  |  |-------+-------|
+                         DYNAMIC -|  |               |
+                         STORAGE  |  |-------+-------|
+                                  |  |               |
+                                  +- |-------+-------|<--ESP
+                                     |               |
+                                     *               *
+</PRE>
 <P>
 <HR>
 <P>
 <A NAME="fig3-21">
-<IMG align=center SRC="fig3-21.gif" border=0>
+<PRE>Figure 3-21.  Stack Frame for Procedure C at Level 3 Called from B</PRE>
+<P>
+<PRE>
+                                     * 31          0 *
+                D  O                 |               |
+                I  F                 |-------+-------|
+                R                    |    OLD ESP    |
+                E  E                 |-------+-------|
+                C  X                 |      EBPM     |
+                T  P                 |-------+-------|
+                I  A                 |               |
+                O  N                 |-------+-------|
+                N  S                 |               |
+                   I                 |-------+-------|
+                 | O                 |               |
+                 | N                 |-------+-------|
+                 |                   |      EBPM     |
+                 !                   |-------+-------|
+                                     |      EBPM     |
+                                     |-------+-------|
+                                     |      EBPA     |
+                                     |-------+-------|
+                                     |               |
+                                     |-------+-------|
+                                     |               |
+                                     |-------+-------|
+                                     |               |
+                                  +- |-------+-------|
+                                  |  |      EBPA     |
+                                  |  |-------+-------|<--EBP
+                                  |  |      EBPM     |
+                         DISPLAY -|  |-------+-------|
+                                  |  |      EBPA     |
+                                  |  |-------+-------|
+                                  |  |      EBPB     |
+                                  |- |-------+-------|
+                                  |  |               |
+                                  |  |-------+-------|
+                         DYNAMIC -|  |               |
+                         STORAGE  |  |-------+-------|
+                                  |  |               |
+                                  +- |-------+-------|<--ESP
+                                     |               |
+                                     *               *
+</PRE>
 <P>
 <HR>
 <P>

@@ -51,7 +51,35 @@ in a general register or memory word.
 <A HREF="STR.htm">STR</A> is not privileged.
 <P>
 <A NAME="fig7-3">
-<IMG align=center SRC="fig7-3.gif" border=0>
+<PRE>Figure 7-3.  Task Register </PRE>
+<P>
+<PRE>
+                          +-------------------------+
+                          |                         |
+                          |                         |
+                          |       TASK STATE        |
+                          |        SEGMENT          |<---------+
+                          |                         |          |
+                          |                         |          |
+                          +-------------------------+          |
+           16-BIT VISIBLE             ^                        |
+              REGISTER                |   HIDDEN REGISTER      |
+       +--------------------+---------+----------+-------------+------+
+    TR |      SELECTOR      |      (BASE)        |       (LIMT)       |
+       +---------+----------+--------------------+--------------------+
+                 |                    ^                     ^
+                 |                    +-----------------+   |
+                 |          GLOBAL DESCRIPTOR TABLE     |   |
+                 |        +-------------------------+   |   |
+                 |        |     TSS DESCRIPTOR      |   |   |
+                 |        +------+-----+-----+------+   |   |
+                 |        |      |     |     |      |---+   |
+                 |        |------+-----+-----+------|       |
+                 +------->|            |            |-------+
+                          +------------+------------+
+                          |                         |
+                          +-------------------------+
+</PRE>
 
 <P>
 <HR>

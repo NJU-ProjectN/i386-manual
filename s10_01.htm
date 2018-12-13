@@ -53,10 +53,39 @@ These settings imply that the processor begins in real-address mode with
 interrupts disabled.
 <P>
 <A NAME="fig10-1">
-<IMG align=center SRC="fig10-1.gif" border=0>
+<PRE>Figure 10-1.  Contents of EDX after RESET</PRE>
+<P>
+<PRE>
+                                 EDX REGISTER
+
+      31               23               15               7              0
+     +----------------+----------------+----------------+----------------+
+     |#################################|       DH       |      DL        |
+     |############UNDEFINED############|   DEVICE ID    |  STEPPING ID   |
+     |#################################|       3        |   (UNIQUE)     |
+     +----------------+----------------+----------------+----------------+
+</PRE>
 <HR>
 <A NAME="fig10-2">
-<IMG align=center SRC="fig10-2.gif" border=0>
+<PRE>Figure 10-2.  Initial Contents of CR0</PRE>
+<P>
+<PRE>
+                               CONTROL REGISTER ZERO
+
+   31                23                15                  7     4 3   1  0
+  +-+---------------+-----------------+-------------------+-----+-+-+-+-+-+
+  |P|                                                           |E|T|E|M|P|
+  | |                            UNDEFINED                      | | | | | |
+  |G|                                                           |T|S|M|P|E|
+  +++---------------+-----------------+-------------------+-----+++++++++++
+   |                                                             | | | | |
+   +-------------0 - PAGING DISABLED                             | | | | |
+                 * - INDICATES PRESENCE OF 80387-----------------+ | | | |
+                 0 - NO TASK SWITCH--------------------------------+ | | |
+                 0 - DO NOT MONITOR COPROCESSOR----------------------+ | |
+                 0 - COPROCESSOR NOT PRESENT---------------------------+ |
+                 0 - PROTECTION NOT ENABLED (REAL ADDRESS MODE)----------+
+</PRE>
 <P>
 <HR>
 <P>
