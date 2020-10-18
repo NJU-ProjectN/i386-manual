@@ -182,7 +182,7 @@ when the operand size attribute is 32.
  +---------+---------+---------+---------+---------+---------+--------+--------+---------+---------+---------+---------+---------+---------+--------+--------+
  |         |         |  <A HREF="BOUND.htm">BOUND</A>  |  <A HREF="ARPL.htm">ARPL</A>   |   SEG   |   SEG   | Operand| Address|  <A HREF="PUSH.htm">PUSH</A>   |  <A HREF="IMUL.htm">IMUL</A>   |  <A HREF="PUSH.htm">PUSH</A>   |  <A HREF="IMUL.htm">IMUL</A>   |  <A HREF="INS.htm">INSB</A>   | <A HREF="INS.htm">INSW/D</A>  | <A HREF="OUTS.htm">OUTSB</A>  |<A HREF="OUTS.htm">OUTSW/D</A> |
 6|  <A HREF="PUSHA.htm">PUSHA</A>  |  <A HREF="POPA.htm">POPA</A>   |         |         |         |         |        |        |         |         |         |         |         |         |        |        |
- |         |         |  Gv,Ma  |  Ew,Rw  |   =FS   |   =GS   |  Size  |  Size  |   Ib    | GvEvIv  |   Ib    | GvEvIv  |  Yb,DX  |  Yb,DX  | Dx,Xb  | DX,Xv  |
+ |         |         |  Gv,Ma  |  Ew,Rw  |   =FS   |   =GS   |  Size  |  Size  |   Iv    | GvEvIv  |   Ib    | GvEvIv  |  Yb,DX  |  Yb,DX  | Dx,Xb  | DX,Xv  |
  +---------+---------+---------+---------+---------+---------+--------+--------+---------+---------+---------+---------+---------+---------+--------+--------+
  |                    Short displacement jump of condition (Jb)                |                   Short-displacement jump on condition(Jb)                  |
 7|---------+---------+---------+---------+---------+---------+--------+--------+---------+---------+---------+---------+---------+---------+--------+--------+
@@ -190,7 +190,7 @@ when the operand size attribute is 32.
  +---------+---------+---------+---------+---------+---------+--------+--------+---------+---------+---------+---------+---------+---------+--------+--------+
  |  Immediate Grp1   |         |  Grp1   |       <A HREF="TEST.htm">TEST</A>        |      <A HREF="XCHG.htm">XCHG</A>       |                 <A HREF="MOV.htm">MOV</A>                   |   <A HREF="MOV.htm">MOV</A>   |   <A HREF="LEA.htm">LEA</A>   |  <A HREF="MOV.htm">MOV</A>   |  <A HREF="POP.htm">POP</A>   |
 8|---------+---------+         |         +---------+---------+--------+--------+---------+---------+---------+---------+         |         |        |        |
- |  Eb,Ib  |  Ev,Iv  |         |  Ev,Iv  |  Eb,Gb  |  Ev,Gv  |  Eb,Gb |  Ev,Gv |  Eb,Gb  |  Ev,Gv  |  Gb,Eb  |  Gv,Ev  |  Ew,Sw  |  Gv,M   |  Sw,Ew |   Ev   |
+ |  Eb,Ib  |  Ev,Iv  |         |  Ev,Ib  |  Eb,Gb  |  Ev,Gv  |  Eb,Gb |  Ev,Gv |  Eb,Gb  |  Ev,Gv  |  Gb,Eb  |  Gv,Ev  |  Ew,Sw  |  Gv,M   |  Sw,Ew |   Ev   |
  +---------+---------+---------+---------+---------+---------+--------+--------+---------+---------+---------+---------+---------+---------+--------+--------+
  |         |              <A HREF="XCHG.htm">XCHG</A> word or double-word register with eAX           |         |         |  <A HREF="CALL.htm">CALL</A>   |         |  <A HREF="PUSHF.htm">PUSHF</A>  |  <A HREF="POPF.htm">POPF</A>   |        |        |
 9|   <A HREF="NOP.htm">NOP</A>   +---------+---------+---------+---------+---------+--------+--------+   <A HREF="CBW.htm">CBW</A>   |   <A HREF="CWD.htm">CWD</A>   |         |  <A HREF="WAIT.htm">WAIT</A>   |         |         |  <A HREF="https://css.csail.mit.edu/6.858/2014/readings/i386/SAHF">SAHF</A>  |  <A HREF="LAHF.htm">LAHF</A>  |
