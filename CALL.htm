@@ -14,23 +14,7 @@ Chapter 17 -- 80386 Instruction Set</A><BR>
 <H1>CALL -- Call Procedure</H1>
 
 <PRE>
-Opcode    Instruction     Clocks
-  Values of ts are given by the following table:
-
-                             New Task
-              386 TSS         386 TSS         286 TSS
-  Old         VM = 0          VM = 1
-  Task                     Via Task Gate?
-
-              N     Y         N     Y         N     Y
-
-386          300   309       217   226       273   282
-TSS VM=0
-
-286          298   307       217   226       273   282
-
-
-TSS       Description
+Opcode    Instruction     Clocks       Description
 
 E8  cw    CALL rel16       7+m            Call near, displacement relative
                                           to next instruction
