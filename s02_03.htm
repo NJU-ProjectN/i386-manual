@@ -13,7 +13,7 @@ Chapter 2 -- Basic Programming Model</A><BR>
 <P>
 <H1>2.3  Registers</H1>
 The 80386 contains a total of sixteen registers that are of interest to the
-applications programmer. As 
+applications programmer. As
 <A HREF="s02_03.htm#fig2-5">Figure 2-5</A>
   shows, these registers may be
 grouped into these basic categories:
@@ -36,7 +36,7 @@ contain the operands of logical and arithmetic operations. They may also be
 used interchangeably for operands of address computations (except that ESP
 cannot be used as an index operand).
 <P>
-As 
+As
 <A HREF="s02_03.htm#fig2-5">Figure 2-5</A>
   shows, the low-order word of each of these eight registers
 has a separate name and can be treated as a unit. This feature is useful for
@@ -79,7 +79,7 @@ At any given instant, six segments of memory may be immediately accessible
 to an executing 80386 program. The segment registers CS, DS, SS, ES, FS, and
 GS are used to identify these six current segments. Each of these registers
 specifies a particular kind of segment, as characterized by the associated
-mnemonics ("code," "data," or "stack") shown in 
+mnemonics ("code," "data," or "stack") shown in
 <A HREF="s02_03.htm#fig2-6">Figure 2-6</A>
   . Each register
 uniquely determines one particular segment, from among the segments that
@@ -90,8 +90,8 @@ known as the current code segment; it is specified by means of the CS
 register. The 80386 fetches all instructions from this code segment, using
 as an offset the contents of the instruction pointer. CS is changed
 implicitly as the result of intersegment control-transfer instructions (for
-example, <A HREF="CALL.htm">CALL</A> and 
-<A HREF="https://css.csail.mit.edu/6.858/2014/readings/i386/JMP.html">JMP</A>), interrupts, and exceptions.
+example, <A HREF="CALL.htm">CALL</A> and
+<A HREF="https://css.csail.mit.edu/6.858/2014/readings/i386/JMP.htm">JMP</A>), interrupts, and exceptions.
 <P>
 Subroutine calls, parameters, and procedure activation records usually
 require that a region of memory be allocated for a stack. All stack
@@ -216,9 +216,9 @@ as "the" stack. SS is used automatically by the processor for all
 stack operations.
 
 <LI>The stack pointer (ESP) register. ESP points to the top of the
-push-down stack (TOS). It is referenced implicitly by <A HREF="PUSH.htm">PUSH</A> and <A HREF="https://css.csail.mit.edu/6.858/2014/readings/i386/POP.html">POP</A>
+push-down stack (TOS). It is referenced implicitly by <A HREF="PUSH.htm">PUSH</A> and <A HREF="https://css.csail.mit.edu/6.858/2014/readings/i386/POP.htm">POP</A>
 operations, subroutine calls and returns, and interrupt operations.
-When an item is pushed onto the stack (see 
+When an item is pushed onto the stack (see
 <A HREF="s02_03.htm#fig2-7">Figure 2-7</A>
   ), the processor
 decrements ESP, then writes the item at the new TOS. When an item is
@@ -238,7 +238,7 @@ stack segment (i.e., the segment currently selected by SS). Because
 SS does not have to be explicitly specified, instruction encoding in
 such cases is more efficient. EBP can also be used to index into
 segments addressable via other segment registers.
-</OL> 
+</OL>
 <P>
 <A NAME="fig2-7">
 <PRE>Figure 2-7.  80386 Stack</PRE>
@@ -263,7 +263,7 @@ segments addressable via other segment registers.
 </PRE>
 <P>
 <H2>2.3.4  Flags Register</H2>
-The flags register is a 32-bit register named EFLAGS. 
+The flags register is a 32-bit register named EFLAGS.
 <A HREF="s02_03.htm#fig2-8">Figure 2-8</A>
   defines
 the bits within this register. The flags control certain operations and
@@ -337,7 +337,7 @@ instruction to be executed. The instruction pointer is not directly visible
 to the programmer; it is controlled implicitly by control-transfer
 instructions, interrupts, and exceptions.
 <P>
-As 
+As
 <A HREF="s02_03.htm#fig2-9">Figure 2-9</A>
   shows, the low-order 16 bits of EIP is named IP and can be
 used by the processor as a unit. This feature is useful when executing

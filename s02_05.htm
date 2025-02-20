@@ -14,7 +14,7 @@ Chapter 2 -- Basic Programming Model</A><BR>
 <H1>2.5  Operand Selection</H1>
 An instruction can act on zero or more operands, which are the data
 manipulated by the instruction. An example of a zero-operand instruction is
-<A HREF="https://css.csail.mit.edu/6.858/2014/readings/i386/NOP.html">NOP</A> (no operation). An operand can be in any of these locations:
+<A HREF="https://css.csail.mit.edu/6.858/2014/readings/i386/NOP.htm">NOP</A> (no operation). An operand can be in any of these locations:
 <UL>
 <LI> In the instruction itself (an immediate operand)
 <LI> In a register (EAX, EBX, ECX, EDX, ESI, EDI, ESP, or EBP in the case
@@ -137,38 +137,38 @@ most flexible.
 <LI>A few data-manipulation instructions implicitly use specialized
 addressing methods:
 <UL>
-<LI> For a few short forms of 
+<LI> For a few short forms of
 <A HREF="MOV.htm">MOV</A> that implicitly use the EAX register,
 the offset of the operand is coded as a doubleword in the
 instruction. No base register, index register, or scaling factor
 are used.
-<LI> String operations implicitly address memory via DS:ESI, 
+<LI> String operations implicitly address memory via DS:ESI,
 (<A HREF="MOVS.htm">MOVS</A>,
-<A HREF="CMPS.htm">CMPS</A>, 
-<A HREF="OUTS.htm">OUTS</A>, 
-<A HREF="LODS.htm">LODS</A>, 
-<A HREF="SCAS.htm">SCAS</A>) or via ES:EDI 
-(<A HREF="MOVS.htm">MOVS</A>, 
-<A HREF="CMPS.htm">CMPS</A>, 
-<A HREF="INS.htm">INS</A>, 
+<A HREF="CMPS.htm">CMPS</A>,
+<A HREF="OUTS.htm">OUTS</A>,
+<A HREF="LODS.htm">LODS</A>,
+<A HREF="SCAS.htm">SCAS</A>) or via ES:EDI
+(<A HREF="MOVS.htm">MOVS</A>,
+<A HREF="CMPS.htm">CMPS</A>,
+<A HREF="INS.htm">INS</A>,
 <A HREF="STOS.htm">STOS</A>).
 
 <LI> Stack operations implicitly address operands via SS:ESP
-registers; e.g., 
-<A HREF="PUSH.htm">PUSH</A>, 
-<A HREF="POP.htm">POP</A>, 
-<A HREF="PUSHA.htm">PUSHA</A>, 
-<A HREF="PUSHA.htm">PUSHAD</A>, 
-<A HREF="POPA.htm">POPA</A>, 
-<A HREF="POPA.htm">POPAD</A>, 
+registers; e.g.,
+<A HREF="PUSH.htm">PUSH</A>,
+<A HREF="POP.htm">POP</A>,
+<A HREF="PUSHA.htm">PUSHA</A>,
+<A HREF="PUSHA.htm">PUSHAD</A>,
+<A HREF="POPA.htm">POPA</A>,
+<A HREF="POPA.htm">POPAD</A>,
 <A HREF="PUSHF.htm">PUSHF</A>,
-<A HREF="PUSHF.htm">PUSHFD</A>, 
-<A HREF="POPF.htm">POPF</A>, 
-<A HREF="POPF.htm">POPFD</A>, 
-<A HREF="CALL.htm">CALL</A>, 
-<A HREF="RET.htm">RET</A>, 
-<A HREF="IRET.htm">IRET</A>, 
-<A HREF="IRET.htm">IRETD</A>, 
+<A HREF="PUSHF.htm">PUSHFD</A>,
+<A HREF="POPF.htm">POPF</A>,
+<A HREF="POPF.htm">POPFD</A>,
+<A HREF="CALL.htm">CALL</A>,
+<A HREF="RET.htm">RET</A>,
+<A HREF="IRET.htm">IRET</A>,
+<A HREF="IRET.htm">IRETD</A>,
 exceptions, and interrupts.
 </UL>
 </OL>
