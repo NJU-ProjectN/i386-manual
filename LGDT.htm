@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode LGDT</TITLE>
 </HEAD>
@@ -47,12 +47,12 @@ high-order eight bits of the six-byte data operand are not used. If a 32-bit
 operand is used, a 16-bit limit and a 32-bit base is loaded; the high-order
 eight bits of the six-byte operand are used as high-order base address bits.
 <P>
-The 
-<A HREF="SGDT.htm">SGDT</A> and 
+The
+<A HREF="SGDT.htm">SGDT</A> and
 <A HREF="SGDT.htm">SIDT</A> instructions always store into all 48 bits of the
 six-byte data operand. With the 80286, the upper eight bits are undefined
-after 
-<A HREF="SGDT.htm">SGDT</A> or 
+after
+<A HREF="SGDT.htm">SGDT</A> or
 <A HREF="SGDT.htm">SIDT</A> is executed. With the 80386, the upper eight bits
 are written with the high-order eight address bits, for both a 16-bit
 operand and a 32-bit operand. If LGDT or LIDT is used with a 16-bit

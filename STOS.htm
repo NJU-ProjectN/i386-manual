@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode STOS</TITLE>
 </HEAD>
@@ -73,11 +73,11 @@ type. Load the correct index value into the destination register before
 executing STOS.
 <P>
 After the transfer is made, DI is automatically updated. If the direction
-flag is 0 
-(<A HREF="CLD.htm">CLD</A> was executed), DI is incremented; 
+flag is 0
+(<A HREF="CLD.htm">CLD</A> was executed), DI is incremented;
 if the direction flag is
-1 
-(<A HREF="STD.htm">STD</A> was executed), 
+1
+(<A HREF="STD.htm">STD</A> was executed),
 DI is decremented. DI is incremented or decremented by
 1 if a byte is stored, by 2 if a word is stored, or by 4 if a doubleword is
 stored.
@@ -86,9 +86,9 @@ STOSB, STOSW, and STOSD are synonyms for the byte, word, and doubleword STOS
 instructions, that do not require an operand. They are simpler to use, but
 provide no type or segment checking.
 <P>
-STOS can be preceded by the 
+STOS can be preceded by the
 <A HREF="REP.htm">REP</A> prefix for a block fill of CX or ECX bytes,
-words, or doublewords. Refer to the 
+words, or doublewords. Refer to the
 <A HREF="REP.htm">REP</A> instruction for further details.
 
 <H2>Flags Affected</H2>

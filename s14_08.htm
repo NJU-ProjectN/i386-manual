@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 14.8</TITLE>
 </HEAD>
@@ -21,34 +21,34 @@ The 80286 processor implements the bus lock function differently than the
 80386. Programs that use forms of memory locking specific to the 80286 may
 not execute properly if transported to a specific application of the 80386.
 <P>
-The 
-<A HREF="LOCK.htm">LOCK</A> 
+The
+<A HREF="LOCK.htm">LOCK</A>
 prefix and its corresponding output signal should only be used to
-prevent other bus masters from interrupting a data movement operation.  
+prevent other bus masters from interrupting a data movement operation.
 <A HREF="LOCK.htm">LOCK</A>
 may only be used with the following 80386 instructions when they modify
-memory.  An undefined-opcode exception results from using 
+memory.  An undefined-opcode exception results from using
 <A HREF="LOCK.htm">LOCK</A> before any
 other instruction.
 <UL>
-<LI> Bit test and change: 
-<A HREF="BTS.htm">BTS</A>, 
-<A HREF="BTR.htm">BTR</A>, 
+<LI> Bit test and change:
+<A HREF="BTS.htm">BTS</A>,
+<A HREF="BTR.htm">BTR</A>,
 <A HREF="BTC.htm">BTC</A>.
-<LI> Exchange: 
+<LI> Exchange:
 <A HREF="XCHG.htm">XCHG</A>.
-<LI> One-operand arithmetic and logical: 
-<A HREF="INC.htm">INC</A>, 
-<A HREF="DEC.htm">DEC</A>, 
-<A HREF="NOT.htm">NOT</A>, and 
+<LI> One-operand arithmetic and logical:
+<A HREF="INC.htm">INC</A>,
+<A HREF="DEC.htm">DEC</A>,
+<A HREF="NOT.htm">NOT</A>, and
 <A HREF="NEG.htm">NEG</A>.
-<LI> Two-operand arithmetic and logical: 
-<A HREF="ADD.htm">ADD</A>, 
-<A HREF="ADC.htm">ADC</A>, 
-<A HREF="SUB.htm">SUB</A>, 
-<A HREF="SBB.htm">SBB</A>, 
-<A HREF="AND.htm">AND</A>, 
-<A HREF="OR.htm">OR</A>, 
+<LI> Two-operand arithmetic and logical:
+<A HREF="ADD.htm">ADD</A>,
+<A HREF="ADC.htm">ADC</A>,
+<A HREF="SUB.htm">SUB</A>,
+<A HREF="SBB.htm">SBB</A>,
+<A HREF="AND.htm">AND</A>,
+<A HREF="OR.htm">OR</A>,
 <A HREF="XOR.htm">XOR</A>.
 </UL>
 A locked instruction is guaranteed to lock only the area of memory defined
@@ -73,7 +73,7 @@ RESET than on the 80286. This should not cause compatibility problems,
 because the content of 8086 registers after RESET is undefined.  If
 self-test is requested during the reset sequence and errors are detected in
 the 80386 unit, EAX will contain a nonzero value. EDX contains the component
-and revision identifier . Refer to 
+and revision identifier . Refer to
 <A HREF="c10.htm">Chapter 10</A>
    for more information .
 
@@ -89,5 +89,5 @@ the setting of the undefined, high-order bits.
 <B>up:</B> <A HREF="c14.htm">
 Chapter 14 -- 80386 Real-Address Mode</A><BR>
 <B>prev:</B> <A HREF="s14_07.htm">14.7  Differences From 8086</A><BR>
-<B>next:</B> <A HREF="c15.htm">Chapter 15 -- Virtual 8086 Mode</A> 
+<B>next:</B> <A HREF="c15.htm">Chapter 15 -- Virtual 8086 Mode</A>
 </BODY>

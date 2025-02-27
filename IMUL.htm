@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode IMUL</TITLE>
 </HEAD>
@@ -43,7 +43,7 @@ F7  /5      IMUL r/m32             9-38/12-41  EDX:EAX := EAX * r/m dword
 69  /r id   IMUL r32,imm32         9-38/12-41  dword register := r/m32 *
                                                immediate dword
 </PRE>
-  
+
 <EM>
 <H3>Notes</H3>
   The 80386 uses an early-out multiply algorithm. The actual number of
@@ -54,8 +54,8 @@ F7  /5      IMUL r/m32             9-38/12-41  EDX:EAX := EAX * r/m dword
   the following formula:
 
 <PRE>
-  Actual clock = if m <> 0 then max(ceiling(log{2}(m)), 3) + 6 clocks  
-  Actual clock = if m = 0 then 9 clocks   
+  Actual clock = if m <> 0 then max(ceiling(log{2}(m)), 3) + 6 clocks
+  Actual clock = if m = 0 then 9 clocks
   (where m is the multiplier)
 </PRE>
 

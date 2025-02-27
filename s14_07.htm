@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 14.7</TITLE>
 </HEAD>
@@ -27,7 +27,7 @@ The areas most likely to be affected are:
 <LI> Assumed delays with 8086/8088 operating in parallel with an 8087.
 </UL>
 <P>
-<LI> Divide Exceptions Point to the 
+<LI> Divide Exceptions Point to the
 <A HREF="DIV.htm">DIV</A> instruction.
 <P>
 Divide exceptions on the 80386 always leave the saved CS:IP value
@@ -41,10 +41,10 @@ Opcodes that were not defined for the 8086/8088 will cause exception
 6 or will execute one of the new instructions defined for the 80386.
 
 <P>
-<LI> Value written by 
+<LI> Value written by
 <A HREF="PUSH.htm">PUSH</A> SP.
 <P>
-The 80386 pushes a different value on the stack for 
+The 80386 pushes a different value on the stack for
 <A HREF="PUSH.htm">PUSH</A> SP than the
 8086/8088. The 80386 pushes the value of SP before SP is incremented
 as part of the push operation; the 8086/8088 pushes the value of SP
@@ -56,7 +56,7 @@ PUSH  BP
 MOV   BP, SP
 XCHG  BP, [BP]
 </PRE>
-This code functions as the 8086/8088 
+This code functions as the 8086/8088
 <A HREF="PUSH.htm">PUSH</A> SP instruction on the 80386.
 
 <P>
@@ -79,7 +79,7 @@ is violated. The 8086/8088 has no instruction length limit.
 <LI> Operand crossing offset 0 or 65,535.
 <P>
 On the 8086, an attempt to access a memory operand that crosses
-offset 65,535 (e.g., 
+offset 65,535 (e.g.,
 <A HREF="MOV.htm">MOV</A> a word to offset 65,535) or offset 0 (e.g.,
 <A HREF="PUSH.htm">PUSH</A>
 a word when SP = 1) causes the offset to wrap around modulo
@@ -102,27 +102,27 @@ exception 13 in such a case.
 The <A HREF="LOCK.htm">LOCK</A> prefix and its corresponding output signal should only be
 used to prevent other bus masters from interrupting a data movement
 operation. The 80386 always asserts the <A HREF="LOCK.htm">LOCK</A> signal during an XCHG
-instruction with memory (even if the 
-<A HREF="LOCK.htm">LOCK</A> prefix is not used). 
+instruction with memory (even if the
+<A HREF="LOCK.htm">LOCK</A> prefix is not used).
 <A HREF="LOCK.htm">LOCK</A>
 may only be used with the following 80386 instructions when they
-update memory: 
-<A HREF="BTS.htm">BTS</A>, 
-<A HREF="BTR.htm">BTR</A>, 
-<A HREF="BTC.htm">BTC</A>, 
-<A HREF="XCHG.htm">XCHG</A>, 
-<A HREF="ADD.htm">ADD</A>, 
-<A HREF="ADC.htm">ADC</A>, 
-<A HREF="SUB.htm">SUB</A>, 
-<A HREF="SBB.htm">SBB</A>, 
-<A HREF="INC.htm">INC</A>, 
+update memory:
+<A HREF="BTS.htm">BTS</A>,
+<A HREF="BTR.htm">BTR</A>,
+<A HREF="BTC.htm">BTC</A>,
+<A HREF="XCHG.htm">XCHG</A>,
+<A HREF="ADD.htm">ADD</A>,
+<A HREF="ADC.htm">ADC</A>,
+<A HREF="SUB.htm">SUB</A>,
+<A HREF="SBB.htm">SBB</A>,
+<A HREF="INC.htm">INC</A>,
 <A HREF="DEC.htm">DEC</A>,
-<A HREF="AND.htm">AND</A>, 
-<A HREF="OR.htm">OR</A>, 
-<A HREF="XOR.htm">XOR</A>, 
-<A HREF="NOT.htm">NOT</A>, and 
+<A HREF="AND.htm">AND</A>,
+<A HREF="OR.htm">OR</A>,
+<A HREF="XOR.htm">XOR</A>,
+<A HREF="NOT.htm">NOT</A>, and
 <A HREF="NEG.htm">NEG</A>. An undefined-opcode exception
-(interrupt 6) results from using 
+(interrupt 6) results from using
 <A HREF="LOCK.htm">LOCK</A> before any other instruction.
 
 <P>
@@ -133,7 +133,7 @@ of the 8086/8088. The change prevents an external interrupt handler
 from being single-stepped if the interrupt occurs while a program is
 being single-stepped. The 80386 single-step exception has higher
 priority that any external interrupt. The 80386 will still single-step
-through an interrupt handler invoked by the 
+through an interrupt handler invoked by the
 <A HREF="INT.htm">INT</A> instructions or by an
 exception.
 
@@ -141,13 +141,13 @@ exception.
 <LI> <A HREF="IDIV.htm">IDIV</A> exceptions for quotients of 80H or 8000H.
 <P>
 The 80386 can generate the largest negative number as a quotient for
-the <A HREF="IDIV.htm">IDIV</A> instruction. 
+the <A HREF="IDIV.htm">IDIV</A> instruction.
 The 8086/8088 causes exception zero instead.
 
 <P>
 <LI> Flags in stack.
 <P>
-The setting of the flags stored by 
+The setting of the flags stored by
 <A HREF="PUSHF.htm">PUSHF</A>, by interrupts, and by
 exceptions is different from that stored by the 8086 in bit positions
 12 through 15. On the 8086 these bits are stored as ones, but in
@@ -179,7 +179,7 @@ systems, the saved CS:IP points to the ESC instruction.
 <LI> Coprocessor does not use interrupt controller.
 <P>
 The coprocessor error signal to the 80386 does not pass through an
-interrupt controller (an 8087 
+interrupt controller (an 8087
 <A HREF="INT.htm">INT</A> signal does). Some instructions in
 a coprocessor error handler may need to be deleted if they deal with
 the interrupt controller.

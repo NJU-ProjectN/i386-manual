@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 8.3</TITLE>
 </HEAD>
@@ -55,18 +55,18 @@ permitting all procedures of the task to perform I/O. Other tasks typically
 have IOPL set to zero or one, reserving the right to perform I/O
 instructions for the most privileged procedures.
 <P>
-A task can change IOPL only with the 
+A task can change IOPL only with the
 <A HREF="POPF.htm">POPF</A> instruction; however, such
 changes are privileged. No procedure may alter IOPL (the I/O privilege level
 in the flag register) unless the procedure is executing at privilege level
 0. An attempt by a less privileged procedure to alter IOPL does not result
 in an exception; IOPL simply remains unaltered.
 <P>
-The <A HREF="POPF.htm">POPF</A> instruction may be used in addition to 
+The <A HREF="POPF.htm">POPF</A> instruction may be used in addition to
 <A HREF="CLI.htm">CLI</A> and <A HREF="STI.htm">STI</A> to alter the
-interrupt-enable flag (IF); however, changes to IF by 
+interrupt-enable flag (IF); however, changes to IF by
 <A HREF="POPF.htm">POPF</A> are
-IOPL-sensitive. A procedure may alter IF with a 
+IOPL-sensitive. A procedure may alter IF with a
 <A HREF="POPF.htm">POPF</A> instruction only when
 executing at a level that is at least as privileged as IOPL. An attempt by a
 less privileged procedure to alter IF in this manner does not result in an
@@ -74,14 +74,14 @@ exception; IF simply remains unaltered.
 
 <H2>8.3.2  I/O Permission Bit Map</H2>
 The I/O instructions that directly refer to addresses in the processor's
-I/O space are 
-<A HREF="IN.htm">IN</A>, 
-<A HREF="INS.htm">INS</A>, 
-<A HREF="OUT.htm">OUT</A>, 
+I/O space are
+<A HREF="IN.htm">IN</A>,
+<A HREF="INS.htm">INS</A>,
+<A HREF="OUT.htm">OUT</A>,
 <A HREF="OUTS.htm">OUTS</A>. The 80386 has the ability to selectively
 trap references to specific I/O addresses. The structure that enables
 selective trapping is the I/O Permission Bit Map in the TSS segment (see
-<A HREF="s08_03.htm#fig8-2">Figure 8-2</A>). 
+<A HREF="s08_03.htm#fig8-2">Figure 8-2</A>).
 The I/O permission map is a bit vector. The size of the map
 and its location in the TSS segment are variable. The processor locates the
 I/O permission map by means of the I/O map base field in the fixed portion
@@ -89,15 +89,15 @@ of the TSS. The I/O map base field is 16 bits wide and contains the offset
 of the beginning of the I/O permission map. The upper limit of the I/O
 permission map is the same as the limit of the TSS segment.
 <P>
-In protected mode, when it encounters an I/O instruction 
-(<A HREF="IN.htm">IN</A>, 
-<A HREF="INS.htm">INS</A>, 
+In protected mode, when it encounters an I/O instruction
+(<A HREF="IN.htm">IN</A>,
+<A HREF="INS.htm">INS</A>,
 <A HREF="OUT.htm">OUT</A>, or
-<A HREF="OUTS.htm">OUTS</A>), the processor first checks whether CPL <= IOPL. 
+<A HREF="OUTS.htm">OUTS</A>), the processor first checks whether CPL <= IOPL.
 If this condition is
 true, the I/O operation may proceed. If not true, the processor checks the
 I/O permission map. (In virtual 8086 mode, the processor consults the map
-without regard for IOPL . Refer to 
+without regard for IOPL . Refer to
 <A HREF="c15.htm">Chapter 15</A>.)
 <P>
 Each bit in the map corresponds to an I/O port byte address; for example,

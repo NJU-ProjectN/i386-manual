@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode CALL</TITLE>
 </HEAD>
@@ -279,7 +279,7 @@ the CALL instruction.
 <P>
 The action of the different forms of the instruction are described below.
 <P>
-<STRONG>Near calls</STRONG> 
+<STRONG>Near calls</STRONG>
 are those with destinations of type r/m16, r/m32, rel16, rel32;
 changing or saving the segment register value is not necessary. The CALL
 rel16 and CALL rel32 forms add a signed offset to the address of the
@@ -292,11 +292,11 @@ CALL r/m32 specify a register or memory location from which the absolute
 segment offset is fetched. The offset fetched from r/m is 32 bits for an
 operand-size attribute of 32 (r/m32), or 16 bits for an operand-size of 16
 (r/m16). The offset of the instruction following CALL is pushed onto the
-stack. It will be popped by a near 
+stack. It will be popped by a near
 <A HREF="RET.htm">RET</A> instruction within the procedure. The
 CS register is not changed by this form of CALL.
 <P>
-The <STRONG>far calls</STRONG>, 
+The <STRONG>far calls</STRONG>,
 CALL ptr16:16 and CALL ptr16:32, use a four-byte or six-byte
 operand as a long pointer to the procedure called. The CALL m16:16 and
 m16:32 forms fetch the long pointer from the memory location
@@ -325,15 +325,15 @@ task switch does not occur
 
 <H2>Protected Mode Exceptions</H2>
 
-For <STRONG>far calls</STRONG>: 
+For <STRONG>far calls</STRONG>:
 #GP, #NP, #SS, and #TS, as indicated in the list above
 <P>
-For <STRONG>near direct calls</STRONG>: 
+For <STRONG>near direct calls</STRONG>:
 #GP(0) if procedure location is beyond the code
 segment limits; #SS(0) if pushing the return address exceeds the bounds of
 the stack segment; #PF (fault-code) for a page fault
 
-For a <STRONG>near indirect call</STRONG>: 
+For a <STRONG>near indirect call</STRONG>:
 #GP(0) for an illegal memory operand effective
 address in the CS, DS, ES, FS, or GS segments; #SS(0) for an illegal address
 in the SS segment; #GP(0) if the indirect offset obtained is beyond the code

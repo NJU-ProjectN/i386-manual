@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode IRET</TITLE>
 </HEAD>
@@ -263,7 +263,7 @@ the interrupt routine (as indicated by the RPL bits of the CS selector
 popped from the stack). If the destination code is less privileged, IRET
 also pops the stack pointer and SS from the stack.
 <P>
-If NT equals 1, IRET reverses the operation of a 
+If NT equals 1, IRET reverses the operation of a
 <A HREF="CALL.htm">CALL</A> or <A HREF="INT.htm">INT</A> that
 caused a task switch. The updated state of the task executing IRET is
 saved in its task state segment. If the task is reentered later, the code

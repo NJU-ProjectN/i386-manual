@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 3.7</TITLE>
 </HEAD>
@@ -91,25 +91,25 @@ frames of previous iterations.
 <P>
 By copying only the stack frame pointers of procedures at higher lexical
 levels, <A HREF="ENTER.htm">ENTER</A> makes sure that procedures access only those variables of
-higher lexical levels, not those at parallel lexical levels (see 
+higher lexical levels, not those at parallel lexical levels (see
 <A HREF="s03_07.htm#fig3-17">Figure 3-17</A>
   ).
 <A HREF="s03_07.htm#fig3-18">Figures 3-18</A>
   through 3-21 demonstrate the actions of the <A HREF="ENTER.htm">ENTER</A>
-instruction if the modules shown in 
+instruction if the modules shown in
 <A HREF="s03_07.htm#fig3-17">Figure 3-17</A>
   were to call one another in
 alphabetic order.
 <P>
 Block-structured high-level languages can use the lexical levels defined by
 <A HREF="ENTER.htm">ENTER</A> to control access to the variables of previously nested procedures.
-Referring to 
+Referring to
 <A HREF="s03_07.htm#fig3-17">Figure 3-17</A>
   for example, if PROCEDURE A calls PROCEDURE B
 which, in turn, calls PROCEDURE C, then PROCEDURE C will have access to the
 variables of MAIN and PROCEDURE A, but not PROCEDURE B because they operate
 at the same lexical level. Following is the complete definition of access to
-variables for 
+variables for
 <A HREF="s03_07.htm#fig3-17">Figure 3-17</A>
   .
 <OL>
@@ -129,7 +129,7 @@ MAIN. PROCEDURE D cannot access the variables of PROCEDURE B.
 <A HREF="ENTER.htm">ENTER</A> at the beginning of the MAIN PROGRAM creates dynamic storage space
 for MAIN but copies no pointers. The first and only word in the display
 points to itself because there is no previous value for <A HREF="LEAVE.htm">LEAVE</A> to return to
-EBP. See 
+EBP. See
 <A HREF="s03_07.htm#fig3-18">Figure 3-18</A>
   .
 <P>
@@ -148,7 +148,7 @@ PROCEDURE B with the first word pointing to the previous value of EBP, the
 second word pointing to the value of EBP for MAIN, and the third word
 pointing to the value of EBP for A and the last word pointing to the current
 EBP. B can access variables in A and MAIN by fetching from the display the
-base addresses of the respective dynamic storage areas. See 
+base addresses of the respective dynamic storage areas. See
 <A HREF="s03_07.htm#fig3-20">Figure 3-20</A>
   .
 After PROCEDURE B calls PROCEDURE C, <A HREF="ENTER.htm">ENTER</A> creates a new display for
@@ -158,12 +158,12 @@ pointing to the EBP value for A and the third word pointing to the current
 value of EBP. Because PROCEDURE B and PROCEDURE C have the same lexical
 level, PROCEDURE C is not allowed access to variables in B and therefore
 does not receive a pointer to the beginning of PROCEDURE B's stack frame.
-See 
+See
 <A HREF="s03_07.htm#fig3-21">Figure 3-21</A>
   .
 <P>
 <A HREF="LEAVE.htm">LEAVE</A> (Leave Procedure) reverses the action of the previous <A HREF="ENTER.htm">ENTER</A>
-instruction. The <A HREF="LEAVE.htm">LEAVE</A> instruction does not include any operands. 
+instruction. The <A HREF="LEAVE.htm">LEAVE</A> instruction does not include any operands.
 <A HREF="LEAVE.htm">LEAVE</A>
 copies EBP to ESP to release all stack space allocated to the procedure by
 the most recent <A HREF="ENTER.htm">ENTER</A> instruction. Then <A HREF="LEAVE.htm">LEAVE</A> pops the old value of EBP from

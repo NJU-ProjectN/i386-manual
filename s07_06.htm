@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 7.6</TITLE>
 </HEAD>
@@ -13,16 +13,16 @@ Chapter 7 -- Multitasking</A><BR>
 <P>
 <H1>7.6  Task Linking</H1>
 The back-link field of the TSS and the NT (nested task) bit of the flag
-word together allow the 80386 to automatically return to a task that 
+word together allow the 80386 to automatically return to a task that
 <A HREF="CALL.htm">CALL</A>ed
-another task or was interrupted by another task. When a 
+another task or was interrupted by another task. When a
 <A HREF="CALL.htm">CALL</A> instruction, an
 interrupt instruction, an external interrupt, or an exception causes a
 switch to a new task, the 80386 automatically fills the back-link of the new
 TSS with the selector of the outgoing task's TSS and, at the same time,
 sets the NT bit in the new task's flag register. The NT flag indicates
 whether the back-link field is valid. The new task releases control by
-executing an <A HREF="IRET.htm">IRET</A> instruction. When interpreting an 
+executing an <A HREF="IRET.htm">IRET</A> instruction. When interpreting an
 <A HREF="IRET.htm">IRET</A>, the 80386 examines
 the NT flag. If NT is set, the 80386 switches back to the task selected by
 the back-link field. Table 7-2 summarizes the uses of these fields.
@@ -66,10 +66,10 @@ The processor uses the busy bit as follows:
 bit of the new task.
 <LI> When switching from a task, the processor automatically clears the
 busy bit of the old task if that task is not to be placed on the
-back-link chain (i.e., the instruction causing the task switch is 
+back-link chain (i.e., the instruction causing the task switch is
 <A HREF="JMP.htm">JMP</A>
-or 
-<A HREF="IRET.htm">IRET</A>). 
+or
+<A HREF="IRET.htm">IRET</A>).
 If the task is placed on the back-link chain, its busy bit
 remains set.
 <LI> When switching to a task, the processor signals an exception if the
@@ -82,7 +82,7 @@ into a task.
 The busy bit is effective even in multiprocessor configurations, because
 the processor automatically asserts a bus lock when it sets or clears the
 busy bit. This action ensures that two processors do not invoke the same
-task at the same time . (Refer to 
+task at the same time . (Refer to
 <A HREF="c11.htm">Chapter 11</A>
    for more on multiprocessing.)
 

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode STI</TITLE>
 </HEAD>
@@ -32,14 +32,14 @@ IF := 1
 STI sets the interrupt flag to 1. The 80386 then responds to external
 interrupts after executing the next instruction if the next instruction
 allows the interrupt flag to remain enabled. If external interrupts are
-disabled and you code STI, 
+disabled and you code STI,
 <A HREF="RET.htm">RET</A> (such as at the end of a subroutine),
-the 
-<A HREF="RET.htm">RET</A> 
+the
+<A HREF="RET.htm">RET</A>
 is allowed to execute before external interrupts are recognized.
-Also, if external interrupts are disabled and you code STI, 
+Also, if external interrupts are disabled and you code STI,
 <A HREF="CLI.htm">CLI</A>, then
-external interrupts are not recognized because the 
+external interrupts are not recognized because the
 <A HREF="CLI.htm">CLI</A> instruction clears
 the interrupt flag during its execution.
 

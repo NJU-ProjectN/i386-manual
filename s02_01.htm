@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 2.1</TITLE>
 </HEAD>
@@ -42,7 +42,7 @@ In a "flat" model of memory organization, the applications programmer sees
 a single array of up to 2^(32) bytes (4 gigabytes). While the physical
 memory can contain up to 4 gigabytes, it is usually much smaller; the
 processor maps the 4 gigabyte flat space onto the physical address space by
-the address translation mechanisms described in 
+the address translation mechanisms described in
 <A HREF="c05.htm">Chapter 5</A>
    . Applications
 programmers do not need to know the details of the mapping.
@@ -57,7 +57,7 @@ In a segmented model of memory organization, the address space as viewed by
 an applications program (called the logical address space) is a much larger
 space of up to 2^(46) bytes (64 terabytes). The processor maps the 64
 terabyte logical address space onto the physical address space (up to 4
-gigabytes ) by the address translation mechanisms described in 
+gigabytes ) by the address translation mechanisms described in
 <A HREF="c05.htm">Chapter 5</A>
    .
 Applications programmers do not need to know the details of this mapping.
@@ -68,10 +68,10 @@ length. Each of these linear subspaces is called a segment. A segment is a
 unit of contiguous address space. Segment sizes may range from one byte up
 to a maximum of 2^(32) bytes (4 gigabytes).
 <P>
-A complete pointer in this address space consists of two parts (see 
+A complete pointer in this address space consists of two parts (see
 <A HREF="s02_02.htm#fig2-1">Figure 2-1</A>
   ):
-<OL> 
+<OL>
 <LI>A segment selector, which is a 16-bit field that identifies a
 segment.
 <LI>An offset, which is a 32-bit ordinal that addresses to the byte level

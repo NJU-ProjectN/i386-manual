@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode REP</TITLE>
 </HEAD>
@@ -128,7 +128,7 @@ Synonymous forms of REPE and REPNE are REPZ and REPNZ,
 respectively.
 <P>
 The REP prefixes apply only to one string instruction at a time. To repeat
-a block of instructions, use the 
+a block of instructions, use the
 <A HREF="LOOP.htm">LOOP</A> instruction or another looping
 construct.
 <P>
@@ -148,7 +148,7 @@ The precise action for each iteration is as follows:
 
  <LI> Decrement CX or ECX by one; no flags are modified.
 
- <LI> Check the zero flag if the string operation is 
+ <LI> Check the zero flag if the string operation is
 <A HREF="SCAS.htm">SCAS</A> or <A HREF="CMPS.htm">CMPS</A>. If
       the repeat condition does not hold, exit the iteration and move to
       the next instruction. Exit the iteration if the prefix is REPE and ZF
@@ -158,19 +158,19 @@ The precise action for each iteration is as follows:
  <LI> Return to step 1 for the next iteration.
 </OL>
 
-Repeated 
-<A HREF="CMPS.htm">CMPS</A> and <A HREF="SCAS.htm">SCAS</A> 
+Repeated
+<A HREF="CMPS.htm">CMPS</A> and <A HREF="SCAS.htm">SCAS</A>
 instructions can be exited if the count is
 exhausted or if the zero flag fails the repeat condition. These two cases
-can be distinguished by using either the 
+can be distinguished by using either the
 <A HREF="Jcc.htm">JCXZ</A> instruction, or by using
-the conditional jumps that test the zero flag (<A HREF="Jcc.htm">JZ</A>, 
-<A HREF="Jcc.htm">JNZ</A>, and 
+the conditional jumps that test the zero flag (<A HREF="Jcc.htm">JZ</A>,
+<A HREF="Jcc.htm">JNZ</A>, and
 <A HREF="Jcc.htm">JNE</A>).
 
 <H2>Flags Affected</H2>
 
-ZF by REP <A HREF="CMPS.htm">CMPS</A> and REP 
+ZF by REP <A HREF="CMPS.htm">CMPS</A> and REP
 <A HREF="SCAS.htm">SCAS</A> as described above
 
 <H2>Protected Mode Exceptions</H2>
@@ -194,7 +194,7 @@ executed; refer to the descriptions of the string instructions themselves
 
 <H2>Notes</H2>
 
-Not all input/output ports can handle the rate at which the REP 
+Not all input/output ports can handle the rate at which the REP
 <A HREF="INS.htm">INS</A>
 and REP <A HREF="OUTS.htm">OUTS</A> instructions execute.
 <P>

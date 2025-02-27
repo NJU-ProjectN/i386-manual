@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 8.1</TITLE>
 </HEAD>
@@ -49,9 +49,9 @@ a single bus access. Like words in memory, 16-bit ports should be aligned at
 even-numbered addresses so that the 16 bits can be transferred in a single
 bus access. An 8-bit port may be located at either an even or odd address.
 <P>
-The instructions <A HREF="IN.htm">IN</A> and 
+The instructions <A HREF="IN.htm">IN</A> and
 <A HREF="OUT.htm">OUT</A> move data between a register and a port in the
-I/O address space. The instructions <A HREF="INS.htm">INS</A> and 
+I/O address space. The instructions <A HREF="INS.htm">INS</A> and
 <A HREF="OUTS.htm">OUTS</A> move strings of data
 between the memory address space and ports in the I/O address space.
 
@@ -64,7 +64,7 @@ Memory-mapped I/O provides additional programming flexibility. Any
 instruction that references memory may be used to access an I/O port located
 in the memory space. For example, the <A HREF="MOV.htm">MOV</A> instruction can transfer data
 between any register and a port; and the <A HREF="AND.htm">AND</A>, <A HREF="OR.htm">OR</A>, and <A HREF="TEST.htm">TEST</A> instructions may
-be used to manipulate bits in the internal registers of a device (see 
+be used to manipulate bits in the internal registers of a device (see
 <A HREF="s08_02.htm#fig8-1">Figure 8-1</A>
   ). Memory-mapped I/O performed via the full instruction set maintains
 the full complement of addressing modes for selecting the desired I/O
@@ -72,9 +72,9 @@ device (e.g., direct address, indirect address, base register, index
 register, scaling).
 <P>
 Memory-mapped I/O, like any other memory reference, is subject to access
-protection and control when executing in protected mode. Refer to 
+protection and control when executing in protected mode. Refer to
 <A HREF="c06.htm">Chapter 6</A>
-  
+
 for a discussion of memory protection.
 <P>
 <HR>

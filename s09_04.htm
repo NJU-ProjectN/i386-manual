@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 9.4</TITLE>
 </HEAD>
@@ -22,26 +22,26 @@ identifiers, the IDT need not contain more than 256 descriptors. It can
 contain fewer than 256 entries; entries are required only for interrupt
 identifiers that are actually used.
 <P>
-The IDT may reside anywhere in physical memory. As 
+The IDT may reside anywhere in physical memory. As
 <A HREF="s09_04.htm#fig9-1">Figure 9-1</A>
   shows, the
 processor locates the IDT by means of the IDT register (IDTR). The
-instructions 
-<A HREF="LGDT.htm">LIDT</A> and 
+instructions
+<A HREF="LGDT.htm">LIDT</A> and
 <A HREF="SGDT.htm">SIDT</A> operate on the IDTR. Both instructions have one
-explicit operand: the address in memory of a 6-byte area. 
+explicit operand: the address in memory of a 6-byte area.
 <A HREF="s09_04.htm#fig9-2">Figure 9-2</A>
   shows
 the format of this area.
 <P>
-<A HREF="LGDT.htm">LIDT</A> (Load IDT register) 
+<A HREF="LGDT.htm">LIDT</A> (Load IDT register)
 loads the IDT register with the linear base
 address and limit values contained in the memory operand.  This instruction
 can be executed only when the CPL is zero. It is normally used by the
 initialization logic of an operating system when creating an IDT.  An
 operating system may also use it to change from one IDT to another.
 <P>
-<A HREF="SGDT.htm">SIDT</A> (Store IDT register) 
+<A HREF="SGDT.htm">SIDT</A> (Store IDT register)
 copies the base and limit value stored in IDTR
 to a memory location. This instruction can be executed at any privilege
 level.

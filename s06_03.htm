@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 6.3</TITLE>
 </HEAD>
@@ -109,7 +109,7 @@ segments; gate descriptors have a different purpose that is discussed later
 in this chapter.
 <P>
 The type fields of data and executable segment descriptors include bits
-which further define the purpose of the segment (refer to 
+which further define the purpose of the segment (refer to
 <A HREF="s06_03.htm#fig6-1">Figure 6-1</A>
   ):
 <UL>
@@ -234,7 +234,7 @@ B-bit                    X            X            0            1
 
 Lower bound is:          0            0         LIMIT+1  shl(LIMIT,12,1)+1
 
-Upper bound is:        LIMIT  shl(LIMIT,12,1)    64K-1         4G-1 
+Upper bound is:        LIMIT  shl(LIMIT,12,1)    64K-1         4G-1
 
 Max seg size is:        64K           4G         64K-1        4G-4K
                       0-FFFF      0-FFFFFFFF     !(0-0)      !(0-FFF)
@@ -317,7 +317,7 @@ data segment into a data-segment register (DS, ES, FS, GS, SS). The
 processor automatically evaluates access to a data segment by comparing
 privilege levels. The evaluation is performed at the time a selector for the
 descriptor of the target segment is loaded into the data-segment register.
-As 
+As
 <A HREF="s06_03.htm#fig6-3">Figure 6-3</A>
   shows, three different privilege levels enter into this type
 of privilege check:
@@ -395,39 +395,39 @@ valid because the DPL of the code segment in CS is, by definition, equal to
 CPL.
 
 <H2>6.3.3  Restricting Control Transfers</H2>
-With the 80386, control transfers are accomplished by the instructions 
+With the 80386, control transfers are accomplished by the instructions
 <A HREF="JMP.htm">JMP</A>,
-<A HREF="CALL.htm">CALL</A>, 
-<A HREF="RET.htm">RET</A>, 
-<A HREF="INT.htm">INT</A>, and <A HREF="IRET.htm">IRET</A>, 
+<A HREF="CALL.htm">CALL</A>,
+<A HREF="RET.htm">RET</A>,
+<A HREF="INT.htm">INT</A>, and <A HREF="IRET.htm">IRET</A>,
 as well as by the exception and interrupt
-mechanisms . Exceptions and interrupts are special cases that 
+mechanisms . Exceptions and interrupts are special cases that
 <A HREF="c09.htm">Chapter 9</A>
-covers. This chapter discusses only <A HREF="JMP.htm">JMP</A>, 
+covers. This chapter discusses only <A HREF="JMP.htm">JMP</A>,
 <A HREF="CALL.htm">CALL</A>, and <A HREF="RET.htm">RET</A> instructions.
 <P>
-The "near" forms of <A HREF="JMP.htm">JMP</A>, <A HREF="CALL.htm">CALL</A>, and 
+The "near" forms of <A HREF="JMP.htm">JMP</A>, <A HREF="CALL.htm">CALL</A>, and
 <A HREF="RET.htm">RET</A> transfer within the current code
 segment, and therefore are subject only to limit checking. The processor
-ensures that the destination of the <A HREF="JMP.htm">JMP</A>, 
-<A HREF="CALL.htm">CALL</A>, or 
+ensures that the destination of the <A HREF="JMP.htm">JMP</A>,
+<A HREF="CALL.htm">CALL</A>, or
 <A HREF="RET.htm">RET</A> instruction does not
 exceed the limit of the current executable segment. This limit is cached in
 the CS register; therefore, protection checks for near transfers require no
 extra clock cycles.
 <P>
-The operands of the "far" forms of 
-<A HREF="JMP.htm">JMP</A> and 
+The operands of the "far" forms of
+<A HREF="JMP.htm">JMP</A> and
 <A HREF="CALL.htm">CALL</A> refer to other segments;
 therefore, the processor performs privilege checking. There are two ways a
-<A HREF="JMP.htm">JMP</A> or 
+<A HREF="JMP.htm">JMP</A> or
 <A HREF="CALL.htm">CALL</A> can refer to another segment:
 <OL>
 <LI> The operand selects the descriptor of another executable segment.
 <LI> The operand selects a call gate descriptor. This gated form of
 transfer is discussed in a later section on call gates.
 </OL>
-As 
+As
 <A HREF="s06_03.htm#fig6-4">Figure 6-4</A>
   shows, two different privilege levels enter into a privilege
 check for a control transfer that does not use a call gate:
@@ -442,8 +442,8 @@ bit is set in the descriptor of the current executable segment. The
 processor keeps a record of the CPL cached in the CS register; this value
 can be different from the DPL in the descriptor of the code segment.
 <P>
-The processor permits a 
-<A HREF="JMP.htm">JMP</A> or 
+The processor permits a
+<A HREF="JMP.htm">JMP</A> or
 <A HREF="CALL.htm">CALL</A> directly to another segment only if one
 of the following privilege rules is satisfied:
 <UL>
@@ -464,9 +464,9 @@ Most code segments are not conforming. The basic rules of privilege above
 mean that, for nonconforming segments, control can be transferred without a
 gate only to executable segments at the same level of privilege. There is a
 need, however, to transfer control to (numerically) smaller privilege
-levels; this need is met by the 
+levels; this need is met by the
 <A HREF="CALL.htm">CALL</A> instruction when used with call-gate
-descriptors, which are explained in the next section. The 
+descriptors, which are explained in the next section. The
 <A HREF="JMP.htm">JMP</A> instruction
 may never transfer control to a nonconforming segment whose DPL does not
 equal CPL.
@@ -514,11 +514,11 @@ four kinds of gate descriptors:
 <LI> Task gates
 </UL>
 This chapter is concerned only with call gates. Task gates are used for
-task switching , and therefore are discussed in 
-<A HREF="c07.htm">Chapter 7</A>. 
+task switching , and therefore are discussed in
+<A HREF="c07.htm">Chapter 7</A>.
 <A HREF="c09.htm">Chapter 9</A>
 explains how trap gates and interrupt gates are used by exceptions and
-interrupts. 
+interrupts.
 <A HREF="s06_03.htm#fig6-5">Figure 6-5</A>
   illustrates the format of a call gate. A call gate
 descriptor may reside in the GDT or in an LDT, but not in the IDT.
@@ -538,12 +538,12 @@ segment go to a valid entry point, rather than possibly into the middle of a
 procedure (or worse, into the middle of an instruction). The far pointer
 operand of the control transfer instruction does not point to the segment
 and offset of the target instruction; rather, the selector part of the
-pointer selects a gate, and the offset is not used. 
+pointer selects a gate, and the offset is not used.
 <A HREF="s06_03.htm#fig6-6">Figure 6-6</A>
   illustrates
 this style of addressing.
 <P>
-As 
+As
 <A HREF="s06_03.htm#fig6-7">Figure 6-7</A>
   shows, four different privilege levels are used to check the
 validity of a control transfer via a call gate:
@@ -562,15 +562,15 @@ others may be intended only for use by other systems software.
 <P>
 Gates can be used for control transfers to numerically smaller privilege
 levels or to the same privilege level (though they are not necessary for
-transfers to the same level). Only 
+transfers to the same level). Only
 <A HREF="CALL.htm">CALL</A> instructions can use gates to
-transfer to smaller privilege levels. A gate may be used by a 
+transfer to smaller privilege levels. A gate may be used by a
 <A HREF="JMP.htm">JMP</A>
 instruction only to transfer to an executable segment with the same
 privilege level or to a conforming segment.
 <P>
-For a 
-<A HREF="JMP.htm">JMP</A> instruction to a nonconforming segment, 
+For a
+<A HREF="JMP.htm">JMP</A> instruction to a nonconforming segment,
 both of the following
 privilege rules must be satisfied; otherwise, a general protection exception
 results.
@@ -578,7 +578,7 @@ results.
 MAX (CPL,RPL) <= gate DPL
 target segment DPL = CPL
 </PRE>
-For a <A HREF="CALL.htm">CALL</A> instruction (or for a 
+For a <A HREF="CALL.htm">CALL</A> instruction (or for a
 <A HREF="JMP.htm">JMP</A> instruction to a conforming segment),
 both of the following privilege rules must be satisfied; otherwise, a
 general protection exception results.
@@ -698,8 +698,8 @@ privileged levels. Without them, a trusted procedure would not work
 correctly if the calling procedure did not provide sufficient space on the
 caller's stack.
 <P>
-The processor locates these stacks via the task state segment (see 
-<A HREF="s06_03.htm#fig6-8">Figure 6-8</A>). 
+The processor locates these stacks via the task state segment (see
+<A HREF="s06_03.htm#fig6-8">Figure 6-8</A>).
 Each task has a separate TSS, thereby permitting tasks to have
 separate stacks. Systems software is responsible for creating TSSs and
 placing correct stack pointers in them. The initial stack pointers in the
@@ -734,7 +734,7 @@ an error code of 0.
 <LI> The old value of the stack registers SS:ESP is pushed onto the new
 stack as two doublewords.
 <LI> The parameters are copied.
-<LI> A pointer to the instruction after the 
+<LI> A pointer to the instruction after the
 <A HREF="CALL.htm">CALL</A> instruction (the former
 value of CS:EIP) is pushed onto the new stack. The final value of
 SS:ESP points to this return pointer on the new stack.
@@ -754,10 +754,10 @@ to access all parameters beyond the last doubleword copied.
 <P>
 A call via a call gate does not check the values of the words copied onto
 the new stack. The called procedure should check each parameter for
-validity. A later section discusses how the <A HREF="ARPL.htm">ARPL</A>, 
-<A HREF="VERR.htm">VERR</A>, 
-<A HREF="VERR.htm">VERW</A>, 
-<A HREF="LSL.htm">LSL</A>, and 
+validity. A later section discusses how the <A HREF="ARPL.htm">ARPL</A>,
+<A HREF="VERR.htm">VERR</A>,
+<A HREF="VERR.htm">VERW</A>,
+<A HREF="LSL.htm">LSL</A>, and
 <A HREF="LAR.htm">LAR</A>
 instructions can be used to check pointer values.
 <P>
@@ -823,21 +823,21 @@ instructions can be used to check pointer values.
 </PRE>
 <P>
 <H3>6.3.4.2  Returning from a Procedure</H3>
-The "near" forms of the 
+The "near" forms of the
 <A HREF="RET.htm">RET</A> instruction transfer control within the current
 code segment and therefore are subject only to limit checking. The offset of
-the instruction following the corresponding 
+the instruction following the corresponding
 <A HREF="CALL.htm">CALL</A>, is popped from the stack.
 The processor ensures that this offset does not exceed the limit of the
 current executable segment.
 <P>
-The "far" form of the 
+The "far" form of the
 <A HREF="RET.htm">RET</A> instruction pops the return pointer that was
-pushed onto the stack by a prior far 
+pushed onto the stack by a prior far
 <A HREF="CALL.htm">CALL</A> instruction. Under normal
 conditions, the return pointer is valid, because of its relation to the
-prior <A HREF="CALL.htm">CALL</A> or 
-<A HREF="INT.htm">INT</A>. 
+prior <A HREF="CALL.htm">CALL</A> or
+<A HREF="INT.htm">INT</A>.
 Nevertheless, the processor performs privilege checking
 because of the possibility that the current procedure altered the pointer or
 failed to properly maintain the stack. The RPL of the CS selector popped
@@ -845,7 +845,7 @@ off the stack by the return instruction identifies the privilege level of
 the calling procedure.
 <P>
 An intersegment return instruction can change privilege levels, but only
-toward procedures of lesser privilege. When the 
+toward procedures of lesser privilege. When the
 <A HREF="RET.htm">RET</A> instruction encounters a
 saved CS value whose RPL is numerically greater than the CPL, an interlevel
 return occurs. Such a return follows these steps:
@@ -853,7 +853,7 @@ return occurs. Such a return follows these steps:
 <LI> The checks shown in Table 6-3 are made, and CS:EIP and SS:ESP are
 loaded with their former values that were saved on the stack.
 <LI> The old SS:ESP (from the top of the current stack) value is adjusted
-by the number of bytes indicated in the 
+by the number of bytes indicated in the
 <A HREF="RET.htm">RET</A> instruction. The resulting
 ESP value is not compared to the limit of the stack segment. If ESP is
 beyond the limit, that fact is not recognized until the next stack
@@ -863,7 +863,7 @@ TSS.)
 <LI> The contents of the DS, ES, FS, and GS segment registers are checked.
 If any of these registers refer to segments whose DPL is greater than
 the new CPL (excluding conforming code segments), the segment register
-is loaded with the null selector (INDEX = 0, TI = 0). The 
+is loaded with the null selector (INDEX = 0, TI = 0). The
 <A HREF="RET.htm">RET</A>
 instruction itself does not signal exceptions in these cases;
 however, any subsequent memory reference that attempts to use a
@@ -953,37 +953,37 @@ segment.
 </OL>
 Although the 80386 processor automatically performs checks 2 and 3 during
 instruction execution, software must assist in performing the first check.
-The unprivileged instruction 
+The unprivileged instruction
 <A HREF="ARPL.htm">ARPL</A> is provided for this purpose. Software can
 also explicitly perform steps 2 and 3 to check for potential violations
-(rather than waiting for an exception). The unprivileged instructions 
+(rather than waiting for an exception). The unprivileged instructions
 <A HREF="LAR.htm">LAR</A>,
-<A HREF="LSL.htm">LSL</A>, 
-<A HREF="VERR.htm">VERR</A>, and 
+<A HREF="LSL.htm">LSL</A>,
+<A HREF="VERR.htm">VERR</A>, and
 <A HREF="VERR.htm">VERW</A> are provided for this purpose.
 <P>
 <A HREF="LAR.htm">LAR</A> (Load Access Rights) is used to verify that a pointer refers to a
-segment of the proper privilege level and type. 
+segment of the proper privilege level and type.
 <A HREF="LAR.htm">LAR</A> has one operand
 selector for a descriptor whose access rights are to be examined. The
 descriptor must be visible at the privilege level which is the maximum of
-the CPL and the selector's RPL. If the descriptor is visible, 
+the CPL and the selector's RPL. If the descriptor is visible,
 <A HREF="LAR.htm">LAR</A> obtains a
 masked form of the second doubleword of the descriptor, masks this value
 with 00FxFF00H, stores the result into the specified 32-bit destination
 register, and sets the zero flag. (The x indicates that the corresponding
 four bits of the stored value are undefined.) Once loaded, the access-rights
-bits can be tested. All valid descriptor types can be tested by the 
+bits can be tested. All valid descriptor types can be tested by the
 <A HREF="LAR.htm">LAR</A>
 instruction. If the RPL or CPL is greater than DPL, or if the selector is
 outside the table limit, no access-rights value is returned, and the zero
 flag is cleared. Conforming code segments may be accessed from any privilege
 level.
 <P>
-<A HREF="LSL.htm">LSL</A> 
+<A HREF="LSL.htm">LSL</A>
 (Load Segment Limit) allows software to test the limit of a descriptor.
 If the descriptor denoted by the given selector (in memory or a register) is
-visible at the CPL, 
+visible at the CPL,
 <A HREF="LSL.htm">LSL</A> loads the specified 32-bit register with a 32-bit,
 byte granular, unscrambled limit that is calculated from fragmented limit
 fields and the G-bit of that descriptor. This can only be done for segments
@@ -991,8 +991,8 @@ fields and the G-bit of that descriptor. This can only be done for segments
 inaccessible. (Table 6-4 lists in detail which types are valid and which
 are not.) Interpreting the limit is a function of the segment type. For
 example, downward expandable data segments treat the limit differently than
-code segments do. For both 
-<A HREF="LAR.htm">LAR</A> and 
+code segments do. For both
+<A HREF="LAR.htm">LAR</A> and
 <A HREF="LSL.htm">LSL</A>, the zero flag (ZF) is set if the
 loading was performed; otherwise, the ZF is cleared.
 <PRE>
@@ -1020,16 +1020,16 @@ F      386 Interrupt Gate          NO
 
 </PRE>
 <H3>6.3.6.1  Descriptor Validation</H3>
-The 80386 has two instructions, 
-<A HREF="VERR.htm">VERR</A> and 
+The 80386 has two instructions,
+<A HREF="VERR.htm">VERR</A> and
 <A HREF="VERR.htm">VERW</A>, which determine whether a
 selector points to a segment that can be read or written at the current
 privilege level. Neither instruction causes a protection fault if the result
 is negative.
 <P>
-<A HREF="VERR.htm">VERR</A> (Verify for Reading) 
+<A HREF="VERR.htm">VERR</A> (Verify for Reading)
 verifies a segment for reading and loads ZF with
-1 if that segment is readable from the current privilege level. 
+1 if that segment is readable from the current privilege level.
 <A HREF="VERR.htm">VERR</A> checks
 that:
 <UL>
@@ -1042,10 +1042,10 @@ The privilege check for data segments and nonconforming code segments is
 that the DPL must be numerically greater than or equal to both the CPL and
 the selector's RPL. Conforming segments are not checked for privilege level.
 <P>
-<A HREF="VERR.htm">VERW</A> (Verify for Writing) 
+<A HREF="VERR.htm">VERW</A> (Verify for Writing)
 provides the same capability as <A HREF="VERR.htm">VERR</A> for
-verifying writability. Like the 
-<A HREF="VERR.htm">VERR</A> instruction, 
+verifying writability. Like the
+<A HREF="VERR.htm">VERR</A> instruction,
 <A HREF="VERR.htm">VERW</A> loads ZF if the
 result of the writability check is positive. The instruction checks that the
 descriptor is within bounds, is a segment descriptor, is writable, and that
@@ -1083,7 +1083,7 @@ directly, i.e., the RPL is numerically greater than the DPL, then a
 protection fault will result when that selector is loaded into a segment
 register.
 <P>
-<A HREF="ARPL.htm">ARPL</A> 
+<A HREF="ARPL.htm">ARPL</A>
 (Adjust Requestor's Privilege Level) adjusts the RPL field of a
 selector to become the larger of its original value and the value of the RPL
 field in a specified register. The latter is normally loaded from the image
