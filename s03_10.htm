@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 3.10</TITLE>
 </HEAD>
@@ -54,15 +54,15 @@ segmentation is not apparent to the applications programmer.
 </UL>
 
 <H2>3.10.1  Segment-Register Transfer Instructions</H2>
-The 
-<A HREF="MOV.htm">MOV</A>, 
-<A HREF="POP.htm">POP</A>, and 
+The
+<A HREF="MOV.htm">MOV</A>,
+<A HREF="POP.htm">POP</A>, and
 <A HREF="PUSH.htm">PUSH</A> instructions also serve to load and store segment
 registers. These variants operate similarly to their general-register
-counterparts except that one operand can be a segment register. 
+counterparts except that one operand can be a segment register.
 <A HREF="MOV.htm">MOV</A> cannot
-move segment register to a segment register. Neither 
-<A HREF="POP.htm">POP</A> nor 
+move segment register to a segment register. Neither
+<A HREF="POP.htm">POP</A> nor
 <A HREF="MOV.htm">MOV</A> can place a
 value in the code-segment register CS; only the far control-transfer
 instructions can change CS.
@@ -71,31 +71,31 @@ instructions can change CS.
 The far control-transfer instructions transfer control to a location in
 another segment by changing the content of the CS register.
 <P>
-Direct far <A HREF="JMP.htm">JMP</A>. Direct 
+Direct far <A HREF="JMP.htm">JMP</A>. Direct
 <A HREF="JMP.htm">JMP</A> instructions that specify a target location
 outside the current code segment contain a far pointer. This pointer
 consists of a selector for the new code segment and an offset within the new
 segment.
 <P>
-Indirect far <A HREF="JMP.htm">JMP</A>. Indirect 
+Indirect far <A HREF="JMP.htm">JMP</A>. Indirect
 <A HREF="JMP.htm">JMP</A> instructions that specify a target location
 outside the current code segment use a 48-bit variable to specify the far
 pointer.
 <P>
-Far <A HREF="CALL.htm">CALL</A>. An intersegment 
+Far <A HREF="CALL.htm">CALL</A>. An intersegment
 <A HREF="CALL.htm">CALL</A> places both the value of EIP and CS on the
 stack.
 <P>
-Far <A HREF="RET.htm">RET</A>. An intersegment 
+Far <A HREF="RET.htm">RET</A>. An intersegment
 <A HREF="RET.htm">RET</A> restores the values of both CS and EIP which
-were saved on the stack by the previous intersegment 
+were saved on the stack by the previous intersegment
 <A HREF="CALL.htm">CALL</A> instruction.
 
 <H2>3.10.3  Data Pointer Instructions</H2>
 The data pointer instructions load a pointer (consisting of a segment
 selector and an offset) to a segment register and a general register.
 <P>
-<A HREF="LGS.htm">LDS</A> (Load Pointer Using DS) 
+<A HREF="LGS.htm">LDS</A> (Load Pointer Using DS)
 transfers a pointer variable from the source
 operand to DS and the destination register. The source operand must be a
 memory operand, and the destination operand must be a general register. DS
@@ -111,7 +111,7 @@ STRING_X, and loads the offset of STRING_X into ESI.  Specifying ESI as the
 destination operand is a convenient way to prepare for a string operation on
 a source string that is not in the current data segment.
 <P>
-<A HREF="LGS.htm">LES</A> (Load Pointer Using ES) 
+<A HREF="LGS.htm">LES</A> (Load Pointer Using ES)
 operates identically to <A HREF="LGS.htm">LDS</A> except that ES
 receives the segment selector rather than DS.
 Example:
@@ -123,25 +123,25 @@ DESTINATION_X, and loads the offset of DESTINATION_X into EDI. This
 instruction provides a convenient way to select a destination for a string
 operation if the desired location is not in the current extra segment.
 <P>
-<A HREF="LGS.htm">LFS</A> (Load Pointer Using FS) operates identically to 
+<A HREF="LGS.htm">LFS</A> (Load Pointer Using FS) operates identically to
 <A HREF="LGS.htm">LDS</A> except that FS
 receives the segment selector rather than DS.
 <P>
-<A HREF="LGS.htm">LGS</A> (Load Pointer Using GS) operates identically to 
+<A HREF="LGS.htm">LGS</A> (Load Pointer Using GS) operates identically to
 <A HREF="LGS.htm">LDS</A> except that GS
 receives the segment selector rather than DS.
 <P>
-<A HREF="LGS.htm">LSS</A> (Load Pointer Using SS) operates identically to 
+<A HREF="LGS.htm">LSS</A> (Load Pointer Using SS) operates identically to
 <A HREF="LGS.htm">LDS</A> except that SS
 receives the segment selector rather than DS.  This instruction is
 especially important, because it allows the two registers that identify the
 stack (SS:ESP) to be changed in one uninterruptible operation.  Unlike the
 other instructions which load SS, interrupts are not inhibited at the end
-of the 
-<A HREF="LGS.htm">LSS</A> instruction.  The other instructions (e.g., 
+of the
+<A HREF="LGS.htm">LSS</A> instruction.  The other instructions (e.g.,
 <A HREF="POP.htm">POP</A> SS) inhibit
 interrupts to permit the following instruction to load ESP, thereby forming
-an indivisible load of SS:ESP.  Since both SS and ESP can be loaded by 
+an indivisible load of SS:ESP.  Since both SS and ESP can be loaded by
 <A HREF="LGS.htm">LSS</A>,
 there is no need to inhibit interrupts.
 <P>

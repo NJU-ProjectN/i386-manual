@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode CMPS</TITLE>
 </HEAD>
@@ -18,13 +18,13 @@ Chapter 17 -- 80386 Instruction Set</A><BR>
 Opcode    Instruction        Clocks   Description
 
 A6        CMPS m8,m8         10       Compare bytes ES:[(E)DI] (second
-                                      operand) with   [(E)SI] (first 
+                                      operand) with   [(E)SI] (first
                                       operand)
 A7        CMPS m16,m16       10       Compare words ES:[(E)DI] (second
-                                      operand) with   [(E)SI] (first 
+                                      operand) with   [(E)SI] (first
                                       operand)
 A7        CMPS m32,m32       10       Compare dwords ES:[(E)DI]
-                                      (second operand) with [(E)SI] 
+                                      (second operand) with [(E)SI]
                                       (first operand)
 A6        CMPSB              10       Compare bytes ES:[(E)DI] with
                                       DS:[SI]
@@ -97,7 +97,7 @@ possible.
 After the comparison is made, both the source-index register and
 destination-index register are automatically advanced. If the direction flag
 is 0 (<A HREF="CLD.htm">CLD</A> was executed), the registers increment; if the direction flag is 1
-(<A HREF="STD.htm">STD</A> was executed), 
+(<A HREF="STD.htm">STD</A> was executed),
 the registers decrement. The registers increment or
 decrement by 1 if a byte is compared, by 2 if a word is compared, or by 4 if
 a doubleword is compared.
@@ -105,10 +105,10 @@ a doubleword is compared.
 CMPSB, CMPSW and CMPSD are synonyms for the byte, word, and
 doubleword CMPS instructions, respectively.
 <P>
-CMPS can be preceded by the 
-<A HREF="REP.htm">REPE</A> or <A HREF="REP.htm">REPNE</A> 
+CMPS can be preceded by the
+<A HREF="REP.htm">REPE</A> or <A HREF="REP.htm">REPNE</A>
 prefix for block comparison of CX
-or ECX bytes, words, or doublewords. Refer to the description of the 
+or ECX bytes, words, or doublewords. Refer to the description of the
 <A HREF="REP.htm">REP</A>
 instruction for more information on this operation.
 

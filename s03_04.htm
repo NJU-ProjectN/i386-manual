@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 3.4</TITLE>
 </HEAD>
@@ -21,22 +21,22 @@ The group of logical instructions includes:
 <LI> Byte set on condition
 </UL>
 <H2>3.4.1  Boolean Operation Instructions</H2>
-The logical operations are <A HREF="AND.htm">AND</A>, 
-<A HREF="OR.htm">OR</A>, 
-<A HREF="XOR.htm">XOR</A>, and 
+The logical operations are <A HREF="AND.htm">AND</A>,
+<A HREF="OR.htm">OR</A>,
+<A HREF="XOR.htm">XOR</A>, and
 <A HREF="NOT.htm">NOT</A>.
 <P>
-<A HREF="NOT.htm">NOT</A> (Not) 
+<A HREF="NOT.htm">NOT</A> (Not)
 inverts the bits in the specified operand to form a one's
-complement of the operand. The 
+complement of the operand. The
 <A HREF="NOT.htm">NOT</A> instruction is a unary operation that
-uses a single operand in a register or memory. 
+uses a single operand in a register or memory.
 <A HREF="NOT.htm">NOT</A> has no effect on the
 flags.
 <P>
-The 
-<A HREF="AND.htm">AND</A>, 
-<A HREF="OR.htm">OR</A>, and 
+The
+<A HREF="AND.htm">AND</A>,
+<A HREF="OR.htm">OR</A>, and
 <A HREF="XOR.htm">XOR</A> instructions perform the standard logical operations
 "and", "(inclusive) or", and "exclusive or". These instructions can use the
 following combinations of operands:
@@ -46,9 +46,9 @@ following combinations of operands:
 <LI> An immediate operand with either a general register operand or a
 memory operand.
 </UL>
-<A HREF="AND.htm">AND</A>, 
-<A HREF="OR.htm">OR</A>, and 
-<A HREF="XOR.htm">XOR</A> clear OF and CF, leave AF undefined, 
+<A HREF="AND.htm">AND</A>,
+<A HREF="OR.htm">OR</A>, and
+<A HREF="XOR.htm">XOR</A> clear OF and CF, leave AF undefined,
 and update SF, ZF, and PF.
 
 <H2>3.4.2  Bit Test and Modify Instructions</H2>
@@ -81,10 +81,10 @@ may be either in a register or in memory. The ZF flag is set if the entire
 word is zero (no set bits are found); ZF is cleared if a one-bit is found.
 If no set bit is found, the value of the destination register is undefined.
 <P>
-<A HREF="BSF.htm">BSF</A> (Bit Scan Forward) 
+<A HREF="BSF.htm">BSF</A> (Bit Scan Forward)
 scans from low-order to high-order (starting from bit index zero).
 <P>
-<A HREF="BSR.htm">BSR</A> (Bit Scan Reverse) 
+<A HREF="BSR.htm">BSR</A> (Bit Scan Reverse)
 scans from high-order to low-order (starting from
 bit index 15 of a word or index 31 of a doubleword).
 
@@ -118,58 +118,58 @@ a multibit shift, however, the content of OF is always undefined.
 <P>
 The shift instructions provide a convenient way to accomplish division or
 multiplication by binary power. Note however that division of signed numbers
-by shifting right is not the same kind of division performed by the 
+by shifting right is not the same kind of division performed by the
 <A HREF="IDIV.htm">IDIV</A> instruction.
 <P>
-<A HREF="SAL.htm">SAL</A> (Shift Arithmetic Left) 
+<A HREF="SAL.htm">SAL</A> (Shift Arithmetic Left)
 shifts the destination byte, word, or
 doubleword operand left by one or by the number of bits specified in the
 count operand (an immediate value or the value contained in CL). The
 processor shifts zeros in from the right (low-order) side of the operand as
-bits exit from the left (high-order) side. See 
+bits exit from the left (high-order) side. See
 <A HREF="s03_04.htm#fig3-6">Figure 3-6</A>.
 <P>
-<A HREF="SAL.htm">SHL</A> (Shift Logical Left) 
+<A HREF="SAL.htm">SHL</A> (Shift Logical Left)
 is a synonym for <A HREF="SAL.htm">SAL</A> (refer to <A HREF="SAL.htm">SAL</A>).
 <P>
-<A HREF="SAL.htm">SHR</A> (Shift Logical Right) shifts the destination byte, 
+<A HREF="SAL.htm">SHR</A> (Shift Logical Right) shifts the destination byte,
 word, or doubleword
 operand right by one or by the number of bits specified in the count operand
 (an immediate value or the value contained in CL). The processor shifts
 zeros in from the left side of the operand as bits exit from the right side.
-See 
+See
 <A HREF="s03_04.htm#fig3-7">Figure 3-7</A>.
 <P>
-<A HREF="SAL.htm">SAR</A> (Shift Arithmetic Right) 
+<A HREF="SAL.htm">SAR</A> (Shift Arithmetic Right)
 shifts the destination byte, word, or
 doubleword operand to the right by one or by the number of bits specified in
 the count operand (an immediate value or the value contained in CL). The
 processor preserves the sign of the operand by shifting in zeros on the left
 (high-order) side if the value is positive or by shifting by ones if the
-value is negative. See 
+value is negative. See
 <A HREF="s03_04.htm#fig3-8">Figure 3-8</A>.
 <P>
 Even though this instruction can be used to divide integers by a power of
-two, the type of division is not the same as that produced by the 
+two, the type of division is not the same as that produced by the
 <A HREF="IDIV.htm">IDIV</A>
-instruction. The quotient of 
+instruction. The quotient of
 <A HREF="IDIV.htm">IDIV</A> is rounded toward zero, whereas the
-"quotient" of 
-<A HREF="SAL.htm">SAR</A> is rounded toward negative infinity. 
+"quotient" of
+<A HREF="SAL.htm">SAR</A> is rounded toward negative infinity.
 This difference is
-apparent only for negative numbers. For example, when 
+apparent only for negative numbers. For example, when
 <A HREF="IDIV.htm">IDIV</A> is used to divide
--9 by 4, the result is -2 with a remainder of -1. If 
+-9 by 4, the result is -2 with a remainder of -1. If
 <A HREF="SAL.htm">SAR</A> is used to shift
 -9 right by two bits, the result is -3. The "remainder" of this kind of
-division is +3; however, the 
+division is +3; however, the
 <A HREF="SAL.htm">SAR</A> instruction stores only the high-order bit
 of the remainder (in CF).
 <P>
-The code sequence in 
+The code sequence in
 <A HREF="s03_04.htm#fig3-9">Figure 3-9</A>
-  produces the same result as 
-<A HREF="IDIV.htm">IDIV</A> for any M = 2^(N), where 0 < N < 32. 
+  produces the same result as
+<A HREF="IDIV.htm">IDIV</A> for any M = 2^(N), where 0 < N < 32.
 This sequence takes about 12 to 18 clocks,
 depending on whether the jump is taken; if ECX contains M, the corresponding
 <A HREF="IDIV.htm">IDIV</A> ECX instruction will take about 43 clocks.
@@ -265,19 +265,19 @@ operand. CF is set to the value of the last bit shifted out of the
 destination operand. SF, ZF, and PF are set according to the value of the
 result. OF and AF are left undefined.
 <P>
-<A HREF="SHLD.htm">SHLD</A> (Shift Left Double) 
+<A HREF="SHLD.htm">SHLD</A> (Shift Left Double)
 shifts bits of the R/M field to the left, while
 shifting high-order bits from the Reg field into the R/M field on the right
-(see 
-<A HREF="s03_04.htm#fig3-10">Figure 3-10</A>). 
+(see
+<A HREF="s03_04.htm#fig3-10">Figure 3-10</A>).
 The result is stored back into the R/M operand. The Reg
 field is not modified.
 <P>
-<A HREF="SHRD.htm">SHRD</A> (Shift Right Double) 
+<A HREF="SHRD.htm">SHRD</A> (Shift Right Double)
 shifts bits of the R/M field to the right, while
 shifting low-order bits from the Reg field into the R/M field on the left
-(see 
-<A HREF="s03_04.htm#fig3-11">Figure 3-11</A>). 
+(see
+<A HREF="s03_04.htm#fig3-11">Figure 3-11</A>).
 The result is stored back into the R/M operand. The Reg
 field is not modified.
 
@@ -289,7 +289,7 @@ rotated. Bits rotated out of an operand are not lost as in a shift, but are
 Rotates affect only the carry and overflow flags. CF may act as an
 extension of the operand in two of the rotate instructions, allowing a bit
 to be isolated and then tested by a conditional jump instruction (<A HREF="Jcc.htm">JC</A> or
-<A HREF="Jcc.htm">JNC</A>). 
+<A HREF="Jcc.htm">JNC</A>).
 CF always contains the value of the last bit rotated out, even if the
 instruction does not use this bit as an extension of the rotated operand.
 <P>
@@ -298,38 +298,38 @@ In single-bit rotates, OF is set if the operation changes the high-order
 value, OF is cleared. On multibit rotates, the value of OF is always
 undefined.
 <P>
-<A HREF="RCL.htm">ROL</A> (Rotate Left) 
+<A HREF="RCL.htm">ROL</A> (Rotate Left)
 rotates the byte, word, or doubleword destination operand
 left by one or by the number of bits specified in the count operand (an
 immediate value or the value contained in CL). For each rotation specified,
 the high-order bit that exits from the left of the operand returns at the
-right to become the new low-order bit of the operand. See 
+right to become the new low-order bit of the operand. See
 <A HREF="s03_04.htm#fig3-12">Figure 3-12</A>.
 <P>
-<A HREF="RCL.htm">ROR</A> (Rotate Right) 
+<A HREF="RCL.htm">ROR</A> (Rotate Right)
 rotates the byte, word, or doubleword destination
 operand right by one or by the number of bits specified in the count operand
 (an immediate value or the value contained in CL). For each rotation
 specified, the low-order bit that exits from the right of the operand
 returns at the left to become the new high-order bit of the operand.
-See 
+See
 <A HREF="s03_04.htm#fig3-13">Figure 3-13</A>.
 <P>
-<A HREF="RCL.htm">RCL</A> (Rotate Through Carry Left) 
+<A HREF="RCL.htm">RCL</A> (Rotate Through Carry Left)
 rotates bits in the byte, word, or
 doubleword destination operand left by one or by the number of bits
 specified in the count operand (an immediate value or the value contained in
 CL).
 <P>
-This instruction differs from 
+This instruction differs from
 <A HREF="RCL.htm">ROL</A> in that it treats CF as a high-order
 one-bit extension of the destination operand. Each high-order bit that exits
 from the left side of the operand moves to CF before it returns to the
-operand as the low-order bit on the next rotation cycle. See 
+operand as the low-order bit on the next rotation cycle. See
 <A HREF="s03_04.htm#fig3-14">Figure 3-14</A>
   .
 <P>
-<A HREF="RCL.htm">RCR</A> (Rotate Through Carry Right) 
+<A HREF="RCL.htm">RCR</A> (Rotate Through Carry Right)
 rotates bits in the byte, word, or
 doubleword destination operand right by one or by the number of bits
 specified in the count operand (an immediate value or the value contained in
@@ -338,7 +338,7 @@ CL).
 This instruction differs from <A HREF="RCL.htm">ROR</A> in that it treats CF as a low-order
 one-bit extension of the destination operand. Each low-order bit that exits
 from the right side of the operand moves to CF before it returns to the
-operand as the high-order bit on the next rotation cycle. See 
+operand as the high-order bit on the next rotation cycle. See
 <A HREF="s03_04.htm#fig3-15">Figure 3-15</A>
   .
 <P>
@@ -450,8 +450,8 @@ JA    BltLoop
 This loop is simple yet allows the data to be moved in 32-bit pieces for
 the highest possible performance. Without a double shift, the best that can
 be achieved is 16 bits per loop iteration by using a 32-bit shift and
-replacing the 
-<A HREF="XCHG.htm">XCHG</A> with a 
+replacing the
+<A HREF="XCHG.htm">XCHG</A> with a
 <A HREF="RCL.htm">ROR</A> by 16 to swap high and low order parts of
 registers. A more general loop than shown above would require some extra
 masking on the first doubleword moved (before the main loop), and on the
@@ -624,25 +624,25 @@ the 16 conditions defined by the status flags. The byte may be in memory or
 may be a one-byte general register. These instructions are especially useful
 for implementing Boolean expressions in high-level languages such as Pascal.
 <P>
-<A HREF="SETcc.htm">SETcc</A> (Set Byte on Condition cc) 
+<A HREF="SETcc.htm">SETcc</A> (Set Byte on Condition cc)
 set a byte to one if condition cc is true;
 sets the byte to zero otherwise. Refer to Appendix D for a definition of
 the possible conditions.
 
 <H2>3.4.6  Test Instruction</H2>
-<A HREF="TEST.htm">TEST</A> (Test) 
+<A HREF="TEST.htm">TEST</A> (Test)
 performs the logical "and" of the two operands, clears OF and
 CF, leaves AF undefined, and updates SF, ZF, and PF. The flags can be tested
 by conditional control transfer instructions or by the byte-set-on-condition
 instructions. The operands may be doublewords, words, or bytes.
 <P>
-The difference between 
-<A HREF="TEST.htm">TEST</A> and 
-<A HREF="AND.htm">AND</A> is that <A HREF="TEST.htm">TEST</A> 
-does not alter the destination operand. 
-<A HREF="TEST.htm">TEST</A> differs from <A HREF="BT.htm">BT</A> in that 
+The difference between
+<A HREF="TEST.htm">TEST</A> and
+<A HREF="AND.htm">AND</A> is that <A HREF="TEST.htm">TEST</A>
+does not alter the destination operand.
+<A HREF="TEST.htm">TEST</A> differs from <A HREF="BT.htm">BT</A> in that
 <A HREF="TEST.htm">TEST</A> is useful for testing
-the value of multiple bits in one operations, whereas 
+the value of multiple bits in one operations, whereas
 <A HREF="BT.htm">BT</A> tests a single bit.
 <P>
 <HR>

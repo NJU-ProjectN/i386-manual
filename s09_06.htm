@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 9.6</TITLE>
 </HEAD>
@@ -32,7 +32,7 @@ gate points to the beginning of the interrupt or exception handling
 procedure.
 <P>
 The 80386 invokes an interrupt or exception handling procedure in much the
-same manner as it 
+same manner as it
 <A HREF="CALL.htm">CALL</A>s a procedure; the differences are explained in the
 following sections.
 <P>
@@ -80,10 +80,10 @@ exception.
 
 <H3>9.6.1.2  Returning from an Interrupt Procedure</H3>
 An interrupt procedure also differs from a normal procedure in the method
-of leaving the procedure. The 
+of leaving the procedure. The
 <A HREF="IRET.htm">IRET</A> instruction is used to exit from an
-interrupt procedure. <A HREF="IRET.htm">IRET</A> is similar to 
-<A HREF="RET.htm">RET</A> except that 
+interrupt procedure. <A HREF="IRET.htm">IRET</A> is similar to
+<A HREF="RET.htm">RET</A> except that
 <A HREF="IRET.htm">IRET</A> increments ESP
 by an extra four bytes (because of the flags on the stack) and moves the
 saved flags into the EFLAGS register. The IOPL field of EFLAGS is changed
@@ -146,7 +146,7 @@ The difference between an interrupt gate and a trap gate is in the effect
 on IF (the interrupt-enable flag). An interrupt that vectors through an
 interrupt gate resets IF, thereby preventing other interrupts from
 interfering with the current interrupt handler. A subsequent
-<A HREF="IRET.htm">IRET</A> 
+<A HREF="IRET.htm">IRET</A>
 instruction restores IF to the value in the EFLAGS image on the stack. An
 interrupt through a trap gate does not change IF.
 
@@ -172,7 +172,7 @@ privilege level three, thereby making it unprotected.
 </UL>
 <P>
 <H2>9.6.2  Interrupt Tasks</H2>
-A task gate in the IDT points indirectly to a task, as 
+A task gate in the IDT points indirectly to a task, as
 <A HREF="s09_06.htm#fig9-6">Figure 9-6</A>
 illustrates. The selector of the gate points to a TSS descriptor in the GDT.
 <P>
@@ -185,8 +185,8 @@ advantages:
 separate address space, either via its LDT or via its page directory.
 </UL>
 The actions that the processor takes to perform a task switch are discussed
-in 
-<A HREF="c07.htm">Chapter 7</A>. 
+in
+<A HREF="c07.htm">Chapter 7</A>.
 The interrupt task returns to the interrupted task by
 executing an <A HREF="IRET.htm">IRET</A> instruction.
 <P>

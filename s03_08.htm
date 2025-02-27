@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 3.8</TITLE>
 </HEAD>
@@ -17,7 +17,7 @@ state of bits in the flag register.
 
 <H2>3.8.1  Carry and Direction Flag Control Instructions</H2>
 The carry flag instructions are useful in conjunction with
-rotate-with-carry instructions <A HREF="RCL.htm">RCL</A> and 
+rotate-with-carry instructions <A HREF="RCL.htm">RCL</A> and
 <A HREF="RCL.htm">RCR</A>. They can initialize the carry
 flag, CF, to a known state before execution of a rotate that moves the carry
 bit into one end of the rotated operand.
@@ -45,44 +45,44 @@ instructions allow a program to alter the other flag bits with the bit
 manipulation instructions after transferring these flags to the stack or the
 AH register.
 <P>
-The instructions 
-<A HREF="LAHF.htm">LAHF</A> and 
+The instructions
+<A HREF="LAHF.htm">LAHF</A> and
 <A HREF="SAHF.htm">SAHF</A> deal with five of the status flags, which
 are used primarily by the arithmetic and logical instructions.
 <P>
-<A HREF="LAHF.htm">LAHF</A> (Load AH from Flags) 
+<A HREF="LAHF.htm">LAHF</A> (Load AH from Flags)
 copies SF, ZF, AF, PF, and CF to AH bits 7, 6, 4,
-2, and 0, respectively (see 
-<A HREF="s03_08.htm#fig3-22">Figure 3-22</A>). 
+2, and 0, respectively (see
+<A HREF="s03_08.htm#fig3-22">Figure 3-22</A>).
 The contents of the remaining bits
 (5, 3, and 1) are undefined. The flags remain unaffected.
 <P>
-<A HREF="SAHF.htm">SAHF</A> (Store AH into Flags) 
+<A HREF="SAHF.htm">SAHF</A> (Store AH into Flags)
 transfers bits 7, 6, 4, 2, and 0 from AH into
-SF, ZF, AF, PF, and CF, respectively (see 
+SF, ZF, AF, PF, and CF, respectively (see
 <A HREF="s03_08.htm#fig3-22">Figure 3-22</A>).
 <P>
-The 
-<A HREF="PUSHF.htm">PUSHF</A> and 
-<A HREF="POPF.htm">POPF</A> instructions are not only useful for 
+The
+<A HREF="PUSHF.htm">PUSHF</A> and
+<A HREF="POPF.htm">POPF</A> instructions are not only useful for
 storing the flags
 in memory where they can be examined and modified but are also useful for
 preserving the state of the flags register while executing a procedure.
 <P>
-<A HREF="PUSHF.htm">PUSHF</A> (Push Flags) 
+<A HREF="PUSHF.htm">PUSHF</A> (Push Flags)
 decrements ESP by two and then transfers the low-order
 word of the flags register to the word at the top of stack pointed to by ESP
-(see 
-<A HREF="s03_09.htm#fig3-23">Figure 3-23</A>). 
+(see
+<A HREF="s03_09.htm#fig3-23">Figure 3-23</A>).
 The variant <A HREF="PUSHF.htm">PUSHFD</A> decrements ESP by four, then
 transfers both words of the extended flags register to the top of the stack
 pointed to by ESP (the VM and RF flags are not moved, however).
 <P>
-<A HREF="POPF.htm">POPF</A> (Pop Flags) 
+<A HREF="POPF.htm">POPF</A> (Pop Flags)
 transfers specific bits from the word at the top of stack
-into the low-order byte of the flag register (see 
+into the low-order byte of the flag register (see
 <A HREF="s03_09.htm#fig3-23">Figure 3-23</A>), then
-increments ESP by two. The variant 
+increments ESP by two. The variant
 <A HREF="POPF.htm">POPFD</A> transfers specific bits from the
 doubleword at the top of the stack into the extended flags register (the RF
 and VM flags are not changed, however), then increments ESP by four.

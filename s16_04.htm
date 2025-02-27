@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 16.4</TITLE>
 </HEAD>
@@ -9,7 +9,7 @@ Chapter 16 -- Mixing 16-Bit and 32 Bit Code</A><BR>
 <B>prev:</B>
 <A HREF="s16_03.htm">
 16.3  Sharing Data Segments Among Mixed Code Segments</A><BR>
-<B>next:</B> 
+<B>next:</B>
 <A HREF="c17.htm">Chapter 17 -- 80386 Instruction Set</A><BR>
 <P>
 <HR>
@@ -49,11 +49,11 @@ interface procedure are discussed later in this chapter.
 
 <H2>16.4.2  Stack Management for Control Transfers</H2>
 Because stack management is different for 16-bit <A HREF="CALL.htm">CALL</A>/<A HREF="RET.htm">RET</A> than for 32-bit
-<A HREF="CALL.htm">CALL</A>/<A HREF="RET.htm">RET</A>, the operand size of <A HREF="RET.htm">RET</A> must match that of 
-<A HREF="CALL.htm">CALL</A>. (Refer to 
+<A HREF="CALL.htm">CALL</A>/<A HREF="RET.htm">RET</A>, the operand size of <A HREF="RET.htm">RET</A> must match that of
+<A HREF="CALL.htm">CALL</A>. (Refer to
 <A HREF="s16_04.htm#fig16-1">Figure 16-1</A>
   .) A 16-bit <A HREF="CALL.htm">CALL</A> pushes the 16-bit IP and
-(for calls between privilege levels) 
+(for calls between privilege levels)
 the 16-bit SP register. The corresponding <A HREF="RET.htm">RET</A> must also use a 16-bit
 operand size to <A HREF="POP.htm">POP</A> these 16-bit values from the stack into the 16-bit
 registers. A 32-bit <A HREF="CALL.htm">CALL</A> pushes the 32-bit EIP and (for interlevel calls)
@@ -238,5 +238,5 @@ Chapter 16 -- Mixing 16-Bit and 32 Bit Code</A><BR>
 <A HREF="s16_03.htm">
 16.3  Sharing Data Segments Among Mixed Code Segments</A><BR>
 <B>next:</B> <A HREF="s16_03.htm">
-<A HREF="c17.htm">Chapter 17 -- 80386 Instruction Set</A><BR> 
+<A HREF="c17.htm">Chapter 17 -- 80386 Instruction Set</A><BR>
 </BODY>
