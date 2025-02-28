@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode MUL</TITLE>
 </HEAD>
@@ -26,7 +26,7 @@ F7  /4  MUL EAX,r/m32   9-38/12-41   Unsigned multiply (EDX:EAX := EAX * r/m
 <EM>
 <H3>Notes</H3>
   The 80386 uses an early-out multiply algorithm. The actual number of
-  clocks depends on the position of the most significant bit in the 
+  clocks depends on the position of the most significant bit in the
   optimizing multiplier, shown underlined above. The optimization occurs
   for positive and negative multiplier values. Because of the early-out
   algorithm, clock counts given are minimum to maximum. To calculate the

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 11.2</TITLE>
 </HEAD>
@@ -7,7 +7,7 @@
 <B>up:</B> <A HREF="c11.htm">
 Chapter 11 -- Coprocessing and Multiprocessing</A><BR>
 <B>prev:</B> <A HREF="s11_01.htm">11.1  Coprocessing</A><BR>
-<B>next:</B> 
+<B>next:</B>
 <A HREF="c12.htm">Chapter 12 -- Debugging</A>
 <P>
 <HR>
@@ -16,7 +16,7 @@ Chapter 11 -- Coprocessing and Multiprocessing</A><BR>
 The components of the general multiprocessing interface include:
 <UL>
 <LI> The LOCK# signal
-<LI> The 
+<LI> The
 <A HREF="LOCK.htm">LOCK</A> instruction prefix, which gives programmed control of the
 LOCK# signal.
 <LI> Automatic assertion of the LOCK# signal with implicit memory updates
@@ -26,27 +26,27 @@ by the processor
 <H2>11.2.1  LOCK and the LOCK# Signal</H2>
 The <A HREF="LOCK.htm">LOCK</A> instruction prefix and its corresponding output signal LOCK# can
 be used to prevent other bus masters from interrupting a data movement
-operation. 
-<A HREF="LOCK.htm">LOCK</A> may only be used with the following 
+operation.
+<A HREF="LOCK.htm">LOCK</A> may only be used with the following
 80386 instructions when
-they modify memory. An undefined-opcode exception results from using 
+they modify memory. An undefined-opcode exception results from using
 <A HREF="LOCK.htm">LOCK</A>
 before any instruction other than:
 <UL>
-<LI> Bit test and change: <A HREF="BTS.htm">BTS</A>, <A HREF="BTR.htm">BTR</A>, 
+<LI> Bit test and change: <A HREF="BTS.htm">BTS</A>, <A HREF="BTR.htm">BTR</A>,
 <A HREF="BTC.htm">BTC</A>.
 <LI> Exchange: <A HREF="XCHG.htm">XCHG</A>.
-<LI> Two-operand arithmetic and logical: <A HREF="ADD.htm">ADD</A>, 
-<A HREF="ADC.htm">ADC</A>, 
-<A HREF="SUB.htm">SUB</A>, 
-<A HREF="SBB.htm">SBB</A>, 
-<A HREF="AND.htm">AND</A>, 
-<A HREF="OR.htm">OR</A>, 
+<LI> Two-operand arithmetic and logical: <A HREF="ADD.htm">ADD</A>,
+<A HREF="ADC.htm">ADC</A>,
+<A HREF="SUB.htm">SUB</A>,
+<A HREF="SBB.htm">SBB</A>,
+<A HREF="AND.htm">AND</A>,
+<A HREF="OR.htm">OR</A>,
 <A HREF="XOR.htm">XOR</A>.
-<LI> One-operand arithmetic and logical: 
-<A HREF="INC.htm">INC</A>, 
-<A HREF="DEC.htm">DEC</A>, 
-<A HREF="NOT.htm">NOT</A>, and 
+<LI> One-operand arithmetic and logical:
+<A HREF="INC.htm">INC</A>,
+<A HREF="DEC.htm">DEC</A>,
+<A HREF="NOT.htm">NOT</A>, and
 <A HREF="NEG.htm">NEG</A>.
 </UL>
 A locked instruction is only guaranteed to lock the area of memory defined
@@ -58,8 +58,8 @@ instruction on exactly the same memory area, i.e., an operand with
 identical starting address and identical length.
 <P>
 The integrity of the lock is not affected by the alignment of the memory
-field. The 
-<A HREF="LOCK.htm">LOCK</A> signal is asserted for as many bus 
+field. The
+<A HREF="LOCK.htm">LOCK</A> signal is asserted for as many bus
 cycles as necessary to update the entire operand.
 
 <H2>11.2.2  Automatic Locking</H2>
@@ -97,9 +97,9 @@ The processor exerts LOCK# while updating the A (accessed) and D
 (dirty) bits of page-table entries.  Also the processor bypasses the
 page-table cache and directly updates these bits in memory.
 <LI> Executing <A HREF="XCHG.htm">XCHG</A> instruction.
-The 80386 always asserts <A HREF="LOCK.htm">LOCK</A> during an 
+The 80386 always asserts <A HREF="LOCK.htm">LOCK</A> during an
 <A HREF="XCHG.htm">XCHG</A>instruction that
-references memory (even if the 
+references memory (even if the
 <A HREF="LOCK.htm">LOCK</A> prefix is not used).
 </UL>
 
@@ -141,6 +141,6 @@ affected by this convention.
 <B>up:</B> <A HREF="c11.htm">
 Chapter 11 -- Coprocessing and Multiprocessing</A><BR>
 <B>prev:</B> <A HREF="s11_01.htm">11.1  Coprocessing</A><BR>
-<B>next:</B> 
+<B>next:</B>
 <A HREF="c12.htm">Chapter 12 -- Debugging</A>
 </BODY>

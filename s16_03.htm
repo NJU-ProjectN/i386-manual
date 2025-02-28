@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 16.3</TITLE>
 </HEAD>
@@ -35,11 +35,11 @@ The B-bit of a stack segment cannot, in general, be used to change the size
 of stack used by a USE16 code segment. The size of stack pointer used by the
 processor for implicit stack references is controlled by the B-bit of the
 data-segment descriptor for the stack. Implicit references are those caused
-by interrupts, exceptions, and instructions such as 
-<A HREF="PUSH.htm">PUSH</A>, 
-<A HREF="POP.htm">POP</A>, 
+by interrupts, exceptions, and instructions such as
+<A HREF="PUSH.htm">PUSH</A>,
+<A HREF="POP.htm">POP</A>,
 <A HREF="CALL.htm">CALL</A>, and
-<A HREF="RET.htm">RET</A>. 
+<A HREF="RET.htm">RET</A>.
 One might be tempted, therefore, to try to increase beyond 64K the
 size of the stack used by 16-bit code simply by supplying a larger stack
 segment with the B-bit set. However, the B-bit does not control explicit
@@ -50,7 +50,7 @@ prefix, causing those references to use 32-bit addressing.
 <P>
 In big, expand-down segments (B=1, G=1, and E=1), all offsets are greater
 than 64K, therefore USE16 code cannot utilize such a stack segment unless
-the code segment is modified to employ 32-bit addressing . (Refer to 
+the code segment is modified to employ 32-bit addressing . (Refer to
 <A HREF="c06.htm">Chapter 6</A>
    for a review of the B , G, and E bits .)
 <P>

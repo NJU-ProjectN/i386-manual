@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode SCAS</TITLE>
 </HEAD>
@@ -66,9 +66,9 @@ operand validates ES segment addressability and determines the data type.
 Load the correct index value into DI or EDI before executing SCAS.
 <P>
 After the comparison is made, the destination register is automatically
-updated. If the direction flag is 0 
+updated. If the direction flag is 0
 (<A HREF="CLD.htm">CLD</A> was executed), the destination
-register is incremented; if the direction flag is 1 
+register is incremented; if the direction flag is 1
 (<A HREF="STD.htm">STD</A> was executed), it
 is decremented. The increments or decrements are by 1 if bytes are compared,
 by 2 if words are compared, or by 4 if doublewords are compared.
@@ -77,10 +77,10 @@ SCASB, SCASW, and SCASD are synonyms for the byte, word and
 doubleword SCAS instructions that don't require operands. They are
 simpler to code, but provide no type or segment checking.
 <P>
-SCAS can be preceded by the 
-<A HREF="REP.htm">REPE</A> or 
+SCAS can be preceded by the
+<A HREF="REP.htm">REPE</A> or
 <A HREF="REP.htm">REPNE</A> prefix for a block search
-of CX or ECX bytes or words. Refer to the 
+of CX or ECX bytes or words. Refer to the
 <A HREF="REP.htm">REP</A> instruction for further
 details.
 

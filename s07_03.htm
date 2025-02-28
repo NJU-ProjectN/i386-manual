@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 7.3</TITLE>
 </HEAD>
@@ -13,7 +13,7 @@ Chapter 7 -- Multitasking</A><BR>
 <P>
 <H1>7.3  Task Register</H1>
 The task register (TR) identifies the currently executing task by pointing
-to the TSS. 
+to the TSS.
 <A HREF="s07_03.htm#fig7-3">Figure 7-3</A>
   shows the path by which the processor accesses the
 current TSS.
@@ -28,26 +28,26 @@ register makes execution of the task more efficient, because the processor
 does not need to repeatedly fetch these values from memory when it
 references the TSS of the current task.
 <P>
-The instructions <A HREF="LTR.htm">LTR</A> and 
+The instructions <A HREF="LTR.htm">LTR</A> and
 <A HREF="STR.htm">STR</A> are used to modify and read the visible
 portion of the task register. Both instructions take one operand, a 16-bit
 selector located in memory or in a general register.
 <P>
-<A HREF="LTR.htm">LTR</A> (Load task register) 
+<A HREF="LTR.htm">LTR</A> (Load task register)
 loads the visible portion of the task register
 with the selector operand, which must select a TSS descriptor in the GDT.
-<A HREF="LTR.htm">LTR</A> 
+<A HREF="LTR.htm">LTR</A>
 also loads the invisible portion with information from the TSS
-descriptor selected by the operand. 
+descriptor selected by the operand.
 <A HREF="LTR.htm">LTR</A> is a privileged instruction; it may
-be executed only when CPL is zero. 
+be executed only when CPL is zero.
 <A HREF="LTR.htm">LTR</A> is generally used during system
 initialization to give an initial value to the task register; thereafter,
 the contents of TR are changed by task switch operations.
 <P>
-<A HREF="STR.htm">STR</A> (Store task register) 
+<A HREF="STR.htm">STR</A> (Store task register)
 stores the visible portion of the task register
-in a general register or memory word. 
+in a general register or memory word.
 <A HREF="STR.htm">STR</A> is not privileged.
 <P>
 <A NAME="fig7-3">

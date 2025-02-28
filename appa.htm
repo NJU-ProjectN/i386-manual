@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Appendix A</TITLE>
 </HEAD>
@@ -30,113 +30,113 @@ character, a lowercase letter, specifies the type of operand.
 <H3>Codes for Addressing Method</H3>
 
 <DL>
-<DT>A  
+<DT>A
 <DD>Direct address; the instruction has no modR/M byte; the address of the
    operand is encoded in the instruction; no base register, index register,
    or scaling factor can be applied; e.g., far <A HREF="JMP.htm">JMP</A> (EA).
 
-<DT>C  
-<DD>The reg field of the modR/M byte selects a control register; e.g., 
+<DT>C
+<DD>The reg field of the modR/M byte selects a control register; e.g.,
 <A HREF="MOVRS.htm">MOV</A>
    (0F20, 0F22).
 
-<DT>D  
-<DD>The reg field of the modR/M byte selects a debug register; e.g., 
+<DT>D
+<DD>The reg field of the modR/M byte selects a debug register; e.g.,
 <A HREF="MOVRS.htm">MOV</A>
    (0F21,0F23).
 
-<DT>E  
+<DT>E
 <DD>A modR/M byte follows the opcode and specifies the operand. The operand
    is either a general register or a memory address. If it is a memory
    address, the address is computed from a segment register and any of the
    following values: a base register, an index register, a scaling factor,
    a displacement.
 
-<DT>F  
+<DT>F
 <DD>Flags Register.
 
-<DT>G  
-<DD>The reg field of the modR/M byte selects a general register; e.g., 
+<DT>G
+<DD>The reg field of the modR/M byte selects a general register; e.g.,
 <A HREF="ADD.htm">ADD</A>
    (00).
 
-<DT>I  
+<DT>I
 <DD>Immediate data. The value of the operand is encoded in subsequent bytes
    of the instruction.
 
-<DT>J  
+<DT>J
 <DD>The instruction contains a relative offset to be added to the
-   instruction pointer register; e.g., <A HREF="JMP.htm">JMP</A> short, 
+   instruction pointer register; e.g., <A HREF="JMP.htm">JMP</A> short,
 <A HREF="LOOP.htm">LOOP</A>.
 
-<DT>M  
-<DD>The modR/M byte may refer only to memory; e.g., 
-<A HREF="BOUND.htm">BOUND</A>, <A HREF="LGS.htm">LES</A>, 
+<DT>M
+<DD>The modR/M byte may refer only to memory; e.g.,
+<A HREF="BOUND.htm">BOUND</A>, <A HREF="LGS.htm">LES</A>,
 <A HREF="LGS.htm">LDS</A>, <A HREF="LGS.htm">LSS</A>,
 <A HREF="LGS.htm">LFS</A>, <A HREF="LGS.htm">LGS</A>.
 
-<DT>O  
+<DT>O
 <DD>The instruction has no modR/M byte; the offset of the operand is coded as
    a word or double word (depending on address size attribute) in the
    instruction. No base register, index register, or scaling factor can be
    applied; e.g., <A HREF="MOV.htm">MOV</A> (A0-A3).
 
-<DT>R  
+<DT>R
 <DD>The mod field of the modR/M byte may refer only to a general register;
    e.g., <A HREF="MOV.htm">MOV</A> (0F20-0F24, 0F26).
 
-<DT>S  
-<DD>The reg field of the modR/M byte selects a segment register; e.g., 
+<DT>S
+<DD>The reg field of the modR/M byte selects a segment register; e.g.,
 <A HREF="MOV.htm">MOV</A>
    (8C,8E).
 
-<DT>T  
-<DD>The reg field of the modR/M byte selects a test register; e.g., 
+<DT>T
+<DD>The reg field of the modR/M byte selects a test register; e.g.,
 <A HREF="MOVRS.htm">MOV</A>
    (0F24,0F26).
 
-<DT>X  
-<DD>Memory addressed by DS:SI; e.g., <A HREF="MOVS.htm">MOVS</A>, 
-<A HREF="CMPS.htm">CMPS</A>, 
-<A HREF="OUTS.htm">OUTS</A>, 
-<A HREF="LODS.htm">LODS</A>, 
+<DT>X
+<DD>Memory addressed by DS:SI; e.g., <A HREF="MOVS.htm">MOVS</A>,
+<A HREF="CMPS.htm">CMPS</A>,
+<A HREF="OUTS.htm">OUTS</A>,
+<A HREF="LODS.htm">LODS</A>,
 <A HREF="SCAS.htm">SCAS</A>.
 
-<DT>Y  
-<DD>Memory addressed by ES:DI; e.g., 
-<A HREF="MOVS.htm">MOVS</A>, 
-<A HREF="CMPS.htm">CMPS</A>, 
-<A HREF="INS.htm">INS</A>, 
+<DT>Y
+<DD>Memory addressed by ES:DI; e.g.,
+<A HREF="MOVS.htm">MOVS</A>,
+<A HREF="CMPS.htm">CMPS</A>,
+<A HREF="INS.htm">INS</A>,
 <A HREF="STOS.htm">STOS</A>.
 </DL>
 
 <H3>Codes for Operant Type</H3>
 
 <DL>
-<DT>a 
+<DT>a
 <DD> Two one-word operands in memory or two double-word operands in memory,
-   depending on operand size attribute (used only by 
+   depending on operand size attribute (used only by
 <A HREF="BOUND.htm">BOUND</A>)
 
-<DT>b  
+<DT>b
 <DD>Byte (regardless of operand size attribute)
 
-<DT>c  
+<DT>c
 <DD>Byte or word, depending on operand size attribute.
 
-<DT>d  
+<DT>d
 <DD>Double word (regardless of operand size attribute)
 
-<DT>p  
+<DT>p
 <DD>32-bit or 48-bit pointer, depending on operand size attribute.
 
-<DT>s  
+<DT>s
 <DD>Six-byte pseudo-descriptor
 
-<DT>v  
+<DT>v
 <DD>Word or double word, depending on operand size attribute.
 
-<DT>w  
+<DT>w
 <DD>Word (regardless of operand size attribute)
 </DL>
 

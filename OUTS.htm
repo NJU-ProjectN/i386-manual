@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode OUTS</TITLE>
 </HEAD>
@@ -88,16 +88,16 @@ source-index register. Load the correct index value into SI or ESI before
 executing the OUTS instruction.
 <P>
 After the transfer, source-index register is advanced automatically. If
-the direction flag is 0 (<A HREF="CLD.htm">CLD</A> 
+the direction flag is 0 (<A HREF="CLD.htm">CLD</A>
 was executed), the source-index register is
 incremented; if the direction flag is 1 (<A HREF="STD.htm">STD</A> was executed), it is
 decremented. The amount of the increment or decrement is 1 if a byte is
 output, 2 if a word is output, or 4 if a doubleword is output.
 <P>
 OUTSB, OUTSW, and OUTSD are synonyms for the byte, word, and
-doubleword OUTS instructions. OUTS can be preceded by the 
+doubleword OUTS instructions. OUTS can be preceded by the
 <A HREF="REP.htm">REP</A>
-prefix for block output of CX bytes or words. Refer to the 
+prefix for block output of CX bytes or words. Refer to the
 <A HREF="REP.htm">REP</A>
 instruction for details on this operation.
 

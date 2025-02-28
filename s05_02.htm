@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 5.2</TITLE>
 </HEAD>
@@ -29,7 +29,7 @@ Pages begin onbyte boundaries and are fixed in size.
 
 <H2>5.2.2  Linear Address</H2>
 A linear address refers indirectly to a physical address by specifying a
-page table, a page within that table, and an offset within that page. 
+page table, a page within that table, and an offset within that page.
 <A HREF="s05_02.htm#fig5-8">Figure 5-8</A>
   shows the format of a linear address.
 <P>
@@ -100,7 +100,7 @@ The physical address of the current page directory is stored in the CPU
 register CR3, also called the page directory base register (PDBR). Memory
 management software has the option of using one page directory for all
 tasks, one page directory for each task, or some combination of the two.
-Refer to 
+Refer to
 <A HREF="c10.htm">Chapter 10</A>
    for information on initialization of CR3 . Refer to
 
@@ -108,9 +108,9 @@ Refer to
    to see how CR3 can change for each task .
 
 <H2>5.2.4  Page-Table Entries</H2>
-Entries in either level of page tables have the same format. 
+Entries in either level of page tables have the same format.
 <A HREF="s05_02.htm#fig5-10">Figure 5-10</A>
- 
+
 illustrates this format.
 
 <H3>5.2.4.1  Page Frame Address</H3>
@@ -126,9 +126,9 @@ translation. P=1 indicates that the entry can be used.
 <P>
 When P=0 in either level of page tables, the entry is not valid for address
 translation, and the rest of the entry is available for software use; none
-of the other bits in the entry is tested by the hardware. 
+of the other bits in the entry is tested by the hardware.
 <A HREF="s05_02.htm#fig5-11">Figure 5-11</A>
- 
+
 illustrates the format of a page-table entry when P=0.
 <P>
 If P=0 in either level of page tables when an attempt is made to use a
@@ -136,7 +136,7 @@ page-table entry for address translation, the processor signals a page
 exception. In software systems that support paged virtual memory, the
 page-not-present exception handler can bring the required page into physical
 memory. The instruction that caused the exception can then be reexecuted.
-Refer to 
+Refer to
 <A HREF="c09.htm">Chapter 9</A>
    for more information on exception handlers .
 <P>
@@ -144,7 +144,7 @@ Note that there is no present bit for the page directory itself. The page
 directory may be not-present while the associated task is suspended, but the
 operating system must ensure that the page directory indicated by the CR3
 image in the TSS is present in physical memory before the task is
-dispatched . Refer to 
+dispatched . Refer to
 <A HREF="c07.htm">Chapter 7</A>
    for an explanation of the TSS and task
 dispatching.
@@ -201,7 +201,7 @@ to determine what pages to eliminate from physical memory when the demand
 for memory exceeds the physical memory available. The operating system is
 responsible for testing and clearing these bits.
 <P>
-Refer to 
+Refer to
 <A HREF="c11.htm">Chapter 11</A>
    for how the 80386 coordinates updates to the accessed
 and dirty bits in multiprocessor systems.
@@ -209,7 +209,7 @@ and dirty bits in multiprocessor systems.
 <H3>5.2.4.4  Read/Write and User/Supervisor Bits</H3>
 These bits are not used for address translation, but are used for
 page-level protection, which the processor performs at the same time as
-address translation . Refer to 
+address translation . Refer to
 <A HREF="c06.htm">Chapter 6</A>
    where protection is discussed in
 detail.
@@ -225,14 +225,14 @@ programmers but not to systems programmers; operating-system programmers
 must flush the cache whenever the page tables are changed. The
 page-translation cache can be flushed by either of two methods:
 <OL>
-<LI> By reloading CR3 with a <A HREF="MOVRS.htm">MOV</A> instruction; 
+<LI> By reloading CR3 with a <A HREF="MOVRS.htm">MOV</A> instruction;
 for example:
 <PRE>
 <A HREF="MOVRS.htm">MOV</A> CR3, EAX
 </PRE>
 
 <LI> By performing a task switch to a TSS that has a different CR3 image
-than the current TSS . (Refer to 
+than the current TSS . (Refer to
 <A HREF="c07.htm">Chapter 7</A>
    for more information on
 task switching.)

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 2.6</TITLE>
 </HEAD>
@@ -7,7 +7,7 @@
 <B>up:</B> <A HREF="c02.htm">
 Chapter 2 -- Basic Programming Model</A><BR>
 <B>prev:</B> <A HREF="s02_05.htm">2.5  Operand Selection</A><BR>
-<B>next:</B> 
+<B>next:</B>
 <A HREF="c03.htm">Chapter 3 -- Applications Instruction Set</A><BR>
 <P>
 <HR>
@@ -29,7 +29,7 @@ interrupt is generally independent of the currently executing program.
 <P>
 Application programmers are not normally concerned with servicing
 interrupts. More information on interrupts for systems programmers may be
-found in 
+found in
 <A HREF="c09.htm">Chapter 9</A>
    . Certain exceptions , however, are of interest to
 applications programmers, and many operating systems give applications
@@ -40,30 +40,30 @@ the exception mechanism of the 80386.
 Table 2-2 highlights the exceptions that may be of interest to applications
 programmers.
 <UL>
-<LI> A divide error exception results when the instruction 
-<A HREF="DIV.htm">DIV</A> or 
+<LI> A divide error exception results when the instruction
+<A HREF="DIV.htm">DIV</A> or
 <A HREF="IDIV.htm">IDIV</A> is
 executed with a zero denominator or when the quotient is too large for
-the destination operand . (Refer to 
+the destination operand . (Refer to
 <A HREF="c03.htm">Chapter 3</A>
-for a discussion of <A HREF="DIV.htm">DIV</A>  
+for a discussion of <A HREF="DIV.htm">DIV</A>
 and <A HREF="IDIV.htm">IDIV</A>.)
 <LI> The debug exception may be reflected back to an applications program
 if it results from the trap flag (TF).
-<LI> A breakpoint exception results when the instruction 
+<LI> A breakpoint exception results when the instruction
 <A HREF="INT.htm">INT 3</A> is executed.
 This instruction is used by some debuggers to stop program execution at
 specific points.
-<LI> An overflow exception results when the 
+<LI> An overflow exception results when the
 <A HREF="INT.htm">INTO</A> instruction is executed
 and the OF (overflow) flag is set (after an arithmetic operation that
-set the OF flag ) . (Refer to 
+set the OF flag ) . (Refer to
 <A HREF="c03.htm">Chapter 3</A>
    for a discussion of <A HREF="INT.htm">INTO</A>) .
-<LI> A bounds check exception results when the 
+<LI> A bounds check exception results when the
 <A HREF="BOUND.htm">BOUND</A> instruction is
 executed and the array index it checks falls outside the bounds of the
-array . (Refer to 
+array . (Refer to
 <A HREF="c03.htm">Chapter 3</A>
    for a discussion of the <A HREF="BOUND.htm">BOUND</A> instruction. )
 <LI> Invalid opcodes may be used by some applications to extend the
@@ -79,10 +79,10 @@ The instruction <A HREF="INT.htm">INT</A> generates an interrupt whenever it is 
 processor treats this interrupt as an exception. The effects of this
 interrupt (and the effects of all other exceptions) are determined by
 exception handler routines provided by the application program or as part of
-the systems software (provided by systems programmers). The 
+the systems software (provided by systems programmers). The
 <A HREF="INT.htm">INT</A> instruction
-itself is discussed in 
-<A HREF="c03.htm">Chapter 3</A>. Refer to 
+itself is discussed in
+<A HREF="c03.htm">Chapter 3</A>. Refer to
 <A HREF="c09.htm">Chapter 9</A> for a more complete
 description of exceptions.
 <PRE>

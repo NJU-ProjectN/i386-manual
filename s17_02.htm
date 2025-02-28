@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 17.2</TITLE>
 </HEAD>
@@ -8,14 +8,14 @@
 Chapter 17 -- 80386 Instruction Set</A><BR>
 <B>prev:</B> <A HREF="s17_01.htm">
 17.1 Operand Size and Address-Size Attributes</A><BR>
-<B>next:</B> <A HREF="AAA.htm"> AAA ASCII Adjust after Addition</A> 
+<B>next:</B> <A HREF="AAA.htm"> AAA ASCII Adjust after Addition</A>
 <P>
 <HR>
 <P>
 <H1>17.2  Instruction Format</H1>
 
 All instruction encodings are subsets of the general instruction format
-shown in 
+shown in
 <A HREF="s17_02.htm#fig17-1">Figure 17-1</A>
   . Instructions consist of optional instruction
 prefixes, one or two primary opcode bytes, possibly an address specifier
@@ -102,7 +102,7 @@ instructions. They contain the following information:
 The ModR/M byte contains three fields of information:
 
 <UL>
- <LI> The mod field, which occupies the two most significant bits of the 
+ <LI> The mod field, which occupies the two most significant bits of the
      byte, combines with the r/m field to form 32 possible values: eight
      registers and 24 indexing modes
 
@@ -171,7 +171,7 @@ r32(/r)                    EAX   ECX   EDX   EBX   ESP   EBP   ESI   EDI
 /digit (Opcode)            0     1     2     3     4     5     6     7
 REG =                      000   001   010   011   100   101   110   111
 
-   Effective 
+   Effective
 +---Address--+ +Mod R/M+ +--------ModR/M Values in Hexadecimal--------+
 
 [BX + SI]            000   00    08    10    18    20    28    30    38
@@ -367,31 +367,31 @@ other than hexadecimal bytes are as follows:
 
 <DL>
 <DT>
-/digit: 
+/digit:
 <DD>(digit is between 0 and 7) indicates that the ModR/M byte of the
 instruction uses only the r/m (register or memory) operand. The reg field
 contains the digit that provides an extension to the instruction's opcode.
 
 <DT>
-/r: 
+/r:
 <DD>indicates that the ModR/M byte of the instruction contains both a
 register operand and an r/m operand.
 
 <DT>
-cb, cw, cd, cp: 
+cb, cw, cd, cp:
 <DD>a 1-byte (cb), 2-byte (cw), 4-byte (cd) or 6-byte (cp)
 value following the opcode that is used to specify a code offset and
 possibly a new value for the code segment register.
 
 <DT>
-ib, iw, id: 
+ib, iw, id:
 <DD>a 1-byte (ib), 2-byte (iw), or 4-byte (id) immediate operand to
 the instruction that follows the opcode, ModR/M bytes or scale-indexing
 bytes. The opcode determines if the operand is a signed value. All words and
 doublewords are given with the low-order byte first.
 
 <DT>
-+rb, +rw, +rd: 
++rb, +rw, +rd:
 <DD>a register code, from 0 through 7, added to the hexadecimal
 byte given at the left of the plus sign to form a single opcode byte. The
 codes are
@@ -417,19 +417,19 @@ used to represent operands in the instruction statements:
 
 <DL>
 <DT>
-rel8: 
+rel8:
 <DD>a relative address in the range from 128 bytes before the end of the
 instruction to 127 bytes after the end of the instruction.
 
 <DT>
-rel16, rel32: 
+rel16, rel32:
 <DD>a relative address within the same code segment as the
 instruction assembled. rel16 applies to instructions with an operand-size
 attribute of 16 bits; rel32 applies to instructions with an operand-size
 attribute of 32 bits.
 
 <DT>
-ptr16:16, ptr16:32: 
+ptr16:16, ptr16:32:
 <DD>a FAR pointer, typically in a code segment different
 from that of the instruction. The notation 16:16 indicates that the value of
 the pointer has two parts. The value to the right of the colon is a 16-bit
@@ -439,92 +439,92 @@ used when the instruction's operand-size attribute is 16 bits; ptr16:32 is
 used with the 32-bit attribute.
 
 <DT>
-r8: 
+r8:
 <DD>one of the byte registers AL, CL, DL, BL, AH, CH, DH, or BH.
 
 <DT>
-r16: 
+r16:
 <DD>one of the word registers AX, CX, DX, BX, SP, BP, SI, or DI.
 
 <DT>
-r32: 
+r32:
 <DD>one of the doubleword registers EAX, ECX, EDX, EBX, ESP, EBP, ESI, or
 EDI.
 
 <DT>
-imm8: 
+imm8:
 <DD>an immediate byte value. imm8 is a signed number between -128 and
 +127 inclusive. For instructions in which imm8 is combined with a word or
 doubleword operand, the immediate value is sign-extended to form a word or
 doubleword. The upper byte of the word is filled with the topmost bit of the
 immediate value.
 
-<DT>imm16: 
+<DT>imm16:
 <DD>an immediate word value used for instructions whose operand-size
 attribute is 16 bits. This is a number between -32768 and +32767 inclusive.
 
 <DT>
-imm32: 
+imm32:
 <DD>an immediate doubleword value used for instructions whose
 operand-size attribute is 32-bits. It allows the use of a number between
 +2147483647 and -2147483648.
 
 <DT>
-r/m8: 
+r/m8:
 <DD>a one-byte operand that is either the contents of a byte register
 (AL, BL, CL, DL, AH, BH, CH, DH), or a byte from memory.
 
 <DT>
-r/m16: 
+r/m16:
 <DD>a word register or memory operand used for instructions whose
 operand-size attribute is 16 bits. The word registers are: AX, BX, CX, DX,
 SP, BP, SI, DI. The contents of memory are found at the address provided by
 the effective address computation.
 
 <DT>
-r/m32: 
+r/m32:
 <DD>a doubleword register or memory operand used for instructions whose
 operand-size attribute is 32-bits. The doubleword registers are: EAX, EBX,
 ECX, EDX, ESP, EBP, ESI, EDI. The contents of memory are found at the
 address provided by the effective address computation.
 
 <DT>
-m8: 
+m8:
 <DD>a memory byte addressed by DS:SI or ES:DI (used only by string
 instructions).
 
 <DT>
-m16: 
+m16:
 <DD>a memory word addressed by DS:SI or ES:DI (used only by string
 instructions).
 
 <DT>
-m32: 
+m32:
 <DD>a memory doubleword addressed by DS:SI or ES:DI (used only by string
 instructions).
 
 <DT>
-m16:16, M16:32: 
+m16:16, M16:32:
 <DD>a memory operand containing a far pointer composed of two
 numbers. The number to the left of the colon corresponds to the pointer's
 segment selector. The number to the right corresponds to its offset.
 
 <DT>
-m16 & 32, m16 & 16, m32 & 32: 
+m16 & 32, m16 & 16, m32 & 32:
 <DD>a memory operand consisting of data item pairs
 whose sizes are indicated on the left and the right side of the ampersand.
 All memory addressing modes are allowed. m16 & 16 and m32 & 32 operands are
 used by the <A HREF="BOUND.htm">BOUND</A> instruction to provide an operand containing an upper and
-lower bounds for array indices. m16 & 32 is used by 
+lower bounds for array indices. m16 & 32 is used by
 <A HREF="LGDT.htm">LIDT</A> and <A HREF="LGDT.htm">LGDT</A> to
 provide a word with which to load the limit field, and a doubleword with
 which to load the base field of the corresponding Global and Interrupt
 Descriptor Table Registers.
 
 <DT>
-moffs8, moffs16, moffs32: 
+moffs8, moffs16, moffs32:
 <DD>(memory offset) a simple memory variable of type
-BYTE, WORD, or DWORD used by some variants of the 
+BYTE, WORD, or DWORD used by some variants of the
 <A HREF="MOV.htm">MOV</A> instruction. The
 actual address is given by a simple offset relative to the segment base. No
 ModR/M byte is used in the instruction. The number shown with moffs
@@ -532,7 +532,7 @@ indicates its size, which is determined by the address-size attribute of the
 instruction.
 
 <DT>
-Sreg: 
+Sreg:
 <DD>a segment register. The segment register bit assignments are ES=0,
 CS=1, SS=2, DS=3, FS=4, and GS=5.
 </DL>
@@ -782,7 +782,7 @@ The following functions are used in the algorithmic descriptions:
 <P>
    If the base operand is a register, the offset can be in the range 0..31.
    This offset addresses a bit within the indicated register. An example,
-   "BIT[EAX, 21]," is illustrated in 
+   "BIT[EAX, 21]," is illustrated in
 <A HREF="s17_02.htm#fig17-3">Figure 17-3</A>
   .
 <P>
@@ -790,7 +790,7 @@ The following functions are used in the algorithmic descriptions:
    gigabits. The addressed bit is numbered (Offset MOD 8) within the byte at
    address (BitBase + (BitOffset DIV 8)), where DIV is signed division with
    rounding towards negative infinity, and MOD returns a positive number.
-   This is illustrated in 
+   This is illustrated in
 <A HREF="s17_02.htm#fig17-4">Figure 17-4</A>
   .
 
@@ -816,7 +816,7 @@ The following functions are used in the algorithmic descriptions:
    FI;
 </PRE>
 
- <LI> Switch-Tasks is the task switching function described in 
+ <LI> Switch-Tasks is the task switching function described in
  <A HREF="c07.htm">Chapter 7</A>.
  </LI>
 </UL>
@@ -919,7 +919,7 @@ Mnemonic     Interrupt    Description
 <H3>17.2.2.9  Real Address Mode Exceptions</H3>
 
 Because less error checking is performed by the 80386 in Real Address Mode,
-this mode has fewer exception conditions . Refer to 
+this mode has fewer exception conditions . Refer to
 <A HREF="c14.htm">Chapter 14</A>
    for further
 information on these exceptions.
@@ -929,7 +929,7 @@ information on these exceptions.
 
 Virtual 8086 tasks provide the ability to simulate Virtual 8086 machines.
 Virtual 8086 Mode exceptions are similar to those for the 8086 processor,
-but there are some differences . Refer to 
+but there are some differences . Refer to
 <A HREF="c15.htm">Chapter 15</A>
    for details .
 <P>

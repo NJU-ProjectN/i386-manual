@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 3.3</TITLE>
 </HEAD>
@@ -27,45 +27,45 @@ These instructions operate only on the AL or AH registers. Most utilize the
 AF flag.
 
 <H2>3.3.1  Packed BCD Adjustment Instructions</H2>
-<A HREF="DAA.htm">DAA</A> (Decimal Adjust after Addition) 
+<A HREF="DAA.htm">DAA</A> (Decimal Adjust after Addition)
 adjusts the result of adding two valid
-packed decimal operands in AL. 
+packed decimal operands in AL.
 <A HREF="DAA.htm">DAA</A> must always follow the addition of two
 pairs of packed decimal numbers (one digit in each half-byte) to obtain a
 pair of valid packed decimal digits as results. The carry flag is set if
 carry was needed.
 <P>
-<A HREF="DAS.htm">DAS</A> (Decimal Adjust after Subtraction) 
+<A HREF="DAS.htm">DAS</A> (Decimal Adjust after Subtraction)
 adjusts the result of subtracting
-two valid packed decimal operands in AL. 
+two valid packed decimal operands in AL.
 <A HREF="DAS.htm">DAS</A> must always follow the
 subtraction of one pair of packed decimal numbers (one digit in each half-
 byte) from another to obtain a pair of valid packed decimal digits as
 results. The carry flag is set if a borrow was needed.
 
 <H2>3.3.2  Unpacked BCD Adjustment Instructions</H2>
-<A HREF="AAA.htm">AAA</A> (ASCII Adjust after Addition) 
+<A HREF="AAA.htm">AAA</A> (ASCII Adjust after Addition)
 changes the contents of register AL to a
-valid unpacked decimal number, and zeros the top 4 bits. 
+valid unpacked decimal number, and zeros the top 4 bits.
 <A HREF="AAA.htm">AAA</A> must always
 follow the addition of two unpacked decimal operands in AL. The carry flag
 is set and AH is incremented if a carry is necessary.
 <P>
-<A HREF="AAS.htm">AAS</A> (ASCII Adjust after Subtraction) 
+<A HREF="AAS.htm">AAS</A> (ASCII Adjust after Subtraction)
 changes the contents of register AL to
-a valid unpacked decimal number, and zeros the top 4 bits. 
+a valid unpacked decimal number, and zeros the top 4 bits.
 <A HREF="AAS.htm">AAS</A> must always
 follow the subtraction of one unpacked decimal operand from another in AL.
 The carry flag is set and AH decremented if a borrow is necessary.
 <P>
-<A HREF="AAM.htm">AAM</A> (ASCII Adjust after Multiplication) 
+<A HREF="AAM.htm">AAM</A> (ASCII Adjust after Multiplication)
 corrects the result of a
-multiplication of two valid unpacked decimal numbers. 
+multiplication of two valid unpacked decimal numbers.
 <A HREF="AAM.htm">AAM</A> must always follow
 the multiplication of two decimal numbers to produce a valid decimal result.
 The high order digit is left in AH, the low order digit in AL.
 <P>
-<A HREF="AAD.htm">AAD</A> (ASCII Adjust before Division) 
+<A HREF="AAD.htm">AAD</A> (ASCII Adjust before Division)
 modifies the numerator in AH and AL to
 prepare for the division of two valid unpacked decimal operands so that the
 quotient produced by the division will be a valid unpacked decimal number.

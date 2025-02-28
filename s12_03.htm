@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 12.3</TITLE>
 </HEAD>
@@ -7,7 +7,7 @@
 <B>up:</B> <A HREF="c12.htm">
 Chapter 12 -- Debugging</A><BR>
 <B>prev:</B> <A HREF="s12_02.htm">12.2  Debug Registers</A><BR>
-<B>next:</B> 
+<B>next:</B>
 <A HREF="c13.htm">Chapter 13 -- Executing 80286 Protected-Mode Code</A>
 <P>
 <HR>
@@ -24,7 +24,7 @@ The handler for this exception is usually a debugger or part of a debugging
 system. The processor causes interrupt 1 for any of several conditions. The
 debugger can check flags in DR6 and DR7 to determine what condition caused
 the exception and what other conditions might be in effect at the same time.
-<A HREF="s12_03.htm#Table 12-2">Table 12-2</A> 
+<A HREF="s12_03.htm#Table 12-2">Table 12-2</A>
 associates with each breakpoint condition the combination of
 bits that indicate when that condition has caused the debug exception.
 <P>
@@ -63,12 +63,12 @@ instruction. (Note, however, that RF does not cause breakpoint traps to be
 ignored, nor other kinds of faults.)
 <P>
 The processor automatically clears RF at the successful completion of every
-instruction except after the 
-<A HREF="IRET.htm">IRET</A> instruction, after the 
+instruction except after the
+<A HREF="IRET.htm">IRET</A> instruction, after the
 <A HREF="POPF.htm">POPF</A> instruction,
-and after a 
-<A HREF="JMP.htm">JMP</A>, 
-<A HREF="CALL.htm">CALL</A>, or 
+and after a
+<A HREF="JMP.htm">JMP</A>,
+<A HREF="CALL.htm">CALL</A>, or
 <A HREF="INT.htm">INT</A> instruction that causes a task switch. These
 instructions set RF to the value specified by the memory image of the EFLAGS
 register.
@@ -76,7 +76,7 @@ register.
 The processor automatically sets RF in the EFLAGS image on the stack before
 entry into any fault handler. Upon entry into the fault handler for
 instruction address breakpoints, for example, RF is set in the EFLAGS image
-on the stack; therefore, the 
+on the stack; therefore, the
 <A HREF="IRET.htm">IRET</A> instruction at the end of the handler will
 set RF in the EFLAGS register, and execution will resume at the breakpoint
 address without generating another breakpoint fault at the same address.
@@ -88,14 +88,14 @@ also be done with RF=1, with the result that debug faults continue to be
 ignored. The processor clears RF only after successful completion of the
 instruction.
 <P>
-Real-mode debuggers can control the RF flag by using a 32-bit 
+Real-mode debuggers can control the RF flag by using a 32-bit
 <A HREF="IRET.htm">IRET</A>. A
-16-bit 
-<A HREF="IRET.htm">IRET</A> instruction does not affect the RF bit 
+16-bit
+<A HREF="IRET.htm">IRET</A> instruction does not affect the RF bit
 (which is in the
 high-order 16 bits of EFLAGS). To use a 32-bit <A HREF="IRET.htm">IRET</A>, the debugger must
 rearrange the stack so that it holds appropriate values for the 32-bit EIP,
-CS, and EFLAGS (with RF set in the EFLAGS image). Then executing an 
+CS, and EFLAGS (with RF set in the EFLAGS image). Then executing an
 <A HREF="IRET.htm">IRET</A>
 with an operand size prefix causes a 32-bit return, popping the RF flag
 into EFLAGS.
@@ -138,7 +138,7 @@ examining the BD bit of DR6.
 This debug condition occurs at the end of an instruction if the trap flag
 (TF) of the flags register held the value one at the beginning of that
 instruction.  Note that the exception does not occur at the end of an
-instruction that sets TF. For example, if 
+instruction that sets TF. For example, if
 <A HREF="POPF.htm">POPF</A> is used to set TF, a
 single-step trap does not occur until after the instruction that follows
 <A HREF="POPF.htm">POPF</A>.
@@ -148,11 +148,11 @@ the flags image of a TSS at the time of a task switch, the exception occurs
 after the first instruction is executed in the new task.
 <P>
 The single-step flag is normally not cleared by privilege changes inside a
-task.  
-<A HREF="INT.htm">INT</A> instructions, however, do clear TF.  
+task.
+<A HREF="INT.htm">INT</A> instructions, however, do clear TF.
 Therefore, software
-debuggers that single-step code must recognize and emulate 
-<A HREF="INT.htm">INT n</A> or 
+debuggers that single-step code must recognize and emulate
+<A HREF="INT.htm">INT n</A> or
 <A HREF="INT.htm">INTO</A>
 rather than executing them directly.
 <P>
@@ -167,7 +167,7 @@ processed first. This clears the TF bit. After saving the return address or
 switching tasks, the external interrupt input is examined before the first
 instruction of the single step handler executes.  If the external interrupt
 is still pending, it is then serviced. The external interrupt handler is not
-single-stepped. To single step an interrupt handler, just single step an 
+single-stepped. To single step an interrupt handler, just single step an
 <A HREF="INT.htm">INT</A>
 n instruction that refers to the interrupt handler.
 
@@ -175,7 +175,7 @@ n instruction that refers to the interrupt handler.
 The debug exception also occurs after a switch to an 80386 task if the
 T-bit of the new TSS is set.  The exception occurs after control has passed
 to the new task, but before the first instruction of that task is executed.
-The exception handler can detect this condition by examining the 
+The exception handler can detect this condition by examining the
 BT bit of
 the debug status register DR6.
 <P>
@@ -184,11 +184,11 @@ should not be set. Failure to observe this rule will cause the processor to
 enter an infinite loop.
 
 <H2>12.3.2 Interrupt 3 -- Breakpoint Exception</H2>
-This exception is caused by execution of the breakpoint instruction 
+This exception is caused by execution of the breakpoint instruction
 <A HREF="INT.htm">INT</A> 3.
 Typically, a debugger prepares a breakpoint by substituting the opcode of
 the one-byte breakpoint instruction in place of the first opcode byte of the
-instruction to be trapped. When execution of the 
+instruction to be trapped. When execution of the
 <A HREF="INT.htm">INT</A> 3 instruction causes
 the exception handler to be invoked, the saved value of ES:EIP points to the
 byte following the <A HREF="INT.htm">INT</A> 3 instruction.
@@ -208,5 +208,5 @@ greater number of breakpoints than permitted by the debug registers.
 Chapter 12 -- Debugging</A><BR>
 <B>prev:</B> <A HREF="s12_02.htm">12.2  Debug Registers</A><BR>
 <B>next:</B>
-<A HREF="c13.htm">Chapter 13 -- Executing 80286 Protected-Mode Code</A> 
+<A HREF="c13.htm">Chapter 13 -- Executing 80286 Protected-Mode Code</A>
 </BODY>

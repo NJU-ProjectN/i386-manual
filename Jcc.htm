@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
+<HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Opcode Jcc</TITLE>
 </HEAD>
@@ -166,8 +166,8 @@ synonym for JE.
 JCXZ differs from other conditional jumps because it tests the contents of
 the CX or ECX register for 0, not the flags. JCXZ is useful at the beginning
 of a conditional loop that terminates with a conditional loop instruction
-(such as 
-<A HREF="LOOP.htm">LOOPNE</A> 
+(such as
+<A HREF="LOOP.htm">LOOPNE</A>
 TARGET LABEL). The JCXZ prevents entering the loop with CX or
 ECX equal to zero, which would cause the loop to execute 64K or 32G times
 instead of zero times.
