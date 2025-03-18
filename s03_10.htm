@@ -2,6 +2,7 @@
 <HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 3.10</TITLE>
+<LINK REL="STYLESHEET" TYPE="TEXT/CSS" HREF="style.css" />
 </HEAD>
 <BODY STYLE="width:80ch">
 <B>up:</B> <A HREF="c03.htm">
@@ -19,7 +20,7 @@ instructions is used by applications programmers. The instructions that deal
 with segment registers are:
 <OL>
 <LI> Segment-register transfer instructions.
-<UL>
+<UL CLASS="SHORTCUTS">
 <LI><A HREF="MOV.htm">MOV</A> SegReg, ...
 <LI><A HREF="MOV.htm">MOV</A> ..., SegReg
 <LI><A HREF="PUSH.htm">PUSH</A> SegReg
@@ -27,14 +28,14 @@ with segment registers are:
 </UL>
 
 <LI> Control transfers to another executable segment.
-<UL>
+<UL CLASS="SHORTCUTS">
 <LI><A HREF="JMP.htm">JMP</A> far direct and indirect
 <LI><A HREF="CALL.htm">CALL</A> far
 <LI><A HREF="RET.htm">RET</A> far
 </UL>
 
 <LI> Data pointer instructions.
-<UL>
+<UL CLASS="SHORTCUTS">
 <LI><A HREF="LGS.htm">LDS</A>
 <LI><A HREF="LGS.htm">LES</A>
 <LI><A HREF="LGS.htm">LFS</A>
@@ -46,7 +47,7 @@ Note that the following interrupt-related instructions are different; all
 are capable of transferring control to another segment, but the use of
 segmentation is not apparent to the applications programmer.
 <P>
-<UL>
+<UL CLASS="SHORTCUTS">
 <LI><A HREF="INT.htm">INT n</A>
 <LI><A HREF="INT.htm">INTO</A>
 <LI><A HREF="BOUND.htm">BOUND</A>
