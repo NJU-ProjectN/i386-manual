@@ -2,6 +2,7 @@
 <HTML LANG="EN">
 <HEAD>
 <TITLE>80386 Programmer's Reference Manual -- Section 6.3</TITLE>
+<LINK REL="STYLESHEET" TYPE="TEXT/CSS" HREF="style.css" />
 </HEAD>
 <BODY STYLE="width:80ch">
 <B>up:</B> <A HREF="c06.htm">
@@ -921,7 +922,7 @@ The instructions that affect system data structures can only be executed
 when CPL is zero. If the CPU encounters one of these instructions when CPL
 is greater than zero, it signals a general protection exception. These
 instructions include:
-<UL>
+<UL CLASS="SHORTCUTS">
 <LI><A HREF="CLTS.htm">CLTS -- Clear Task-Switched Flag</A>
 <LI><A HREF="HLT.htm">HLT -- Halt Processor</A>
 <LI><A HREF="LGDT.htm">LGDT -- Load GDL Register</A>
