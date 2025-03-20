@@ -2,6 +2,10 @@ p {
     line-height: 1.5;
 }
 
+body {
+    width: 80ch;
+}
+
 .shortcuts li a {
  min-height: 24px;
  line-height: 24px;
