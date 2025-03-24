@@ -22,6 +22,15 @@ p.shortcuts a {
     padding: 12px;
 }
 
+
+dl > dt > a {
+ display: inline-block;
+ min-height: 24px;
+ line-height: 1.5;
+ padding-top: 10px;
+ padding-bottom: 10px;
+}
+
 dl > dd > a {
  display: inline-block;
  min-height: 24px;
