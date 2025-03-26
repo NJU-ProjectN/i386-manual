@@ -1,11 +1,57 @@
-.shortcuts li a {
- min-height: 24px;
- line-height: 24px;
+p {
+    line-height: 1.5;
 }
 
-p.shortcuts {
- font-size: 1.2x;
- padding: 14px;
+body {
+    width: 80ch;
+}
+
+.shortcuts li a {
+ display: inline-block;
  min-height: 24px;
- line-height: 24px;
+ font: 24px;
+ line-height: 1.5;
+ padding: 12px;
+}
+
+p.shortcuts a {
+    display: inline-block;
+    min-height: 24px;
+    font: 24px;
+    line-height: 1.5;
+    padding: 12px;
+}
+
+
+dl > dt > a {
+ display: inline-block;
+ min-height: 24px;
+ line-height: 1.5;
+ padding-top: 10px;
+ padding-bottom: 10px;
+ padding-right: 20px;
+}
+
+dl > dd > a {
+ display: inline-block;
+ min-height: 24px;
+ line-height: 1.5;
+ padding: 12px;
+}
+
+h2,h3 {
+    min-height: 44px;
+    line-height: 1.5;
+}
+
+h2 a {
+    display: inline-block;
+    font-size: 28px;
+    padding: 10px;
+}
+
+h3,h4 a {
+    display: inline-block;
+    font-size: 24px;
+    padding: 12px;
 }
